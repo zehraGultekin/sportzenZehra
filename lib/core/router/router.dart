@@ -10,6 +10,8 @@ import 'package:sportzenzehra/feature/messages/view/message_view.dart';
 import 'package:sportzenzehra/feature/navigator/views/navigator_view.dart';
 import 'package:sportzenzehra/feature/notification/view/notification_view.dart';
 import 'package:sportzenzehra/feature/reservation/view/reservation_view.dart';
+import 'package:sportzenzehra/feature/settings/view/finance_view.dart';
+import 'package:sportzenzehra/feature/settings/view/kvkk_view.dart';
 import 'package:sportzenzehra/feature/settings/view/profile_view.dart';
 import 'package:sportzenzehra/feature/settings/view/settings_view.dart';
 
@@ -24,6 +26,8 @@ enum AppRoutes {
   register,
   news,
   profile,
+  kvkk,
+  finance,
   clubregister;
 
   String get path => "/$name";
@@ -116,6 +120,16 @@ final router = GoRouter(
                   path: AppRoutes.profile.path,
                   name: AppRoutes.profile.name,
                   builder: (context, state) => ProfileView(),
+                ),
+                GoRoute(
+                  path: AppRoutes.kvkk.path,
+                  name: AppRoutes.kvkk.name,
+                  builder: (context, state) => KvkkView(),
+                ),
+                GoRoute(
+                  path: AppRoutes.finance.path,
+                  name: AppRoutes.finance.name,
+                  builder: (context, state) => FinanceView(),
                 ),
               ],
             ),

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sportzenzehra/core/utils/modal_helpers.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/settings/provider/settings_provider.dart';
@@ -17,10 +20,21 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
   TextEditingController cityController = TextEditingController();
   TextEditingController adresController = TextEditingController();
 
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> getImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      ref.read(imagePickerProvider.notifier).state = image;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final selectedCity = ref.watch(profileCityProvider);
     cityController.text = selectedCity ?? 'Şehir';
+    final image = ref.watch(imagePickerProvider);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -43,23 +57,37 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
             Stack(
               children: [
                 ClipOval(
-                  child: Image.asset("assets/images/user.png", height: 200),
+                  child: image == null
+                      ? Image.asset(
+                          "assets/images/user.png",
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.file(
+                          File(image.path),
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                 ),
+
                 Positioned(
                   bottom: 50,
                   left: 120,
 
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                  child: GestureDetector(
+                    onTap: getImage,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Icon(
+                        Icons.edit,
+                        size: 20,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                   ),
                 ),

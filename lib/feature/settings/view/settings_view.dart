@@ -41,7 +41,9 @@ class _SettingsViewState extends State<SettingsView> {
                   SettingsMenuItem(
                     icon: Icons.wallet_outlined,
                     title: 'Finans İşlemleri',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.finance.name);
+                    },
                   ),
                   SettingsMenuItem(
                     icon: Icons.settings,
@@ -75,7 +77,9 @@ class _SettingsViewState extends State<SettingsView> {
                   SettingsMenuItem(
                     icon: Icons.policy_outlined,
                     title: 'KVKK, Hizmet Şartları ve Gizlilik Politikası',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.kvkk.name);
+                    },
                   ),
                 ],
               ),
