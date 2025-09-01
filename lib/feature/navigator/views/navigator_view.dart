@@ -24,31 +24,31 @@ class BottomNavigator extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SideNavItem(
+            NavItem(
               icon: Icons.home,
               label: "Ana Sayfa",
               isSelected: navigationShell.currentIndex == 0,
               onTap: () => onTabItem(0),
             ),
-            SideNavItem(
+            NavItem(
               icon: Icons.calendar_today_outlined,
               label: "Rezervasyon",
               isSelected: navigationShell.currentIndex == 1,
               onTap: () => onTabItem(1),
             ),
-            SideNavItem(
+            NavItem(
               icon: Icons.notifications_none_rounded,
               label: "Bildirimler",
               isSelected: navigationShell.currentIndex == 2,
               onTap: () => onTabItem(2),
             ),
-            SideNavItem(
+            NavItem(
               icon: Icons.sms_outlined,
               label: "Mesajlar",
               isSelected: navigationShell.currentIndex == 3,
               onTap: () => onTabItem(3),
             ),
-            SideNavItem(
+            NavItem(
               icon: Icons.settings,
               label: "Seçenekler",
               isSelected: navigationShell.currentIndex == 4,

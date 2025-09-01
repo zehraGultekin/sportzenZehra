@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/text_style.dart';
 
-class SideNavItem extends StatelessWidget {
+class NavItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const SideNavItem({
+  const NavItem({
     super.key,
     required this.icon,
     required this.label,
@@ -44,7 +44,7 @@ class SideNavItem extends StatelessWidget {
               ),
             ),
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
               left: isSelected ? 30 : 0,
               top: 0,
