@@ -12,7 +12,7 @@ class ShowModalBranch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
         children: [
@@ -38,15 +38,15 @@ class ShowModalBranch extends ConsumerWidget {
                 return Container(
                   height: 45,
                   margin: const EdgeInsets.symmetric(
-                    vertical: 4,
+                    vertical: 8,
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: AppColors.grey.withValues(alpha: 0.1),
 
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: AppColors.grey.withValues(alpha: 0.4),
+                      color: AppColors.grey.withValues(alpha: 0.2),
                       width: 1,
                     ),
                   ),

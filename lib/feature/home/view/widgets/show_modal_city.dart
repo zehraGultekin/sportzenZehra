@@ -12,7 +12,7 @@ class ShowModalCity extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
         children: [
@@ -30,12 +30,10 @@ class ShowModalCity extends ConsumerWidget {
           Container(
             height: 48,
             decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: AppColors.grey.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onSurface.withValues(alpha: 0.1),
+                color: AppColors.grey.withValues(alpha: 0.4),
                 width: 1,
               ),
             ),
@@ -66,11 +64,11 @@ class ShowModalCity extends ConsumerWidget {
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: AppColors.grey.withValues(alpha: 0.1),
 
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Colors.grey.withValues(alpha: 0.4),
+                      color: Colors.grey.withValues(alpha: 0.6),
                       width: 1,
                     ),
                   ),

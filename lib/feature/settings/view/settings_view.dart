@@ -4,6 +4,8 @@ import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/setting_menu_item.dart';
 
 class SettingsView extends StatefulWidget {
+  const SettingsView({super.key});
+
   @override
   State<SettingsView> createState() => _SettingsViewState();
 }
@@ -93,6 +95,37 @@ class _SettingsViewState extends State<SettingsView> {
                   ),
                 ],
               ),
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/logo.png"),
+                      radius: 15,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Sürüm: 1.2.0",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Row(
+                  children: [
+                    Icon(Icons.star, color: Colors.amber),
+                    SizedBox(width: 10),
+                    Text(
+                      "Değerlendir",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.amber),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
