@@ -17,8 +17,8 @@ class ClubRegisterView extends ConsumerStatefulWidget {
 class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
   @override
   Widget build(BuildContext context) {
-    final selectedCity = ref.watch(selectedCityClubProvider);
-    final selectedBranch = ref.watch(selectedBranchClubProvider);
+    final selectedCity = ref.watch(clubCityProvider);
+    final selectedBranch = ref.watch(clubBranchProvider);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Kulüp Seç",
@@ -54,8 +54,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                     icon: Icons.location_city_outlined,
                     title: "Şehir",
                     value: selectedCity ?? "Şehir Seçin",
-                    onTap: () =>
-                        showCityModal(context, selectedCityClubProvider),
+                    onTap: () => showCityModal(context, clubCityProvider),
                   ),
                 ),
               ],
@@ -65,7 +64,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               icon: Icons.sports_baseball_outlined,
               title: "Branş",
               value: selectedBranch?.name ?? "Şeçiniz",
-              onTap: () => showBranchModal(context, selectedBranchClubProvider),
+              onTap: () => showBranchModal(context, clubBranchProvider),
             ),
             SizedBox(height: 20),
             Container(

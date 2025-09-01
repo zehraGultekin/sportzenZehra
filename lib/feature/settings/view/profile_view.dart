@@ -1,0 +1,134 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sportzenzehra/core/utils/modal_helpers.dart';
+import 'package:sportzenzehra/core/widgets/appbar.dart';
+import 'package:sportzenzehra/feature/settings/provider/settings_provider.dart';
+import 'package:sportzenzehra/feature/settings/view/widgets/profile_textfied_widget.dart';
+
+class ProfileView extends ConsumerStatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  ConsumerState<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends ConsumerState<ProfileView> {
+  TextEditingController cityController = TextEditingController();
+  TextEditingController adresController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final selectedCity = ref.watch(profileCityProvider);
+    cityController.text = selectedCity ?? 'Şehir';
+
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: "Profil",
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Theme.of(context).colorScheme.secondary,
+            size: 20,
+          ),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                ClipOval(
+                  child: Image.asset("assets/images/user.png", height: 200),
+                ),
+                Positioned(
+                  bottom: 50,
+                  left: 120,
+
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            ProfileTextField(
+              enabled: false,
+              preffixIcon: Icons.mail,
+              label: "Mail",
+              initialValue: "zehragltekin10@gmail.com",
+            ),
+            SizedBox(height: 20),
+            ProfileTextField(
+              enabled: false,
+              preffixIcon: Icons.phone,
+              label: "Telefon",
+              initialValue: "05519329535",
+            ),
+            SizedBox(height: 20),
+            ProfileTextField(
+              enabled: false,
+              preffixIcon: Icons.flag,
+              label: "Ülke",
+              initialValue: "Türkiye",
+            ),
+            SizedBox(height: 20),
+            ProfileTextField(
+              enabled: true,
+              preffixIcon: Icons.location_city,
+              controller: cityController,
+              onTap: () => showCityModal(context, profileCityProvider),
+            ),
+            SizedBox(height: 20),
+            ProfileTextField(
+              enabled: false,
+              initialValue: "Belirtilmemiş",
+              label: "Cinsiyet",
+              preffixIcon: Icons.family_restroom_outlined,
+            ),
+            SizedBox(height: 20),
+            ProfileTextField(
+              enabled: true,
+              initialValue: "Adres",
+              preffixIcon: Icons.location_city,
+            ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                height: 40,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                child: Center(
+                  child: Text(
+                    "Kaydet",
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -10,6 +10,7 @@ import 'package:sportzenzehra/feature/messages/view/message_view.dart';
 import 'package:sportzenzehra/feature/navigator/views/navigator_view.dart';
 import 'package:sportzenzehra/feature/notification/view/notification_view.dart';
 import 'package:sportzenzehra/feature/reservation/view/reservation_view.dart';
+import 'package:sportzenzehra/feature/settings/view/profile_view.dart';
 import 'package:sportzenzehra/feature/settings/view/settings_view.dart';
 
 enum AppRoutes {
@@ -22,6 +23,7 @@ enum AppRoutes {
   settings,
   register,
   news,
+  profile,
   clubregister;
 
   String get path => "/$name";
@@ -109,6 +111,13 @@ final router = GoRouter(
               path: AppRoutes.settings.path,
               name: AppRoutes.settings.name,
               builder: (context, state) => SettingsView(),
+              routes: [
+                GoRoute(
+                  path: AppRoutes.profile.path,
+                  name: AppRoutes.profile.name,
+                  builder: (context, state) => ProfileView(),
+                ),
+              ],
             ),
           ],
         ),

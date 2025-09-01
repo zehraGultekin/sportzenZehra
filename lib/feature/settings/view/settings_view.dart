@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/setting_menu_item.dart';
@@ -32,7 +34,9 @@ class _SettingsViewState extends State<SettingsView> {
                   SettingsMenuItem(
                     icon: Icons.person_2_outlined,
                     title: 'Profil',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.profile.name);
+                    },
                   ),
                   SettingsMenuItem(
                     icon: Icons.wallet_outlined,
@@ -91,7 +95,9 @@ class _SettingsViewState extends State<SettingsView> {
                     colors: Colors.red,
                     icon: Icons.exit_to_app,
                     title: 'Çıkış Yap',
-                    onTap: () {},
+                    onTap: () {
+                      context.goNamed(AppRoutes.login.name);
+                    },
                   ),
                 ],
               ),
