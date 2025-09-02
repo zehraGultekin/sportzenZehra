@@ -16,40 +16,36 @@ class SelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.grey.withValues(alpha: 0.1),
+          color: AppColors.backgroundGrey,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: AppColors.grey.withValues(alpha: 0.2),
+            color: AppColors.grey.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: Theme.of(context).colorScheme.onSurface,
-              size: 20,
-            ),
+            Icon(icon, color: Colors.black.withValues(alpha: 0.7), size: 20),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(fontSize: 10),
+                  style: theme.textTheme.bodySmall?.copyWith(fontSize: 10),
                 ),
                 Text(
                   value,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(fontSize: 12),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

@@ -8,12 +8,13 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(model.backgroundImage, fit: BoxFit.fill),
+            child: Image.asset(model.backgroundImage, fit: BoxFit.cover),
           ),
           Positioned.fill(
             child: Container(
@@ -27,18 +28,23 @@ class CategoryWidget extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
-                  SizedBox(height: 50, child: Image.asset(model.cardImage)),
-                  SizedBox(height: 4),
+                  SizedBox(
+                    height: 45,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(model.cardImage, fit: BoxFit.cover),
+                    ),
+                  ),
+
                   Text(
                     model.title,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelLarge?.copyWith(color: Colors.white),
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
-                  SizedBox(height: 4),
                   Text(
                     model.subtitle,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    style: theme.textTheme.labelMedium?.copyWith(
                       fontSize: 12,
                       color: Colors.white.withValues(alpha: 0.8),
                     ),

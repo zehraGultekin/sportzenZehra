@@ -16,23 +16,23 @@ class AppTextStyles {
   static TextStyle inputhintstyle = TextStyle(
     color: Colors.black.withValues(alpha: 0.7),
     fontSize: 15,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle headline2 = TextStyle(
     color: Colors.black,
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle labelLarge = TextStyle(
     fontSize: 15,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle labelMedium = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle bodyMedium = TextStyle(
@@ -42,7 +42,8 @@ class AppTextStyles {
 
   static TextStyle cardTitle = TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
+    color: Colors.black.withValues(alpha: 0.7),
   );
   static TextStyle selectionvalue = TextStyle(
     color: Colors.black,

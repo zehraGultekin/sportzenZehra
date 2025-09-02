@@ -20,6 +20,7 @@ class HomeView extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final selectedCity = ref.watch(selectedCityProvider);
     final selectedBranch = ref.watch(selectedBranchProvider);
     final isExpanded = ref.watch(headerExpandedProvider);
@@ -28,26 +29,29 @@ class _HomeViewState extends ConsumerState<HomeView> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.grey.withValues(alpha: 0.1),
-                    blurRadius: 1,
-                    offset: Offset(0, 3),
+                    blurRadius: 2,
+                    offset: Offset(0, 4),
                   ),
                 ],
               ),
               child: Column(
                 children: [
+                  SizedBox(height: 25),
                   Row(
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CircleAvatar(
                             radius: 15,
@@ -56,9 +60,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ),
                           ),
                           SizedBox(width: 10),
-                          Text(
-                            "Sporzen Public",
-                            style: Theme.of(context).textTheme.headlineLarge,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text(
+                              "Sporzen Public",
+                              style: theme.textTheme.headlineLarge,
+                            ),
                           ),
                         ],
                       ),
@@ -73,7 +80,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           duration: Duration(milliseconds: 300),
                           child: Icon(
                             Icons.expand_circle_down,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: theme.colorScheme.primary,
                           ),
                         ),
                       ),
@@ -132,9 +139,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 vertical: 12,
                               ),
                               decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).scaffoldBackgroundColor,
+                                color: theme.scaffoldBackgroundColor,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
                                   color: AppColors.grey.withValues(alpha: 0.2),
@@ -143,22 +148,18 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               ),
                               child: Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 10,
-                                        backgroundImage: AssetImage(
-                                          "assets/images/logo.png",
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        "Sporzen Public",
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.labelMedium,
-                                      ),
-                                    ],
+                                  CircleAvatar(
+                                    radius: 10,
+                                    backgroundImage: AssetImage(
+                                      "assets/images/logo.png",
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Sporzen Public",
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
                                   ),
                                 ],
                               ),
@@ -172,25 +173,26 @@ class _HomeViewState extends ConsumerState<HomeView> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 children: [
                   Row(
                     children: [
                       ClipOval(
                         child: Image.asset(
-                          "assets/images/user.png",
-                          width: 70,
-                          height: 70,
+                          "assets/images/userlogo.png",
+                          width: 40,
+                          height: 50,
                         ),
                       ),
+                      SizedBox(width: 8),
                       Text(
                         "Zehra Gültekin",
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ],
                   ),
-
+                  SizedBox(height: 10),
                   SizedBox(
                     width: double.infinity,
                     height: 200,
@@ -201,61 +203,72 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       },
                       itemBuilder: (context, index) {
                         final banner = bannerItems[index];
-                        return Stack(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 5,
+                        return Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withValues(alpha: 0.3),
+                                spreadRadius: -2,
+                                blurRadius: 9,
+                                offset: Offset(0, 3),
                               ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.grey.withValues(
-                                      alpha: 0.7,
-                                    ),
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      banner.imagePath,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ],
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  banner.imagePath,
+                                  width: double.infinity,
+                                  height: 200,
+                                  fit: BoxFit.cover,
                                 ),
-                              ),
-                            ),
-
-                            Positioned(
-                              left: 20,
-                              bottom: 10,
-                              child: Container(
-                                height: 20,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.secondary,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    banner.title,
-                                    style: Theme.of(context).textTheme.bodySmall
-                                        ?.copyWith(color: Colors.white),
+                                Positioned(
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: Container(
+                                    height: 40,
+                                    decoration: const BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.black45,
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Positioned(
+                                  left: 10,
+                                  bottom: 10,
+                                  child: Container(
+                                    height: 17,
+                                    width: 55,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        banner.title,
+                                        style: theme.textTheme.bodySmall
+                                            ?.copyWith(
+                                              color: Colors.white,
+                                              fontSize: 10,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         );
                       },
                     ),
@@ -279,48 +292,45 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              context.pushNamed(AppRoutes.clubRegister.name);
-                            },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            context.pushNamed(AppRoutes.clubRegister.name);
+                          },
 
-                            child: CategoryWidget(model: cardItems[0]),
-                          ),
+                          child: CategoryWidget(model: cardItems[0]),
                         ),
-                        SizedBox(width: 15),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              context.pushNamed(AppRoutes.news.name);
-                            },
-                            child: CategoryWidget(
-                              model: cardItems[1],
-                            ), //elle yazmak yerine dinamik yapabiiilirimmm     Row(children : cardItems.map((items)=>Expanded( child: CtegoryWidget(model:item)).toList() şeklindeee yapabilirimmm.))
-                          ),
+                      ),
+                      SizedBox(width: 15),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            context.pushNamed(AppRoutes.news.name);
+                          },
+                          child: CategoryWidget(
+                            model: cardItems[1],
+                          ), //elle yazmak yerine dinamik yapabiiilirimmm     Row(children : cardItems.map((items)=>Expanded( child: CtegoryWidget(model:item)).toList() şeklindeee yapabilirimmm.))
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     children: [
                       Icon(
                         Icons.calendar_month,
-                        size: 25,
+                        size: 30,
                         color: Theme.of(context).colorScheme.secondary,
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 5),
                       Text(
                         "Rezervasyon",
-                        style: Theme.of(context).textTheme.headlineMedium
-                            ?.copyWith(
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                        style: theme.textTheme.headlineLarge?.copyWith(
+                          color: theme.colorScheme.secondary,
+                        ),
                       ),
                     ],
                   ),
@@ -365,7 +375,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -377,11 +387,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           SizedBox(width: 5),
                           Text(
                             "Sahaları Ara",
-                            style: Theme.of(context).textTheme.headlineLarge
-                                ?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            style: theme.textTheme.headlineLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ],
                       ),
