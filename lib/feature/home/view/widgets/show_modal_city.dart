@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/selection_input.dart';
+import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 
 class ShowModalCity extends ConsumerWidget {
-  final StateProvider<String?> cityProvider;
+  final StateNotifierProvider<SelectedCityNotifier, String?> cityProvider;
 
   const ShowModalCity(this.cityProvider, {super.key});
 
@@ -81,7 +82,7 @@ class ShowModalCity extends ConsumerWidget {
                       ),
                     ),
                     onTap: () {
-                      ref.read(cityProvider.notifier).state = city;
+                      ref.read(cityProvider.notifier).selectedCity(city);
                       context.pop();
                     },
                   ),

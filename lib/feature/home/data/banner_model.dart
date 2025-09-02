@@ -7,4 +7,5 @@ class BannerModel {
 
 final List<BannerModel> bannerItems = [
   BannerModel(title: "Sponsor", imagePath: "assets/images/banner.png"),
+  BannerModel(title: "Sponsor", imagePath: "assets/images/banner.png"),
 ];

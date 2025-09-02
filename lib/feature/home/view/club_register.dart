@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/core/utils/modal_helpers.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/club_register_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
+import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
 
 class ClubRegisterView extends ConsumerStatefulWidget {
   const ClubRegisterView({super.key});
@@ -54,7 +55,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                     icon: Icons.location_city_outlined,
                     title: "Şehir",
                     value: selectedCity ?? "Şehir Seçin",
-                    onTap: () => showCityModal(context, clubCityProvider),
+                    onTap: () {},
                   ),
                 ),
               ],
@@ -64,7 +65,10 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               icon: Icons.sports_baseball_outlined,
               title: "Branş",
               value: selectedBranch?.name ?? "Şeçiniz",
-              onTap: () => showBranchModal(context, clubBranchProvider),
+              onTap: () => showModalBottomSheet(
+                context: context,
+                builder: (context) => ShowModalCity(selectedCityProvider),
+              ),
             ),
             SizedBox(height: 20),
             Container(

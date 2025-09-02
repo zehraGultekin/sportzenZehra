@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sportzenzehra/core/utils/modal_helpers.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
+import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart'
+    show ShowModalCity;
 import 'package:sportzenzehra/feature/settings/provider/settings_provider.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/profile_textfied_widget.dart';
 
@@ -32,8 +32,6 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedCity = ref.watch(profileCityProvider);
-    cityController.text = selectedCity ?? 'Şehir';
     final image = ref.watch(imagePickerProvider);
 
     return Scaffold(
@@ -115,11 +113,24 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
               initialValue: "Türkiye",
             ),
             SizedBox(height: 20),
-            ProfileTextField(
-              enabled: true,
-              preffixIcon: Icons.location_city,
-              controller: cityController,
-              onTap: () => showCityModal(context, profileCityProvider),
+            Consumer(
+              builder: (context, ref, child) {
+                final selectedCity = ref.watch(profileCityProvider);
+                cityController.text = selectedCity;
+                return ProfileTextField(
+                  enabled: true,
+                  preffixIcon: Icons.location_city,
+                  controller: cityController,
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return ShowModalCity(profileCityProvider);
+                      },
+                    );
+                  },
+                );
+              },
             ),
             SizedBox(height: 20),
             ProfileTextField(

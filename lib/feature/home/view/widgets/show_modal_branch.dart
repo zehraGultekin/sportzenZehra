@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/theme/text_style.dart';
 import 'package:sportzenzehra/feature/home/data/selection_input.dart';
+import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 
 class ShowModalBranch extends ConsumerWidget {
-  final StateProvider<BranchModel?> branchProvider;
+  final StateNotifierProvider<SelectedBranchNotifier, BranchModel?>
+  branchProvider;
   const ShowModalBranch(this.branchProvider, {super.key});
 
   @override
@@ -60,7 +62,9 @@ class ShowModalBranch extends ConsumerWidget {
                       style: AppTextStyles.selectionvalue,
                     ),
                     onTap: () {
-                      ref.read(branchProvider.notifier).state = branch;
+                      ref
+                          .read(selectedBranchProvider.notifier)
+                          .selectedBranch(branch);
                       context.pop();
                     },
                   ),

@@ -13,13 +13,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  void _openShowBottom() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => LoginShowBottom(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,7 +73,10 @@ class _LoginViewState extends State<LoginView> {
                             SizedBox(width: 4),
                             GestureDetector(
                               onTap: () {
-                                _openShowBottom();
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => LoginShowBottom(),
+                                );
                               },
                               child: Text(
                                 "Yenile",
