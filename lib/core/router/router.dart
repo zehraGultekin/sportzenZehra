@@ -11,6 +11,7 @@ import 'package:sportzenzehra/feature/navigator/views/navigator_view.dart';
 import 'package:sportzenzehra/feature/notification/view/notification_view.dart';
 import 'package:sportzenzehra/feature/reservation/view/reservation_view.dart';
 import 'package:sportzenzehra/feature/settings/view/account_settings_view.dart';
+import 'package:sportzenzehra/feature/settings/view/change_password.dart';
 import 'package:sportzenzehra/feature/settings/view/finance_view.dart';
 import 'package:sportzenzehra/feature/settings/view/kvkk_view.dart';
 import 'package:sportzenzehra/feature/settings/view/profile_view.dart';
@@ -20,7 +21,7 @@ enum AppRoutes {
   login,
   home,
   reservation,
-  reservationdetail,
+  reservationDetail,
   notification,
   messages,
   settings,
@@ -30,7 +31,8 @@ enum AppRoutes {
   kvkk,
   finance,
   account,
-  clubregister;
+  changePassword,
+  clubRegister;
 
   String get path => "/$name";
 }
@@ -65,8 +67,8 @@ final router = GoRouter(
               builder: (context, state) => HomeView(),
               routes: [
                 GoRoute(
-                  path: AppRoutes.clubregister.path,
-                  name: AppRoutes.clubregister.name,
+                  path: AppRoutes.clubRegister.path,
+                  name: AppRoutes.clubRegister.name,
                   builder: (context, state) => ClubRegisterView(),
                 ),
                 GoRoute(
@@ -75,8 +77,8 @@ final router = GoRouter(
                   builder: (context, state) => NewsView(),
                 ),
                 GoRoute(
-                  path: AppRoutes.reservationdetail.path,
-                  name: AppRoutes.reservationdetail.name,
+                  path: AppRoutes.reservationDetail.path,
+                  name: AppRoutes.reservationDetail.name,
                   builder: (context, state) => ReservationDetailView(),
                 ),
               ],
@@ -137,6 +139,13 @@ final router = GoRouter(
                   path: AppRoutes.account.path,
                   name: AppRoutes.account.name,
                   builder: (context, state) => AccountSettingsView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.changePassword.path,
+                      name: AppRoutes.changePassword.name,
+                      builder: (context, state) => ChangePasswordView(),
+                    ),
+                  ],
                 ),
               ],
             ),

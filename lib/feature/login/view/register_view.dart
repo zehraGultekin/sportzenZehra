@@ -143,7 +143,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                                                   MediaQuery.of(
                                                     context,
                                                   ).size.height *
-                                                  0.75,
+                                                  0.80,
                                               child: RegisterShowmodal(),
                                             );
                                           },

@@ -227,7 +227,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     Image.asset(
                                       banner.imagePath,
                                       width: double.infinity,
-                                      height: double.infinity,
                                       fit: BoxFit.cover,
                                     ),
                                   ],
@@ -287,7 +286,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              context.pushNamed(AppRoutes.clubregister.name);
+                              context.pushNamed(AppRoutes.clubRegister.name);
                             },
 
                             child: CategoryWidget(model: cardItems[0]),
@@ -359,14 +358,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      context.pushNamed(AppRoutes.reservationdetail.name);
+                      context.pushNamed(AppRoutes.reservationDetail.name);
                     },
                     child: Container(
                       height: 40,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/setting_menu_item.dart';
@@ -40,7 +41,9 @@ class AccountSettingsView extends StatelessWidget {
                   SettingsMenuItem(
                     icon: Icons.person_2_outlined,
                     title: 'Şifre değiştir',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.changePassword.name);
+                    },
                   ),
                   SettingsMenuItem(
                     icon: Icons.wallet_outlined,
