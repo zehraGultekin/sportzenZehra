@@ -48,7 +48,9 @@ class _SettingsViewState extends State<SettingsView> {
                   SettingsMenuItem(
                     icon: Icons.settings,
                     title: 'Hesap İşlemleri',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.account.name);
+                    },
                   ),
                 ],
               ),
@@ -96,7 +98,7 @@ class _SettingsViewState extends State<SettingsView> {
               child: Column(
                 children: [
                   SettingsMenuItem(
-                    colors: Colors.red,
+                    colors: Theme.of(context).colorScheme.error,
                     icon: Icons.exit_to_app,
                     title: 'Çıkış Yap',
                     onTap: () {
@@ -109,18 +111,14 @@ class _SettingsViewState extends State<SettingsView> {
             Spacer(),
             Row(
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/logo.png"),
-                      radius: 15,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Sürüm: 1.2.0",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+                CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/logo.png"),
+                  radius: 15,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  "Sürüm: 1.2.0",
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Spacer(),
                 Row(

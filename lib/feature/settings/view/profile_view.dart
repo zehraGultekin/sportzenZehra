@@ -51,7 +51,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Column(
           children: [
             Stack(
@@ -71,6 +71,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                 ),
 
                 Positioned(
+                  //BUNU SOOOR!!
                   bottom: 50,
                   left: 120,
 

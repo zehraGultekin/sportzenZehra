@@ -42,10 +42,8 @@ class _LoginShowBottomState extends State<LoginShowBottom> {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: AppColors.grey, width: 2),
                 ),
-
                 filled: true,
                 fillColor: Theme.of(context).scaffoldBackgroundColor,
-
                 labelText: "E posta",
                 labelStyle: AppTextStyles.inputhintstyle.copyWith(
                   color: AppColors.grey,

@@ -30,7 +30,6 @@ class _NewsViewState extends State<NewsView> {
       ),
       body: ListView.builder(
         itemCount: newsList.length,
-
         itemBuilder: (context, index) {
           final news = newsList[index];
           return Padding(
