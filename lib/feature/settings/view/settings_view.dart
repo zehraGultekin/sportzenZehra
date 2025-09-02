@@ -69,7 +69,9 @@ class _SettingsViewState extends State<SettingsView> {
                   SettingsMenuItem(
                     icon: Icons.headset_mic,
                     title: 'Yardım Merkezi',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.helpCenter.name);
+                    },
                   ),
                   SettingsMenuItem(
                     icon: Icons.info_outline,

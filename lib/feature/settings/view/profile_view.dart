@@ -142,7 +142,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Center(
                   child: Text(

@@ -13,6 +13,7 @@ import 'package:sportzenzehra/feature/reservation/view/reservation_view.dart';
 import 'package:sportzenzehra/feature/settings/view/account_settings_view.dart';
 import 'package:sportzenzehra/feature/settings/view/change_password.dart';
 import 'package:sportzenzehra/feature/settings/view/finance_view.dart';
+import 'package:sportzenzehra/feature/settings/view/help_center.dart';
 import 'package:sportzenzehra/feature/settings/view/kvkk_view.dart';
 import 'package:sportzenzehra/feature/settings/view/profile_view.dart';
 import 'package:sportzenzehra/feature/settings/view/settings_view.dart';
@@ -32,6 +33,7 @@ enum AppRoutes {
   finance,
   account,
   changePassword,
+  helpCenter,
   clubRegister;
 
   String get path => "/$name";
@@ -146,6 +148,11 @@ final router = GoRouter(
                       builder: (context, state) => ChangePasswordView(),
                     ),
                   ],
+                ),
+                GoRoute(
+                  path: AppRoutes.helpCenter.path,
+                  name: AppRoutes.helpCenter.name,
+                  builder: (context, state) => HelpCenterView(),
                 ),
               ],
             ),
