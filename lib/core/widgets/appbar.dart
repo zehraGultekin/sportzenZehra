@@ -19,17 +19,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight((toolbarHeight ?? kToolbarHeight));
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: true,
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Theme.of(context).appBarTheme.foregroundColor,
-          fontSize: 19,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      title: Text(title, style: theme.textTheme.titleMedium),
       bottom: bottom,
       leading: leading,
       elevation: 0,

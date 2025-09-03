@@ -12,6 +12,7 @@ class MessageView extends StatefulWidget {
 class _MessageViewState extends State<MessageView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -26,15 +27,12 @@ class _MessageViewState extends State<MessageView> {
             SizedBox(height: 10),
             Text(
               "Geliştirme Aşamasında",
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
             ),
             SizedBox(height: 10),
             Text(
               "Mesajlar özelliği yakında hizmetinizde olacak. Şu anda geliştirme aşamasındayız",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+              style: theme.textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
@@ -47,7 +45,7 @@ class _MessageViewState extends State<MessageView> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -56,15 +54,8 @@ class _MessageViewState extends State<MessageView> {
                       Icons.home,
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    SizedBox(width: 5),
-                    Text(
-                      "Ana Sayfaya Dön",
-                      style: Theme.of(context).textTheme.headlineLarge
-                          ?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                    ),
+                    SizedBox(width: 10),
+                    Text("Ana Sayfaya Dön", style: theme.textTheme.labelLarge),
                   ],
                 ),
               ),
