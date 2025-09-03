@@ -13,6 +13,7 @@ class ShowModalBranch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       height: MediaQuery.of(context).size.height * 0.5,
@@ -23,13 +24,13 @@ class ShowModalBranch extends ConsumerWidget {
             width: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: AppColors.grey.withValues(alpha: 0.4),
+              color: AppColors.backgroundGrey,
             ),
           ),
           SizedBox(height: 20),
           Text(
             "Branş Seç",
-            style: AppTextStyles.headline1.copyWith(fontSize: 22),
+            style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
           ),
           SizedBox(height: 10),
           Expanded(
@@ -44,29 +45,31 @@ class ShowModalBranch extends ConsumerWidget {
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.grey.withValues(alpha: 0.1),
-
+                    color: AppColors.backgroundGrey,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: AppColors.grey.withValues(alpha: 0.2),
+                      color: AppColors.grey.withValues(alpha: 0.3),
                       width: 1,
                     ),
                   ),
-                  child: ListTile(
-                    leading: Icon(
-                      branch.icon,
-                      color: Colors.black.withValues(alpha: 0.8),
-                    ),
-                    title: Text(
-                      branch.name,
-                      style: AppTextStyles.selectionvalue,
-                    ),
+                  child: GestureDetector(
                     onTap: () {
                       ref
                           .read(selectedBranchProvider.notifier)
                           .selectedBranch(branch);
                       context.pop();
                     },
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10),
+                        Icon(
+                          branch.icon,
+                          color: Colors.black.withValues(alpha: 0.8),
+                        ),
+                        SizedBox(width: 10),
+                        Text(branch.name, style: AppTextStyles.selectionvalue),
+                      ],
+                    ),
                   ),
                 );
               },

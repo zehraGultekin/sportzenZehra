@@ -12,6 +12,7 @@ class ShowModalCity extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: MediaQuery.of(context).size.height * 0.5,
@@ -26,15 +27,18 @@ class ShowModalCity extends ConsumerWidget {
             ),
           ),
           SizedBox(height: 20),
-          Text("Şehir Seç", style: Theme.of(context).textTheme.headlineLarge),
+          Text(
+            "Şehir Seç",
+            style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
+          ),
           SizedBox(height: 20),
           Container(
-            height: 48,
+            height: 47,
             decoration: BoxDecoration(
-              color: AppColors.grey.withValues(alpha: 0.1),
+              color: AppColors.backgroundGrey,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.grey.withValues(alpha: 0.4),
+                color: AppColors.grey.withValues(alpha: 0.2),
                 width: 1,
               ),
             ),
@@ -65,11 +69,11 @@ class ShowModalCity extends ConsumerWidget {
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.grey.withValues(alpha: 0.1),
+                    color: AppColors.backgroundGrey,
 
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Colors.grey.withValues(alpha: 0.6),
+                      color: Colors.grey.withValues(alpha: 0.4),
                       width: 1,
                     ),
                   ),
@@ -78,7 +82,12 @@ class ShowModalCity extends ConsumerWidget {
                       padding: EdgeInsets.only(bottom: 15),
                       child: Text(
                         city,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.9,
+                          ),
+                        ),
                       ),
                     ),
                     onTap: () {
