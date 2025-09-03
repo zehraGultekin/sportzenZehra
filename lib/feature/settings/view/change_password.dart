@@ -13,13 +13,14 @@ class ChangePasswordView extends StatefulWidget {
 class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Şifre Değiştir",
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
             size: 20,
           ),
           onPressed: () {
@@ -28,27 +29,23 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Yeni Şifre",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
+            Text("Yeni Şifre", style: theme.textTheme.bodyMedium),
             SizedBox(height: 5),
             SizedBox(
               height: 50,
               child: TextField(
                 decoration: InputDecoration(
-                  fillColor: AppColors.grey.withValues(alpha: 0.1),
+                  fillColor: AppColors.backgroundGrey,
                   filled: true,
                   hintText: "Yeni Şifrenizi Girin",
-                  hintStyle: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge?.copyWith(fontSize: 14),
+                  hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontSize: 14,
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                  ),
 
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -66,23 +63,19 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               ),
             ),
             SizedBox(height: 10),
-            Text(
-              "Yeni Şifre (Tekrar)",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
+            Text("Yeni Şifre (Tekrar)", style: theme.textTheme.bodyMedium),
             SizedBox(height: 5),
             SizedBox(
               height: 50,
               child: TextField(
                 decoration: InputDecoration(
-                  fillColor: AppColors.grey.withValues(alpha: 0.1),
+                  fillColor: AppColors.backgroundGrey,
                   filled: true,
                   hintText: "Yeni Şifrenizi tekrar girin",
-                  hintStyle: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge?.copyWith(fontSize: 14),
+                  hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontSize: 14,
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                  ),
 
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -113,14 +106,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(width: 5),
-                    Text(
-                      "Şifreyi Değiştir",
-                      style: Theme.of(context).textTheme.headlineLarge
-                          ?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                    ),
+                    Text("Şifreyi Değiştir", style: theme.textTheme.labelLarge),
                   ],
                 ),
               ),

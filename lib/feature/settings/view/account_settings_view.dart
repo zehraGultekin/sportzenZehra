@@ -10,13 +10,14 @@ class AccountSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Hesap İşlemleri",
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
             size: 20,
           ),
           onPressed: () {
@@ -30,7 +31,7 @@ class AccountSettingsView extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grey.withValues(alpha: 0.1),
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: AppColors.grey.withValues(alpha: 0.2),
@@ -39,6 +40,7 @@ class AccountSettingsView extends StatelessWidget {
               child: Column(
                 children: [
                   SettingsMenuItem(
+                    colors: theme.colorScheme.onSurface,
                     icon: Icons.person_2_outlined,
                     title: 'Şifre değiştir',
                     onTap: () {

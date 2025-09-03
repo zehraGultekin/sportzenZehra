@@ -13,13 +13,14 @@ class HelpCenterView extends StatefulWidget {
 class _HelpCenterViewState extends State<HelpCenterView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Yardım Merkezi",
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
             size: 20,
           ),
           onPressed: () {
@@ -36,7 +37,7 @@ class _HelpCenterViewState extends State<HelpCenterView> {
               child: Container(
                 height: 80,
                 decoration: BoxDecoration(
-                  color: AppColors.grey.withValues(alpha: 0.1),
+                  color: AppColors.backgroundGrey,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: AppColors.grey.withValues(alpha: 0.2),
@@ -50,9 +51,9 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                   child: Text(
                     "Kullanıcı Deneyimizin bizim için çok önemli Lütfen görüş, öneri ve problemlerinizi bize anlatın",
                     textAlign: TextAlign.center,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge?.copyWith(fontSize: 13),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                    ),
                   ),
                 ),
               ),
@@ -61,12 +62,13 @@ class _HelpCenterViewState extends State<HelpCenterView> {
             TextField(
               maxLines: 3,
               decoration: InputDecoration(
-                fillColor: AppColors.grey.withValues(alpha: 0.1),
+                fillColor: AppColors.backgroundGrey,
                 filled: true,
                 hintText: "Sorun ve görüşlerinizi yazınız",
-                hintStyle: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(fontSize: 14),
+                hintStyle: theme.textTheme.labelMedium?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                  fontSize: 16,
+                ),
 
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -93,13 +95,7 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Center(
-                  child: Text(
-                    "Gönder",
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  child: Text("Gönder", style: theme.textTheme.labelLarge),
                 ),
               ),
             ),

@@ -27,7 +27,10 @@ class _MessageViewState extends State<MessageView> {
             SizedBox(height: 10),
             Text(
               "Geliştirme Aşamasında",
-              style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 10),
             Text(

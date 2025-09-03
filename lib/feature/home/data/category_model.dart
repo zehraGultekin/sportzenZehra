@@ -23,6 +23,6 @@ final List<CategoryModel> cardItems = [
     subtitle: "Bütün haberler burada",
     title: "Haberler",
     backgroundImage: "assets/images/saha.jpeg",
-    cardImage: 'assets/images/news.png',
+    cardImage: 'assets/images/kayit.png',
   ),
 ];

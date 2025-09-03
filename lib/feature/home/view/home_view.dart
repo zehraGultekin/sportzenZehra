@@ -34,29 +34,29 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 25,
-                    vertical: 10,
+                    vertical: 15,
                   ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.grey.withValues(alpha: 0.2),
-                        blurRadius: 2,
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 4,
                         offset: Offset(0, 3),
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 25),
+                      SizedBox(height: 15),
                       Row(
                         children: [
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CircleAvatar(
-                                radius: 17,
+                                radius: 15,
                                 backgroundImage: AssetImage(
                                   "assets/images/logo.png",
                                 ),
@@ -66,7 +66,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Text(
                                   "Sporzen Public",
-                                  style: theme.textTheme.titleLarge,
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],
@@ -83,6 +85,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               duration: Duration(milliseconds: 300),
                               child: Icon(
                                 Icons.expand_circle_down,
+                                size: 25,
                                 color: theme.colorScheme.primary,
                               ),
                             ),
@@ -266,14 +269,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           itemBuilder: (context, index) {
                             final banner = bannerItems[index];
                             return Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withValues(alpha: 0.3),
-                                    spreadRadius: -2,
-                                    blurRadius: 9,
-                                    offset: Offset(0, 3),
-                                  ),
+                              decoration: BoxDecoration(boxShadow: [
+                                 
                                 ],
                               ),
                               child: ClipRRect(
@@ -453,7 +450,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       return SelectionCard(
                         icon: Icons.sports_baseball_outlined,
                         title: "Branş",
-                        value: selectedBranch?.name ?? "Şeçiniz",
+                        value: selectedBranch?.name ?? "Seçiniz",
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
@@ -466,32 +463,50 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     },
                   ),
                   SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
-                      context.pushNamed(AppRoutes.reservationDetail.name);
+                  Consumer(
+                    builder: (context, ref, child) {
+                      final selectedBranch = ref.watch(selectedBranchProvider);
+                      final selectedCity = ref.watch(selectedCityProvider);
+
+                      return GestureDetector(
+                        onTap: () {
+                          if (selectedCity.isEmpty || selectedBranch == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Arama yapmak için şehir ve branş seçmelisiniz.",
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+
+                          context.pushNamed(AppRoutes.reservationDetail.name);
+                        },
+                        child: Container(
+                          height: 40,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: theme.colorScheme.secondary,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Sahaları Ara",
+                                style: theme.textTheme.labelLarge,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     },
-                    child: Container(
-                      height: 40,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: theme.colorScheme.secondary,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.search,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            "Sahaları Ara",
-                            style: theme.textTheme.labelLarge,
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ],
               ),

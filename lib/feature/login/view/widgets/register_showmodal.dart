@@ -13,6 +13,7 @@ class RegisterShowmodal extends StatefulWidget {
 class _RegisterShowmodalState extends State<RegisterShowmodal> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -20,26 +21,22 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
         children: [
           Container(
             height: 4,
-            width: 150,
+            width: 130,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Theme.of(context).colorScheme.primary,
+              color: theme.colorScheme.secondary,
             ),
           ),
           SizedBox(height: 20),
-          Text(
-            "Yasal Politikalar",
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
+          Text("Yasal Politikalar", style: theme.textTheme.titleLarge),
           DefaultTabController(
             length: 3,
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
               child: Column(
                 children: [
-                  SizedBox(height: 16),
                   TabBar(
-                    dividerColor: AppColors.grey.withValues(alpha: 0.5),
+                    dividerColor: AppColors.grey.withValues(alpha: 0.3),
                     labelColor: Theme.of(context).colorScheme.secondary,
                     unselectedLabelColor: AppColors.grey,
                     indicatorColor: Theme.of(context).colorScheme.secondary,
@@ -60,7 +57,7 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
                                 (e) => Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 10,
-                                    vertical: 10,
+                                    vertical: 6,
                                   ),
                                   child: TabContent(
                                     title: e.title,

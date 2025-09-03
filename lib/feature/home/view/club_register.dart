@@ -101,6 +101,9 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                           "Kulübünüz listede yok mu?",
                           style: theme.textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w500,
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.8,
+                            ),
                           ),
                         ),
                         Text(
@@ -109,7 +112,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                               ?.copyWith(
                                 fontSize: 12,
                                 color: theme.colorScheme.onSurface.withValues(
-                                  alpha: 0.7,
+                                  alpha: 0.8,
                                 ),
                               ),
                           textAlign: TextAlign.center,
@@ -123,19 +126,19 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             SizedBox(height: 20),
             Text(
               "Kulüpler",
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: Colors.black.withValues(alpha: 0.7),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.black.withValues(alpha: 0.8),
                 fontWeight: FontWeight.w500,
+                fontSize: 20,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 5),
             Center(
               child: Text(
                 "Aramaya başlamak için şehir veya branş seçmeniz gerekmektedir",
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontSize: 13,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,
               ),

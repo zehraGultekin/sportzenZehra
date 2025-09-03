@@ -17,6 +17,7 @@ class RegisterView extends ConsumerStatefulWidget {
 class _RegisterViewState extends ConsumerState<RegisterView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -92,22 +93,19 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             width: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).primaryColor,
+                              color: theme.colorScheme.secondary,
                             ),
                             child: Center(
                               child: Text(
                                 "Kayıt Ol",
-                                style: Theme.of(context).textTheme.headlineLarge
-                                    ?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                style: theme.textTheme.labelLarge,
                               ),
                             ),
                           ),
                         ),
                         SizedBox(height: 20),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Checkbox(
                               activeColor: Theme.of(
@@ -121,65 +119,55 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                                 ref.read(checkProivder.notifier).state = value!;
                               },
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(20),
-                                            ),
-                                          ),
-                                          builder: (context) {
-                                            return SizedBox(
-                                              height:
-                                                  MediaQuery.of(
-                                                    context,
-                                                  ).size.height *
-                                                  0.80,
-                                              child: RegisterShowmodal(),
-                                            );
-                                          },
-                                        );
-                                      },
-
-                                      child: Text(
-                                        "Gizlilik Politikası ve Kullanıcı sözleşmesini",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
-                                              color: Colors.white,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              decorationColor: Colors.white,
-                                              decorationThickness: 2,
-                                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
                                       ),
                                     ),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      "okudum ve",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(color: AppColors.grey),
-                                    ),
-                                  ],
+                                    builder: (context) {
+                                      return SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                            0.80,
+                                        child: RegisterShowmodal(),
+                                      );
+                                    },
+                                  );
+                                },
+
+                                child: RichText(
+                                  softWrap: true,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            "Gizlilik Politikası ve Kullanıcı Sözleşmesini ",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: "okudum ve onaylıyorum",
+                                        style: TextStyle(
+                                          color: Color.fromARGB(
+                                            255,
+                                            95,
+                                            94,
+                                            94,
+                                          ).withValues(alpha: 0.8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Text(
-                                  "onaylıyorum.",
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(color: AppColors.grey),
-                                ),
-                              ],
+                              ),
                             ),
                           ],
                         ),

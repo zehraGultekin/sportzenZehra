@@ -107,7 +107,7 @@ class _SettingsViewState extends State<SettingsView> {
               child: Column(
                 children: [
                   SettingsMenuItem(
-                    colors: Theme.of(context).colorScheme.error,
+                    colors: const Color.fromARGB(255, 170, 16, 5),
                     icon: Icons.exit_to_app,
                     title: 'Çıkış Yap',
 
@@ -128,9 +128,10 @@ class _SettingsViewState extends State<SettingsView> {
                 SizedBox(width: 10),
                 Text(
                   "Sürüm: 1.2.0",
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                  ),
                 ),
                 Spacer(),
                 Row(

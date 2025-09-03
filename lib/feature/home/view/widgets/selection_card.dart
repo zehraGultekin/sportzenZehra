@@ -40,7 +40,7 @@ class SelectionCard extends StatelessWidget {
                   title,
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: AppColors.grey,
-                    fontSize: 12,
+                    fontSize: 11,
                   ),
                 ),
                 Text(

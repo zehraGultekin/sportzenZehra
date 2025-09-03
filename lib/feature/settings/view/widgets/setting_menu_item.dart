@@ -25,7 +25,13 @@ class SettingsMenuItem extends StatelessWidget {
           children: [
             Icon(icon, color: Colors.grey),
             SizedBox(width: 10),
-            Text(title, style: theme.labelSmall?.copyWith(color: colors)),
+            Text(
+              title,
+              style: theme.labelSmall?.copyWith(
+                color: colors,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
             Spacer(),
             Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
           ],

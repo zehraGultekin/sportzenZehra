@@ -7,6 +7,7 @@ class FinanceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Finans İşlemleri",
@@ -28,7 +29,7 @@ class FinanceView extends StatelessWidget {
           children: [
             Text(
               "Kulüp Seçin",
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: theme.textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
             SizedBox(height: 10),
             Center(

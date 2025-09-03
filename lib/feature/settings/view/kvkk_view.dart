@@ -34,7 +34,7 @@ class _KvkkViewState extends State<KvkkView> {
           bottom: TabBar(
             dividerColor: AppColors.grey.withValues(alpha: 0.5),
             labelColor: Theme.of(context).colorScheme.secondary,
-            unselectedLabelColor: AppColors.grey,
+            unselectedLabelColor: Colors.grey.shade500,
             indicatorColor: Theme.of(context).colorScheme.secondary,
             indicatorWeight: 3,
             indicatorSize: TabBarIndicatorSize.tab,
