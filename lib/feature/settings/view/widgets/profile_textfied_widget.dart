@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/core/theme/text_style.dart';
 
 class ProfileTextField extends StatelessWidget {
   final String? label;
@@ -21,26 +20,29 @@ class ProfileTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return TextFormField(
       controller: controller,
       enabled: enabled,
       readOnly: onTap != null,
       onTap: onTap,
       initialValue: initialValue,
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: theme.textTheme.bodyMedium?.copyWith(
+        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+      ),
       cursorColor: AppColors.grey,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.1)),
+          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.1)),
+          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.1)),
+          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
           borderRadius: BorderRadius.circular(10),
         ),
         disabledBorder: OutlineInputBorder(
@@ -48,10 +50,11 @@ class ProfileTextField extends StatelessWidget {
           borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
         ),
         filled: true,
-        fillColor: AppColors.grey.withValues(alpha: 0.1),
+        fillColor: AppColors.backgroundGrey,
         labelText: label,
-        labelStyle: AppTextStyles.inputhintstyle.copyWith(
-          color: AppColors.grey,
+        labelStyle: theme.textTheme.labelMedium?.copyWith(
+          color: Colors.grey,
+          fontWeight: FontWeight.w500,
         ),
         prefixIcon: Icon(preffixIcon, color: AppColors.grey),
       ),
