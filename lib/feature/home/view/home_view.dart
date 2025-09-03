@@ -93,8 +93,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       ClipRect(
                         child: Align(
                           alignment: Alignment.topCenter,
-                          heightFactor: isExpanded ? 1.8 : 0,
+                          heightFactor: isExpanded ? 1.1 : 0,
                           child: Column(
+                            spacing: 10,
                             children: [
                               SizedBox(height: 12),
                               SizedBox(
@@ -104,9 +105,20 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     filled: true,
                                     fillColor: AppColors.backgroundGrey,
                                     hintText: "Ara",
-                                    hintStyle: theme.textTheme.labelLarge
-                                        ?.copyWith(color: AppColors.grey),
+                                    hintStyle: theme.textTheme.labelMedium
+                                        ?.copyWith(
+                                          color: AppColors.grey,
+                                          fontSize: 17,
+                                        ),
                                     enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: AppColors.grey.withValues(
+                                          alpha: 0.2,
+                                        ),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: AppColors.grey.withValues(
@@ -114,17 +126,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                         ),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: Colors.grey.shade200,
-                                        width: 1,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
 
                               GestureDetector(
                                 onTap: () {
@@ -143,7 +147,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
                                       color: AppColors.grey.withValues(
-                                        alpha: 0.3,
+                                        alpha: 0.2,
                                       ),
                                       width: 1,
                                     ),
@@ -151,7 +155,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                   child: Row(
                                     children: [
                                       CircleAvatar(
-                                        radius: 13,
+                                        radius: 15,
                                         backgroundImage: AssetImage(
                                           "assets/images/logo.png",
                                         ),
@@ -159,9 +163,59 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                       SizedBox(width: 10),
                                       Text(
                                         "Sporzen Public",
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.labelMedium,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium
+                                            ?.copyWith(
+                                              color:
+                                                  theme.colorScheme.onSurface,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              GestureDetector(
+                                onTap: () {
+                                  ref
+                                      .read(headerExpandedProvider.notifier)
+                                      .expanded();
+                                },
+                                child: Container(
+                                  height: 50,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 12,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.backgroundGrey,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: AppColors.grey.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 15,
+                                        backgroundImage: AssetImage(
+                                          "assets/images/newlogo.png",
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        "Applantis Tenis Kulübü",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium
+                                            ?.copyWith(
+                                              color:
+                                                  theme.colorScheme.onSurface,
+                                            ),
                                       ),
                                     ],
                                   ),
