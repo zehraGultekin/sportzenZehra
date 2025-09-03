@@ -7,7 +7,10 @@ class BottomNavigator extends StatelessWidget {
   const BottomNavigator({super.key, required this.navigationShell});
 
   void onTabItem(int index) {
-    navigationShell.goBranch(index);
+    navigationShell.goBranch(
+      index,
+      initialLocation: navigationShell.currentIndex == index,
+    );
   }
 
   @override
@@ -15,44 +18,50 @@ class BottomNavigator extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: Container(
-        height: 60,
-        margin: const EdgeInsets.all(12),
+        height: 50,
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.surface,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          spacing: 9,
+          mainAxisSize: MainAxisSize.min,
           children: [
             NavItem(
-              icon: Icons.home,
               label: "Ana Sayfa",
               isSelected: navigationShell.currentIndex == 0,
               onTap: () => onTabItem(0),
+              unselectedIcon: Icons.home_outlined,
+              selectedIcon: Icons.home_rounded,
             ),
             NavItem(
-              icon: Icons.calendar_today_outlined,
               label: "Rezervasyon",
               isSelected: navigationShell.currentIndex == 1,
               onTap: () => onTabItem(1),
+              selectedIcon: Icons.calendar_month_outlined,
+              unselectedIcon: Icons.calendar_view_month_rounded,
             ),
             NavItem(
-              icon: Icons.notifications_none_rounded,
               label: "Bildirimler",
               isSelected: navigationShell.currentIndex == 2,
               onTap: () => onTabItem(2),
+              unselectedIcon: Icons.notification_add_outlined,
+              selectedIcon: Icons.notifications_active_rounded,
             ),
             NavItem(
-              icon: Icons.sms_outlined,
               label: "Mesajlar",
               isSelected: navigationShell.currentIndex == 3,
               onTap: () => onTabItem(3),
+              unselectedIcon: Icons.sms_outlined,
+              selectedIcon: Icons.sms_rounded,
             ),
             NavItem(
-              icon: Icons.settings,
               label: "Seçenekler",
               isSelected: navigationShell.currentIndex == 4,
               onTap: () => onTabItem(4),
+              unselectedIcon: Icons.settings_outlined,
+              selectedIcon: Icons.settings_rounded,
             ),
           ],
         ),

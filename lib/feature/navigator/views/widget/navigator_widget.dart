@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/theme/text_style.dart';
 
 class NavItem extends StatelessWidget {
-  final IconData icon;
+  final IconData selectedIcon;
+  final IconData unselectedIcon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
   const NavItem({
     super.key,
-    required this.icon,
     required this.label,
     required this.isSelected,
     required this.onTap,
+    required this.selectedIcon,
+    required this.unselectedIcon,
   });
 
   @override
@@ -22,40 +25,31 @@ class NavItem extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        height: 40,
-        width: isSelected ? 130 : 50,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        height: 35,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           color: isSelected
               ? Theme.of(context).colorScheme.secondary
               : Colors.transparent,
           borderRadius: BorderRadius.circular(30),
         ),
-        child: Stack(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Icon(
-                icon,
-                color: isSelected
-                    ? Theme.of(context).colorScheme.onPrimary
-                    : Colors.grey,
-                size: 22,
-              ),
+            Icon(
+              isSelected ? selectedIcon : unselectedIcon,
+              color: isSelected ? Colors.white : AppColors.grey,
             ),
-            AnimatedPositioned(
+            AnimatedSize(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              left: isSelected ? 30 : 0,
-              top: 0,
-              bottom: 0,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 300),
-                opacity: isSelected ? 1 : 0,
-                child: Center(
-                  child: Text(label, style: AppTextStyles.bottomNaviText),
-                ),
-              ),
+              child: isSelected
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 6),
+                      child: Text(label, style: AppTextStyles.bottomNaviText),
+                    )
+                  : const SizedBox.shrink(),
             ),
           ],
         ),
