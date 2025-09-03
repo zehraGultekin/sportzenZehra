@@ -427,7 +427,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             return SelectionCard(
                               icon: Icons.location_on_outlined,
                               title: "Şehir",
-                              value: selectedCity,
+                              value: selectedCity.isEmpty
+                                  ? "Şehir Seçin"
+                                  : selectedCity,
                               onTap: () {
                                 showModalBottomSheet(
                                   context: context,
@@ -465,11 +467,76 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   SizedBox(height: 20),
                   Consumer(
                     builder: (context, ref, child) {
+                      final city = ref.watch(selectedCityProvider);
+                      final branch = ref.watch(selectedBranchProvider);
+                      String? errorMessage;
                       return Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           GestureDetector(
                             onTap: () {
+                              if (city.isEmpty && branch == null) {
+                                errorMessage =
+                                    "Şehir ve branş seçmeniz gerekiyor";
+                              } else if (city.isEmpty) {
+                                errorMessage = "Şehir seçmeniz gerekiyor";
+                              } else if (branch == null) {
+                                errorMessage = "Branş seçmeniz gerekiyor";
+                              }
+                              if (errorMessage != null) {
+                                final snackBar = SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  content: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 15,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: theme.colorScheme.error,
+                                        width: 1.3,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.error,
+                                          color: theme.colorScheme.error,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          errorMessage!,
+                                          style: theme.textTheme.labelMedium
+                                              ?.copyWith(color: Colors.black),
+                                        ),
+                                        Spacer(),
+                                        InkWell(
+                                          onTap: () {
+                                            ScaffoldMessenger.of(
+                                              context,
+                                            ).hideCurrentSnackBar();
+                                          },
+                                          child: Text(
+                                            "Kapat",
+                                            style: theme.textTheme.bodySmall
+                                                ?.copyWith(color: Colors.grey),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  duration: Duration(seconds: 10),
+                                );
+                                ScaffoldMessenger.of(
+                                  context,
+                                ).hideCurrentSnackBar();
+                                ScaffoldMessenger.of(
+                                  context,
+                                ).showSnackBar(snackBar);
+                                return;
+                              }
                               context.pushNamed(
                                 AppRoutes.reservationDetail.name,
                               );

@@ -15,7 +15,7 @@ class HeaderExpandedNotifier extends StateNotifier<bool> {
 }
 
 class SelectedCityNotifier extends StateNotifier<String> {
-  SelectedCityNotifier() : super("Şehir seçin");
+  SelectedCityNotifier() : super(""); /*  */
 
   void selectedCity(String city) {
     state = city;
