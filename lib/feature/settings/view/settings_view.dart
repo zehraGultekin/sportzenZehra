@@ -15,6 +15,7 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
+    // final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(title: "Ayarlar"),
       body: Padding(
@@ -23,15 +24,16 @@ class _SettingsViewState extends State<SettingsView> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grey.withValues(alpha: 0.1),
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.grey.withValues(alpha: 0.2),
+                  color: AppColors.grey.withValues(alpha: 0.1),
                 ),
               ),
               child: Column(
                 children: [
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.person_2_outlined,
                     title: 'Profil',
                     onTap: () {
@@ -39,6 +41,7 @@ class _SettingsViewState extends State<SettingsView> {
                     },
                   ),
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.wallet_outlined,
                     title: 'Finans İşlemleri',
                     onTap: () {
@@ -46,6 +49,7 @@ class _SettingsViewState extends State<SettingsView> {
                     },
                   ),
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.settings,
                     title: 'Hesap İşlemleri',
                     onTap: () {
@@ -58,15 +62,16 @@ class _SettingsViewState extends State<SettingsView> {
             SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grey.withValues(alpha: 0.1),
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.grey.withValues(alpha: 0.2),
+                  color: AppColors.grey.withValues(alpha: 0.1),
                 ),
               ),
               child: Column(
                 children: [
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.headset_mic,
                     title: 'Yardım Merkezi',
                     onTap: () {
@@ -74,11 +79,13 @@ class _SettingsViewState extends State<SettingsView> {
                     },
                   ),
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.info_outline,
                     title: 'Uygulama hakkında',
                     onTap: () {},
                   ),
                   SettingsMenuItem(
+                    colors: Colors.black,
                     icon: Icons.policy_outlined,
                     title: 'KVKK, Hizmet Şartları ve Gizlilik Politikası',
                     onTap: () {
@@ -91,10 +98,10 @@ class _SettingsViewState extends State<SettingsView> {
             SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grey.withValues(alpha: 0.1),
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.grey.withValues(alpha: 0.2),
+                  color: AppColors.grey.withValues(alpha: 0.1),
                 ),
               ),
               child: Column(
@@ -103,6 +110,7 @@ class _SettingsViewState extends State<SettingsView> {
                     colors: Theme.of(context).colorScheme.error,
                     icon: Icons.exit_to_app,
                     title: 'Çıkış Yap',
+
                     onTap: () {
                       context.goNamed(AppRoutes.login.name);
                     },
@@ -120,7 +128,9 @@ class _SettingsViewState extends State<SettingsView> {
                 SizedBox(width: 10),
                 Text(
                   "Sürüm: 1.2.0",
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
                 ),
                 Spacer(),
                 Row(
@@ -129,9 +139,10 @@ class _SettingsViewState extends State<SettingsView> {
                     SizedBox(width: 10),
                     Text(
                       "Değerlendir",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(color: Colors.amber),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Colors.amber,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
