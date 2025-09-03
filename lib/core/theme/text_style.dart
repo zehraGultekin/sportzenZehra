@@ -33,11 +33,18 @@ class AppTextStyles {
   static TextStyle labelMedium = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: AppColors.textPrimary,
   );
 
   static TextStyle bodyMedium = TextStyle(
-    color: AppColors.grey.withValues(alpha: 0.9),
+    color: Colors.black,
     fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle bodySmall = TextStyle(
+    color: AppColors.grey.withValues(alpha: 0.8),
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
   );
 
   static TextStyle cardTitle = TextStyle(

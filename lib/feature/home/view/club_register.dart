@@ -18,6 +18,8 @@ class ClubRegisterView extends ConsumerStatefulWidget {
 class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final selectedCity = ref.watch(clubCityProvider);
     final selectedBranch = ref.watch(clubBranchProvider);
     return Scaffold(
@@ -26,7 +28,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
             size: 20,
           ),
           onPressed: () {
@@ -52,9 +54,9 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 SizedBox(width: 10),
                 Expanded(
                   child: SelectionCard(
-                    icon: Icons.location_city_outlined,
+                    icon: Icons.location_on_outlined,
                     title: "Şehir",
-                    value: selectedCity ?? "Şehir Seçin",
+                    value: selectedCity ?? "Şehir seçin",
                     onTap: () {},
                   ),
                 ),
@@ -64,7 +66,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             SelectionCard(
               icon: Icons.sports_baseball_outlined,
               title: "Branş",
-              value: selectedBranch?.name ?? "Şeçiniz",
+              value: selectedBranch?.name ?? "Branş seçin",
               onTap: () => showModalBottomSheet(
                 context: context,
                 builder: (context) => ShowModalCity(selectedCityProvider),
@@ -74,10 +76,10 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppColors.grey.withValues(alpha: 0.1),
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: AppColors.grey.withValues(alpha: 0.2),
+                  color: AppColors.grey.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -94,17 +96,22 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                     ),
                     Spacer(),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Kulübünüz listede yok mu?",
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           "Eğer bi Kulüp işletmecisi iseniz kulübünüzü\nkaydetmek için dokunun.",
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall?.copyWith(fontSize: 12),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                fontSize: 12,
+                                color: theme.colorScheme.onSurface.withValues(
+                                  alpha: 0.7,
+                                ),
+                              ),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -116,17 +123,20 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             SizedBox(height: 20),
             Text(
               "Kulüpler",
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Colors.black.withValues(alpha: 0.6),
+              style: theme.textTheme.headlineMedium?.copyWith(
+                color: Colors.black.withValues(alpha: 0.7),
+                fontWeight: FontWeight.w500,
               ),
             ),
             SizedBox(height: 20),
             Center(
               child: Text(
-                "Aramaya başlamak için şehir veya branş seçmeni gerekmektedir",
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(fontSize: 13),
+                "Aramaya başlamak için şehir veya branş seçmeniz gerekmektedir",
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontSize: 13,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

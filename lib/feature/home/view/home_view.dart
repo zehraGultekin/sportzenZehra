@@ -41,9 +41,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.grey.withValues(alpha: 0.1),
+                        color: AppColors.grey.withValues(alpha: 0.2),
                         blurRadius: 2,
-                        offset: Offset(0, 4),
+                        offset: Offset(0, 3),
                       ),
                     ],
                   ),
@@ -56,7 +56,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CircleAvatar(
-                                radius: 15,
+                                radius: 17,
                                 backgroundImage: AssetImage(
                                   "assets/images/logo.png",
                                 ),
@@ -66,7 +66,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Text(
                                   "Sporzen Public",
-                                  style: theme.textTheme.headlineLarge,
+                                  style: theme.textTheme.titleLarge,
                                 ),
                               ),
                             ],
@@ -102,19 +102,15 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor: Theme.of(
-                                      context,
-                                    ).scaffoldBackgroundColor,
+                                    fillColor: AppColors.backgroundGrey,
                                     hintText: "Ara",
-                                    hintStyle: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        ?.copyWith(color: Colors.grey),
+                                    hintStyle: theme.textTheme.labelLarge
+                                        ?.copyWith(color: AppColors.grey),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
                                         color: AppColors.grey.withValues(
-                                          alpha: 0.2,
+                                          alpha: 0.3,
                                         ),
                                       ),
                                     ),
@@ -143,11 +139,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     vertical: 12,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: theme.scaffoldBackgroundColor,
+                                    color: AppColors.backgroundGrey,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
                                       color: AppColors.grey.withValues(
-                                        alpha: 0.2,
+                                        alpha: 0.3,
                                       ),
                                       width: 1,
                                     ),
@@ -155,7 +151,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                   child: Row(
                                     children: [
                                       CircleAvatar(
-                                        radius: 10,
+                                        radius: 13,
                                         backgroundImage: AssetImage(
                                           "assets/images/logo.png",
                                         ),
@@ -196,7 +192,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       SizedBox(width: 8),
                       Text(
                         "Zehra Gültekin",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
                   ),
@@ -352,7 +348,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       SizedBox(width: 5),
                       Text(
                         "Rezervasyon",
-                        style: theme.textTheme.headlineLarge?.copyWith(
+                        style: theme.textTheme.titleMedium?.copyWith(
                           color: theme.colorScheme.secondary,
                         ),
                       ),
@@ -378,7 +374,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             );
 
                             return SelectionCard(
-                              icon: Icons.location_city_outlined,
+                              icon: Icons.location_on_outlined,
                               title: "Şehir",
                               value: selectedCity,
                               onTap: () {
@@ -437,10 +433,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           SizedBox(width: 5),
                           Text(
                             "Sahaları Ara",
-                            style: theme.textTheme.headlineLarge?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: theme.textTheme.labelLarge,
                           ),
                         ],
                       ),

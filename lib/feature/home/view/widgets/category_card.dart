@@ -38,9 +38,7 @@ class CategoryWidget extends StatelessWidget {
 
                   Text(
                     model.title,
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: Colors.white,
-                    ),
+                    style: theme.textTheme.labelMedium?.copyWith(fontSize: 15),
                   ),
                   Text(
                     model.subtitle,

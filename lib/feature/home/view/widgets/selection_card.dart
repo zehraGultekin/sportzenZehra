@@ -20,7 +20,7 @@ class SelectionCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: AppColors.backgroundGrey,
           borderRadius: BorderRadius.circular(8),
@@ -31,20 +31,23 @@ class SelectionCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: Colors.black.withValues(alpha: 0.7), size: 20),
+            Icon(icon, color: Colors.black.withValues(alpha: 0.9), size: 20),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: theme.textTheme.bodySmall?.copyWith(fontSize: 10),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: AppColors.grey,
+                  ),
                 ),
                 Text(
                   value,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    fontSize: 12,
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],

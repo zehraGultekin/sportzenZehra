@@ -20,6 +20,7 @@ class NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
@@ -28,9 +29,7 @@ class NavItem extends StatelessWidget {
         height: 35,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: isSelected
-              ? Theme.of(context).colorScheme.secondary
-              : Colors.transparent,
+          color: isSelected ? theme.colorScheme.secondary : Colors.transparent,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
