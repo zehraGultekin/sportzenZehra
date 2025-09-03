@@ -465,46 +465,42 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   SizedBox(height: 20),
                   Consumer(
                     builder: (context, ref, child) {
-                      final selectedBranch = ref.watch(selectedBranchProvider);
-                      final selectedCity = ref.watch(selectedCityProvider);
-
-                      return GestureDetector(
-                        onTap: () {
-                          if (selectedCity.isEmpty || selectedBranch == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  "Arama yapmak için şehir ve branş seçmelisiniz.",
-                                ),
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.pushNamed(
+                                AppRoutes.reservationDetail.name,
+                              );
+                            },
+                            child: Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: theme.colorScheme.secondary,
                               ),
-                            );
-                            return;
-                          }
-
-                          context.pushNamed(AppRoutes.reservationDetail.name);
-                        },
-                        child: Container(
-                          height: 40,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: theme.colorScheme.secondary,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.search,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Sahaları Ara",
+                                    style: theme.textTheme.labelLarge,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.search,
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Sahaları Ara",
-                                style: theme.textTheme.labelLarge,
-                              ),
-                            ],
-                          ),
-                        ),
+                          SizedBox(height: 8),
+                        ],
                       );
                     },
                   ),
