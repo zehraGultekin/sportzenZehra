@@ -124,20 +124,15 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                           "Kulübünüz listede yok mu?",
                           style: theme.textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w500,
-                            color: theme.colorScheme.onSurface.withValues(
-                              alpha: 0.8,
-                            ),
+                            color: AppColors.black70,
                           ),
                         ),
                         Text(
                           "Eğer bi Kulüp işletmecisi iseniz kulübünüzü\nkaydetmek için dokunun.",
-                          style: Theme.of(context).textTheme.labelSmall
-                              ?.copyWith(
-                                fontSize: 12,
-                                color: theme.colorScheme.onSurface.withValues(
-                                  alpha: 0.8,
-                                ),
-                              ),
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            fontSize: 12,
+                            color: AppColors.black60,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -151,8 +146,8 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               "Kulüpler",
               style: theme.textTheme.titleMedium?.copyWith(
                 color: Colors.black.withValues(alpha: 0.8),
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
               ),
             ),
             SizedBox(height: 5),

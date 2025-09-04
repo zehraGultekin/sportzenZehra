@@ -14,7 +14,7 @@ class ShowModalCity extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
         children: [

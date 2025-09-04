@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sportzenzehra/feature/home/data/models/content_list.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
+import 'package:sportzenzehra/feature/home/data/models/header_content.dart';
 import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
 
 // final selectedCityProvider = StateProvider<String?>((ref) => null);
@@ -16,7 +18,7 @@ class HeaderExpandedNotifier extends StateNotifier<bool> {
 }
 
 class SelectedCityNotifier extends StateNotifier<String> {
-  SelectedCityNotifier() : super(""); /*  */
+  SelectedCityNotifier() : super("");
 
   void selectedCity(String city) {
     state = city;
@@ -49,6 +51,24 @@ class CurrentPageNotifier extends StateNotifier<int> {
     state = value;
   }
 }
+
+final headerContentProvider = Provider<HeaderContent>((ref) {
+  final selectedHeader = ref.watch(selectedHeaderProvider);
+
+  if (selectedHeader.name == "Sporzen Public") {
+    return HeaderContent(
+      cards: sportzenCards,
+      showCitySelection: true,
+      showBranchSelection: true,
+    );
+  } else {
+    return HeaderContent(
+      cards: applantisCards,
+      showCitySelection: false,
+      showBranchSelection: true,
+    );
+  }
+});
 
 final headerExpandedProvider =
     StateNotifierProvider<HeaderExpandedNotifier, bool>(

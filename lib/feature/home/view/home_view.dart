@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/models/banner_model.dart';
-import 'package:sportzenzehra/feature/home/data/models/category_model.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/category_card.dart';
@@ -14,7 +13,6 @@ import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
-
   @override
   ConsumerState<HomeView> createState() => _HomeViewState();
 }
@@ -23,355 +21,311 @@ class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    final headerContent = ref.watch(headerContentProvider);
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Consumer(
-              builder: (context, ref, child) {
-                final isExpanded = ref.watch(headerExpandedProvider);
-                final selectedHeader = ref.watch(selectedHeaderProvider);
-                return Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 15,
-                  ),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.surface,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 13,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CircleAvatar(
-                                radius: 15,
-                                backgroundImage: AssetImage(
-                                  selectedHeader.logoPath,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Consumer(
+            builder: (context, ref, child) {
+              final isExpanded = ref.watch(headerExpandedProvider);
+              final selectedHeader = ref.watch(selectedHeaderProvider);
+
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 15,
+                ),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.06),
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 15),
+                    Row(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CircleAvatar(
+                              radius: 20,
+                              backgroundImage: AssetImage(
+                                selectedHeader.logoPath,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                selectedHeader.name,
+                                style: theme.textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(width: 10),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Text(
-                                  selectedHeader.name,
-                                  style: theme.textTheme.titleLarge?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              ref
-                                  .read(headerExpandedProvider.notifier)
-                                  .expanded();
-                            },
-                            child: AnimatedRotation(
-                              turns: isExpanded ? 0.5 : 0.0,
-                              duration: Duration(milliseconds: 300),
-                              child: Icon(
-                                Icons.expand_circle_down,
-                                size: 25,
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            ref
+                                .read(headerExpandedProvider.notifier)
+                                .expanded();
+                          },
+                          child: AnimatedRotation(
+                            turns: isExpanded ? 0.5 : 0.0,
+                            duration: Duration(milliseconds: 300),
+                            child: Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
                                 color: theme.colorScheme.primary,
+                              ),
+                              child: Icon(
+                                size: 22,
+                                Icons.keyboard_arrow_down,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-
-                      ClipRect(
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          heightFactor: isExpanded ? 1.1 : 0,
-                          child: Column(
-                            spacing: 10,
-                            children: [
-                              SizedBox(height: 12),
-                              SizedBox(
-                                height: 50,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: AppColors.backgroundGrey,
-                                    hintText: "Ara",
-                                    hintStyle: theme.textTheme.labelMedium
-                                        ?.copyWith(
-                                          color: AppColors.grey,
-                                          fontSize: 17,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: AppColors.grey.withValues(
-                                          alpha: 0.2,
-                                        ),
+                        ),
+                      ],
+                    ),
+                    ClipRect(
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        heightFactor: isExpanded ? 1.1 : 0,
+                        child: Column(
+                          spacing: 10,
+                          children: [
+                            SizedBox(height: 12),
+                            SizedBox(
+                              height: 50,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: AppColors.backgroundGrey,
+                                  hintText: "Ara",
+                                  hintStyle: theme.textTheme.labelMedium
+                                      ?.copyWith(
+                                        color: AppColors.grey,
+                                        fontSize: 17,
                                       ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: AppColors.grey.withValues(
-                                          alpha: 0.3,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              Column(
-                                spacing: 10,
-                                children: clubList.map((club) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      ref
-                                          .read(selectedHeaderProvider.notifier)
-                                          .selectClub(club);
-
-                                      ref
-                                          .read(headerExpandedProvider.notifier)
-                                          .expanded();
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 12,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.backgroundGrey,
-                                        borderRadius: BorderRadius.circular(12),
-                                        border: Border.all(
-                                          color: AppColors.grey.withValues(
-                                            alpha: 0.2,
-                                          ),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 15,
-                                            backgroundImage: AssetImage(
-                                              club.logoPath,
-                                            ),
-                                          ),
-                                          SizedBox(width: 10),
-                                          Text(
-                                            club.name,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelMedium
-                                                ?.copyWith(
-                                                  color: Theme.of(
-                                                    context,
-                                                  ).colorScheme.onSurface,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-
-                              /*  GestureDetector(
-                                onTap: () {
-                                  final club = HeaderModel(
-                                    name: "Applantis Tenis Kulübü",
-                                    logoPath: "assets/images/newlogo.png",
-                                  );
-                                  ref
-                                      .read(headerExpandedProvider.notifier)
-                                      .expanded();
-                                  ref
-                                      .read(selectedHeaderProvider.notifier)
-                                      .selectClub(club);
-                                },
-                                child: Container(
-                                  height: 50,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.backgroundGrey,
+                                  enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
+                                    borderSide: BorderSide(
                                       color: AppColors.grey.withValues(
                                         alpha: 0.2,
                                       ),
-                                      width: 1,
                                     ),
                                   ),
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 15,
-                                        backgroundImage: AssetImage(
-                                          "assets/images/newlogo.png",
-                                        ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColors.grey.withValues(
+                                        alpha: 0.3,
                                       ),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        "Applantis Tenis Kulübü",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium
-                                            ?.copyWith(
-                                              color:
-                                                  theme.colorScheme.onSurface,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ), */
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      ClipOval(
-                        child: Image.asset(
-                          "assets/images/userlogo.png",
-                          width: 40,
-                          height: 50,
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        "Zehra Gültekin",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      return SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: PageView.builder(
-                          itemCount: bannerItems.length,
-                          onPageChanged: (value) {
-                            ref
-                                .read(currentPageProvider.notifier)
-                                .changePage(value);
-                          },
-                          itemBuilder: (context, index) {
-                            final banner = bannerItems[index];
-                            return Card(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 15,
-                                      color: Colors.grey.withValues(alpha: 0.1),
-                                      offset: Offset(0, -1),
                                     ),
-                                  ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Stack(
-                                    children: [
-                                      Image.asset(
-                                        banner.imagePath,
-                                        width: double.infinity,
-                                        height: 200,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        child: Container(
-                                          height: 40,
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Colors.transparent,
-                                                Colors.black45,
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 10,
-                                        bottom: 10,
-                                        child: Container(
-                                          height: 17,
-                                          width: 55,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              5,
-                                            ),
-
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              banner.title,
-                                              style: theme.textTheme.bodySmall
-                                                  ?.copyWith(
-                                                    color: Colors.white,
-                                                    fontSize: 10,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                            Column(
+                              spacing: 10,
+                              children: clubList.map((club) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    ref
+                                        .read(selectedHeaderProvider.notifier)
+                                        .selectClub(club);
+                                    ref
+                                        .read(headerExpandedProvider.notifier)
+                                        .expanded();
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 12,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.backgroundGrey,
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: AppColors.grey.withValues(
+                                          alpha: 0.2,
+                                        ),
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 15,
+                                          backgroundImage: AssetImage(
+                                            club.logoPath,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          club.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium
+                                              ?.copyWith(
+                                                color:
+                                                    theme.colorScheme.onSurface,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                  ),
-                  SizedBox(height: 10),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final currentPage = ref.watch(currentPageProvider);
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
 
-                      return Container(
-                        color: Colors.transparent,
-                        child: Row(
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 10,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ClipOval(
+                          child: Image.asset(
+                            "assets/images/userlogo.png",
+                            width: 40,
+                            height: 50,
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "Zehra Gültekin",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 200,
+                      child: PageView.builder(
+                        itemCount: bannerItems.length,
+                        onPageChanged: (value) {
+                          ref
+                              .read(currentPageProvider.notifier)
+                              .changePage(value);
+                        },
+                        itemBuilder: (context, index) {
+                          final banner = bannerItems[index];
+                          return Container(
+                            margin: EdgeInsets.symmetric(
+                              vertical: 6,
+                              horizontal: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.grey.withValues(alpha: 0.06),
+                                  offset: Offset(2, -2),
+                                ),
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black.withValues(alpha: 0.06),
+                                  offset: Offset(-2, 2),
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    banner.imagePath,
+                                    width: double.infinity,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      height: 40,
+                                      decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.black45,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 14,
+                                    bottom: 11,
+                                    child: Container(
+                                      height: 17,
+                                      width: 55,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: theme.colorScheme.secondary,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          banner.title,
+                                          style: theme.textTheme.bodySmall
+                                              ?.copyWith(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+                    Consumer(
+                      builder: (context, ref, child) {
+                        final currentPage = ref.watch(currentPageProvider);
+                        return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(bannerItems.length, (index) {
                             return Padding(
@@ -381,88 +335,125 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               child: CircleAvatar(
                                 radius: 4,
                                 backgroundColor: currentPage == index
-                                    ? Theme.of(context).colorScheme.secondary
+                                    ? theme.colorScheme.secondary
                                     : Colors.grey,
                               ),
                             );
                           }),
-                        ),
-                      );
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            context.pushNamed(AppRoutes.clubRegister.name);
-                          },
+                        );
+                      },
+                    ),
 
-                          child: CategoryWidget(model: cardItems[0]),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (headerContent.cards[0].title ==
+                                  "Kulüp Kayıt") {
+                                context.pushNamed(AppRoutes.clubRegister.name);
+                              } else if (headerContent.cards[0].title ==
+                                  "Turnuvalar") {}
+                            },
+                            child: CategoryWidget(
+                              model: headerContent.cards[0],
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 15),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            context.pushNamed(AppRoutes.news.name);
-                          },
-                          child: CategoryWidget(
-                            model: cardItems[1],
-                          ), //elle yazmak yerine dinamik yapabiiilirimmm     Row(children : cardItems.map((items)=>Expanded( child: CtegoryWidget(model:item)).toList() şeklindeee yapabilirimmm.))
+                        SizedBox(width: 15),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              context.pushNamed(AppRoutes.news.name);
+                            },
+                            child: CategoryWidget(
+                              model: headerContent.cards[1],
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_month,
-                        size: 30,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        "Rezervasyon",
-                        style: theme.textTheme.titleMedium?.copyWith(
+                      ],
+                    ),
+
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.calendar_month,
+                          size: 30,
                           color: theme.colorScheme.secondary,
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SelectionCard(
-                          icon: Icons.location_on_outlined,
-                          title: "Ülke",
-                          value: "Türkiye",
-                          onTap: null,
+                        SizedBox(width: 5),
+                        Text(
+                          "Rezervasyon",
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.secondary,
+                          ),
                         ),
+                      ],
+                    ),
+
+                    SizedBox(height: 20),
+                    if (headerContent.showCitySelection)
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SelectionCard(
+                              icon: Icons.location_on_outlined,
+                              title: "Ülke",
+                              value: "Türkiye",
+                              onTap: null,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Consumer(
+                              builder: (context, ref, child) {
+                                final selectedCity = ref.watch(
+                                  selectedCityProvider,
+                                );
+                                return SelectionCard(
+                                  icon: Icons.location_on_outlined,
+                                  title: "Şehir",
+                                  value: selectedCity.isEmpty
+                                      ? "Şehir Seçin"
+                                      : selectedCity,
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return ShowModalCity(
+                                          selectedCityProvider,
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 10),
-                      Expanded(
+
+                    if (headerContent.showBranchSelection)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
                         child: Consumer(
                           builder: (context, ref, child) {
-                            final selectedCity = ref.watch(
-                              selectedCityProvider,
+                            final selectedBranch = ref.watch(
+                              selectedBranchProvider,
                             );
-
                             return SelectionCard(
-                              icon: Icons.location_on_outlined,
-                              title: "Şehir",
-                              value: selectedCity.isEmpty
-                                  ? "Şehir Seçin"
-                                  : selectedCity,
+                              icon: Icons.sports_baseball_outlined,
+                              title: "Branş",
+                              value: selectedBranch?.name ?? "Seçiniz",
                               onTap: () {
                                 showModalBottomSheet(
                                   context: context,
                                   builder: (context) {
-                                    return ShowModalCity(selectedCityProvider);
+                                    return ShowModalBranch(
+                                      selectedBranchProvider,
+                                    );
                                   },
                                 );
                               },
@@ -470,140 +461,121 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           },
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final selectedBranch = ref.watch(selectedBranchProvider);
 
-                      return SelectionCard(
-                        icon: Icons.sports_baseball_outlined,
-                        title: "Branş",
-                        value: selectedBranch?.name ?? "Seçiniz",
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return ShowModalBranch(selectedBranchProvider);
-                            },
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final city = ref.watch(selectedCityProvider);
-                      final branch = ref.watch(selectedBranchProvider);
-                      String? errorMessage;
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              if (city.isEmpty && branch == null) {
-                                errorMessage =
-                                    "Şehir ve branş seçmeniz gerekiyor";
-                              } else if (city.isEmpty) {
-                                errorMessage = "Şehir seçmeniz gerekiyor";
-                              } else if (branch == null) {
-                                errorMessage = "Branş seçmeniz gerekiyor";
-                              }
-                              if (errorMessage != null) {
-                                final snackBar = SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.transparent,
-                                  elevation: 0,
-                                  content: Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                      vertical: 15,
+                    SizedBox(height: 20),
+                    Consumer(
+                      builder: (context, ref, child) {
+                        final city = ref.watch(selectedCityProvider);
+                        final branch = ref.watch(selectedBranchProvider);
+                        String? errorMessage;
+
+                        return GestureDetector(
+                          onTap: () {
+                            if (headerContent.showCitySelection &&
+                                city.isEmpty &&
+                                branch == null) {
+                              errorMessage =
+                                  "Şehir ve branş seçmeniz gerekiyor";
+                            } else if (headerContent.showCitySelection &&
+                                city.isEmpty) {
+                              errorMessage = "Şehir seçmeniz gerekiyor";
+                            } else if (headerContent.showBranchSelection &&
+                                branch == null) {
+                              errorMessage = "Branş seçmeniz gerekiyor";
+                            }
+
+                            if (errorMessage != null) {
+                              final snackBar = SnackBar(
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 15,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: theme.colorScheme.error,
+                                      width: 1.3,
                                     ),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.error,
                                         color: theme.colorScheme.error,
-                                        width: 1.3,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.error,
-                                          color: theme.colorScheme.error,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
+                                      SizedBox(width: 10),
+                                      Expanded(
+                                        child: Text(
                                           errorMessage!,
                                           style: theme.textTheme.labelMedium
                                               ?.copyWith(color: Colors.black),
                                         ),
-                                        Spacer(),
-                                        InkWell(
-                                          onTap: () {
-                                            ScaffoldMessenger.of(
-                                              context,
-                                            ).hideCurrentSnackBar();
-                                          },
-                                          child: Text(
-                                            "Kapat",
-                                            style: theme.textTheme.bodySmall
-                                                ?.copyWith(color: Colors.grey),
-                                          ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).hideCurrentSnackBar();
+                                        },
+                                        child: Text(
+                                          "Kapat",
+                                          style: theme.textTheme.bodySmall
+                                              ?.copyWith(color: Colors.grey),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                  duration: Duration(seconds: 10),
-                                );
-                                ScaffoldMessenger.of(
-                                  context,
-                                ).hideCurrentSnackBar();
-                                ScaffoldMessenger.of(
-                                  context,
-                                ).showSnackBar(snackBar);
-                                return;
-                              }
-                              context.pushNamed(
-                                AppRoutes.reservationDetail.name,
+                                ),
+                                duration: Duration(seconds: 10),
                               );
-                            },
-                            child: Container(
-                              height: 40,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: theme.colorScheme.secondary,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.search,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
+                              ScaffoldMessenger.of(
+                                context,
+                              ).hideCurrentSnackBar();
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(snackBar);
+                              return;
+                            }
+
+                            context.pushNamed(AppRoutes.reservationDetail.name);
+                          },
+                          child: Container(
+                            height: 40,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: theme.colorScheme.secondary,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  color: theme.colorScheme.onPrimary,
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  "Sahaları Ara",
+                                  style: theme.textTheme.labelLarge?.copyWith(
+                                    color: theme.colorScheme.onPrimary,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Sahaları Ara",
-                                    style: theme.textTheme.labelLarge,
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 8),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

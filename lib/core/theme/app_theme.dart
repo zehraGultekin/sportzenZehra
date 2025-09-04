@@ -18,12 +18,12 @@ class AppTheme {
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         color: Colors.black,
       ),
       titleMedium: TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
       bodyMedium: TextStyle(
@@ -34,17 +34,17 @@ class AppTheme {
       bodySmall: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w400,
-        color: Colors.black,
+        color: Color(0xB3000000),
       ),
       labelLarge: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w400,
-        color: Colors.white,
+        color: const Color.fromARGB(255, 7, 0, 0),
       ),
       labelMedium: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: Colors.white,
+        color: Color(0x0F000000),
       ),
       labelSmall: TextStyle(
         fontSize: 14,

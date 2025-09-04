@@ -11,18 +11,3 @@ class CategoryModel {
     required this.backgroundImage,
   });
 }
-
-final List<CategoryModel> cardItems = [
-  CategoryModel(
-    subtitle: "Kulüplerin bir parçası olun",
-    title: "Kulüp Kayıt",
-    backgroundImage: "assets/images/tenniss.jpg",
-    cardImage: 'assets/images/kayit.png',
-  ),
-  CategoryModel(
-    subtitle: "Bütün haberler burada",
-    title: "Haberler",
-    backgroundImage: "assets/images/saha.jpeg",
-    cardImage: 'assets/images/kayit.png',
-  ),
-];

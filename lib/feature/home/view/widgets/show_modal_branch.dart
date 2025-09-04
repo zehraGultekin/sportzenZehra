@@ -24,7 +24,7 @@ class ShowModalBranch extends ConsumerWidget {
             width: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: AppColors.backgroundGrey,
+              color: AppColors.grey.withValues(alpha: 0.4),
             ),
           ),
           SizedBox(height: 20),
