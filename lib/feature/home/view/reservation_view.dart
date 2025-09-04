@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/home/data/reservation_detail_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/reservation_detail_model.dart';
 
 class ReservationDetailView extends StatefulWidget {
   const ReservationDetailView({super.key});

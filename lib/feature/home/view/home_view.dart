@@ -3,8 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/data/banner_model.dart';
-import 'package:sportzenzehra/feature/home/data/category_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/banner_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/category_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/category_card.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
@@ -30,6 +31,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
             Consumer(
               builder: (context, ref, child) {
                 final isExpanded = ref.watch(headerExpandedProvider);
+                final selectedHeader = ref.watch(selectedHeaderProvider);
                 return Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
@@ -42,8 +44,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 4,
-                        offset: Offset(0, 3),
+                        blurRadius: 13,
+                        offset: Offset(0, 4),
                       ),
                     ],
                   ),
@@ -58,14 +60,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               CircleAvatar(
                                 radius: 15,
                                 backgroundImage: AssetImage(
-                                  "assets/images/logo.png",
+                                  selectedHeader.logoPath,
                                 ),
                               ),
                               SizedBox(width: 10),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Text(
-                                  "Sporzen Public",
+                                  selectedHeader.name,
                                   style: theme.textTheme.titleLarge?.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -133,57 +135,74 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 ),
                               ),
 
-                              GestureDetector(
-                                onTap: () {
-                                  ref
-                                      .read(headerExpandedProvider.notifier)
-                                      .expanded();
-                                },
-                                child: Container(
-                                  height: 50,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.backgroundGrey,
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: AppColors.grey.withValues(
-                                        alpha: 0.2,
+                              Column(
+                                spacing: 10,
+                                children: clubList.map((club) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      ref
+                                          .read(selectedHeaderProvider.notifier)
+                                          .selectClub(club);
+
+                                      ref
+                                          .read(headerExpandedProvider.notifier)
+                                          .expanded();
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 12,
                                       ),
-                                      width: 1,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 15,
-                                        backgroundImage: AssetImage(
-                                          "assets/images/logo.png",
+                                      decoration: BoxDecoration(
+                                        color: AppColors.backgroundGrey,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: AppColors.grey.withValues(
+                                            alpha: 0.2,
+                                          ),
+                                          width: 1,
                                         ),
                                       ),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        "Sporzen Public",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium
-                                            ?.copyWith(
-                                              color:
-                                                  theme.colorScheme.onSurface,
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 15,
+                                            backgroundImage: AssetImage(
+                                              club.logoPath,
                                             ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            club.name,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.onSurface,
+                                                ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
 
-                              GestureDetector(
+                              /*  GestureDetector(
                                 onTap: () {
+                                  final club = HeaderModel(
+                                    name: "Applantis Tenis Kulübü",
+                                    logoPath: "assets/images/newlogo.png",
+                                  );
                                   ref
                                       .read(headerExpandedProvider.notifier)
                                       .expanded();
+                                  ref
+                                      .read(selectedHeaderProvider.notifier)
+                                      .selectClub(club);
                                 },
                                 child: Container(
                                   height: 50,
@@ -223,7 +242,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     ],
                                   ),
                                 ),
-                              ),
+                              ), */
                             ],
                           ),
                         ),
@@ -268,66 +287,75 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           },
                           itemBuilder: (context, index) {
                             final banner = bannerItems[index];
-                            return Container(
-                              decoration: BoxDecoration(boxShadow: [
-                                 
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      banner.imagePath,
-                                      width: double.infinity,
-                                      height: 200,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      child: Container(
-                                        height: 40,
-                                        decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.black45,
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 10,
-                                      bottom: 10,
-                                      child: Container(
-                                        height: 17,
-                                        width: 55,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            5,
-                                          ),
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.secondary,
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            banner.title,
-                                            style: theme.textTheme.bodySmall
-                                                ?.copyWith(
-                                                  color: Colors.white,
-                                                  fontSize: 10,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
+                            return Card(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 15,
+                                      color: Colors.grey.withValues(alpha: 0.1),
+                                      offset: Offset(0, -1),
                                     ),
                                   ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        banner.imagePath,
+                                        width: double.infinity,
+                                        height: 200,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          height: 40,
+                                          decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.transparent,
+                                                Colors.black45,
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 10,
+                                        bottom: 10,
+                                        child: Container(
+                                          height: 17,
+                                          width: 55,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              5,
+                                            ),
+
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.secondary,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              banner.title,
+                                              style: theme.textTheme.bodySmall
+                                                  ?.copyWith(
+                                                    color: Colors.white,
+                                                    fontSize: 10,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

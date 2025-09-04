@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/data/selection_input.dart';
+import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 
 class ShowModalCity extends ConsumerWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/home/data/news_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/news_model.dart';
 
 class NewsView extends StatefulWidget {
   const NewsView({super.key});
@@ -14,6 +14,7 @@ class NewsView extends StatefulWidget {
 class _NewsViewState extends State<NewsView> {
   @override
   Widget build(BuildContext context) {
+    // final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Haberler",
@@ -37,7 +38,7 @@ class _NewsViewState extends State<NewsView> {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: AppColors.backgroundGrey,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: AppColors.grey.withValues(alpha: 0.2),

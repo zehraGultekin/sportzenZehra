@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sportzenzehra/feature/home/data/selection_input.dart';
+import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
+import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
 
 // final selectedCityProvider = StateProvider<String?>((ref) => null);
 // final selectedBranchProvider = StateProvider<BranchModel?>((ref) => null);
@@ -19,6 +20,17 @@ class SelectedCityNotifier extends StateNotifier<String> {
 
   void selectedCity(String city) {
     state = city;
+  }
+}
+
+class SelectedHeaderNotifier extends StateNotifier<HeaderModel> {
+  SelectedHeaderNotifier()
+    : super(
+        HeaderModel(name: "Sporzen Public", logoPath: "assets/images/logo.png"),
+      );
+
+  void selectClub(HeaderModel club) {
+    state = club;
   }
 }
 
@@ -56,3 +68,8 @@ final selectedBranchProvider =
 final currentPageProvider = StateNotifierProvider<CurrentPageNotifier, int>(
   (ref) => CurrentPageNotifier(),
 );
+
+final selectedHeaderProvider =
+    StateNotifierProvider<SelectedHeaderNotifier, HeaderModel>(
+      (ref) => SelectedHeaderNotifier(),
+    );

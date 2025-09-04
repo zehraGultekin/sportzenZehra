@@ -6,6 +6,7 @@ import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/club_register_provider.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
+import 'package:sportzenzehra/feature/home/view/widgets/show_modal_branch.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
 
 class ClubRegisterView extends ConsumerStatefulWidget {
@@ -19,9 +20,6 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    final selectedCity = ref.watch(clubCityProvider);
-    final selectedBranch = ref.watch(clubBranchProvider);
     return Scaffold(
       appBar: CustomAppBar(
         title: "Kulüp Seç",
@@ -53,24 +51,49 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 ),
                 SizedBox(width: 10),
                 Expanded(
-                  child: SelectionCard(
-                    icon: Icons.location_on_outlined,
-                    title: "Şehir",
-                    value: selectedCity ?? "Şehir seçin",
-                    onTap: () {},
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      final selectedCity = ref.watch(clubCityProvider);
+
+                      return SelectionCard(
+                        icon: Icons.location_on_outlined,
+                        title: "Şehir",
+                        value: selectedCity.isEmpty
+                            ? "Şehir Seçin"
+                            : selectedCity,
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return ShowModalCity(clubCityProvider);
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
               ],
             ),
             SizedBox(height: 10),
-            SelectionCard(
-              icon: Icons.sports_baseball_outlined,
-              title: "Branş",
-              value: selectedBranch?.name ?? "Branş seçin",
-              onTap: () => showModalBottomSheet(
-                context: context,
-                builder: (context) => ShowModalCity(selectedCityProvider),
-              ),
+            Consumer(
+              builder: (context, ref, child) {
+                final selectedBranch = ref.watch(selectedBranchProvider);
+
+                return SelectionCard(
+                  icon: Icons.sports_baseball_outlined,
+                  title: "Branş",
+                  value: selectedBranch?.name ?? "Seçiniz",
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return ShowModalBranch(clubBranchProvider);
+                      },
+                    );
+                  },
+                );
+              },
             ),
             SizedBox(height: 20),
             Container(

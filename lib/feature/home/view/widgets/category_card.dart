@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sportzenzehra/feature/home/data/category_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/category_model.dart';
 
 class CategoryWidget extends StatelessWidget {
   final CategoryModel model;

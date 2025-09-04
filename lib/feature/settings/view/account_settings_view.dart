@@ -67,77 +67,88 @@ class AccountSettingsView extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.warning_amber_outlined,
-                                  color: Theme.of(context).colorScheme.error,
+                                  color: theme.colorScheme.error,
+                                  size: 45,
                                 ),
                                 SizedBox(height: 20),
                                 Text(
                                   "Hesabı Sil",
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.headlineLarge,
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.labelMedium,
+                                Center(
+                                  child: Text(
+                                    "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+                                    style: theme.textTheme.bodyMedium,
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                                 SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
+                                    horizontal: 30,
                                   ),
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            context.pop();
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: AppColors.grey
-                                                .withValues(alpha: 0.1),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                        child: SizedBox(
+                                          height: 40,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              context.pop();
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.black
+                                                  .withValues(alpha: 0.1),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                             ),
-                                          ),
-                                          child: Text(
-                                            "İptal",
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.labelMedium,
+                                            child: Text(
+                                              "İptal",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium
+                                                  ?.copyWith(
+                                                    color: Colors.black,
+                                                  ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 10),
+                                      SizedBox(width: 20),
                                       Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Theme.of(
-                                              context,
-                                            ).colorScheme.error,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                        child: SizedBox(
+                                          height: 40,
+                                          child: ElevatedButton(
+                                            onPressed: () {},
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Theme.of(
+                                                context,
+                                              ).colorScheme.error,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                             ),
-                                          ),
-                                          child: Text(
-                                            "Sil",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelMedium
-                                                ?.copyWith(
-                                                  color: Theme.of(
-                                                    context,
-                                                  ).colorScheme.onPrimary,
-                                                ),
+                                            child: Text(
+                                              "Sil",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium
+                                                  ?.copyWith(
+                                                    color: Theme.of(
+                                                      context,
+                                                    ).colorScheme.onPrimary,
+                                                  ),
+                                            ),
                                           ),
                                         ),
                                       ),
