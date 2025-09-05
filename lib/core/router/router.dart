@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/feature/home/view/club_register.dart';
 import 'package:sportzenzehra/feature/home/view/home_view.dart';
+import 'package:sportzenzehra/feature/home/view/newAtp_view.dart';
+import 'package:sportzenzehra/feature/home/view/newsTenis_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view.dart';
 import 'package:sportzenzehra/feature/home/view/reservation_view.dart';
 import 'package:sportzenzehra/feature/login/view/login_view.dart';
@@ -34,6 +36,8 @@ enum AppRoutes {
   account,
   changePassword,
   helpCenter,
+  newsAtp,
+  newsTenis,
   clubRegister;
 
   String get path => "/$name";
@@ -77,6 +81,18 @@ final router = GoRouter(
                   path: AppRoutes.news.path,
                   name: AppRoutes.news.name,
                   builder: (context, state) => NewsView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.newsAtp.path,
+                      name: AppRoutes.newsAtp.name,
+                      builder: (context, state) => NewAtpDetail(),
+                    ),
+                    GoRoute(
+                      path: AppRoutes.newsTenis.path,
+                      name: AppRoutes.newsTenis.name,
+                      builder: (context, state) => NewsTenisDetail(),
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: AppRoutes.reservationDetail.path,
