@@ -13,6 +13,7 @@ class LoginShowBottom extends StatefulWidget {
 class _LoginShowBottomState extends State<LoginShowBottom> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
       height: 200,
@@ -24,17 +25,19 @@ class _LoginShowBottomState extends State<LoginShowBottom> {
             SizedBox(height: 20),
             Text(
               "Şifre Yenileme",
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 20),
             TextField(
               cursorColor: AppColors.grey,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                contentPadding: EdgeInsets.symmetric(horizontal: 15),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
-                    color: AppColors.grey.withValues(alpha: 0.4),
+                    color: AppColors.grey.withValues(alpha: 0.2),
                     width: 1.5,
                   ),
                 ),
@@ -43,15 +46,15 @@ class _LoginShowBottomState extends State<LoginShowBottom> {
                   borderSide: BorderSide(color: AppColors.grey, width: 2),
                 ),
                 filled: true,
-                fillColor: Theme.of(context).scaffoldBackgroundColor,
-                labelText: "E posta",
-                labelStyle: AppTextStyles.inputhintstyle.copyWith(
-                  color: AppColors.grey,
+                fillColor: AppColors.backgroundGrey,
+                labelText: "E-posta",
+                labelStyle: AppTextStyles.labelMedium.copyWith(
+                  color: AppColors.black70,
                 ),
 
                 suffixIcon: Icon(
                   Icons.mail_outline_outlined,
-                  color: AppColors.grey,
+                  color: AppColors.black70,
                 ),
               ),
             ),
@@ -65,14 +68,13 @@ class _LoginShowBottomState extends State<LoginShowBottom> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).primaryColor,
+                  color: theme.colorScheme.secondary,
                 ),
                 child: Center(
                   child: Text(
                     "Gönder",
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onPrimary,
                     ),
                   ),
                 ),

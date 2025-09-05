@@ -51,21 +51,27 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        Column(
-                          children: kvkkSections
-                              .map(
-                                (e) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 6,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 10,
+                          ),
+                          child: Column(
+                            children: kvkkSections
+                                .map(
+                                  (e) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 6,
+                                    ),
+                                    child: TabContent(
+                                      title: e.title,
+                                      subtitle: e.subtitle,
+                                    ),
                                   ),
-                                  child: TabContent(
-                                    title: e.title,
-                                    subtitle: e.subtitle,
-                                  ),
-                                ),
-                              )
-                              .toList(),
+                                )
+                                .toList(),
+                          ),
                         ),
                         Column(
                           children: serviceSections
