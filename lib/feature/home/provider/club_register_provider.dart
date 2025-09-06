@@ -5,7 +5,7 @@ import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 //final clubCityProvider = StateProvider<String?>((ref) => null);
 //final clubBranchProvider = StateProvider<BranchModel?>((ref) => null);
 
-final clubCityProvider = StateNotifierProvider<SelectedCityNotifier, String>(
+final clubCityProvider = StateNotifierProvider<SelectedCityNotifier, String?>(
   (ref) => SelectedCityNotifier(),
 );
 final clubBranchProvider =

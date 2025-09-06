@@ -19,7 +19,7 @@ final List<CategoryModel> applantisCards = [
   CategoryModel(
     title: "Turnuvalar",
     subtitle: "Katılabileceğiniz turnuvalar",
-    backgroundImage: "assets/images/tenniss.jpg",
+    backgroundImage: "assets/images/turnuva.png",
     cardImage: 'assets/images/kayit.png',
   ),
   CategoryModel(

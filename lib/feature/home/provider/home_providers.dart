@@ -17,8 +17,8 @@ class HeaderExpandedNotifier extends StateNotifier<bool> {
   }
 }
 
-class SelectedCityNotifier extends StateNotifier<String> {
-  SelectedCityNotifier() : super("");
+class SelectedCityNotifier extends StateNotifier<String?> {
+  SelectedCityNotifier() : super(null);
 
   void selectedCity(String city) {
     state = city;
@@ -76,7 +76,7 @@ final headerExpandedProvider =
     );
 
 final selectedCityProvider =
-    StateNotifierProvider<SelectedCityNotifier, String>(
+    StateNotifierProvider<SelectedCityNotifier, String?>(
       (ref) => SelectedCityNotifier(),
     );
 

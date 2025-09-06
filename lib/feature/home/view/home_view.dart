@@ -11,15 +11,11 @@ import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/show_modal_branch.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
 
-class HomeView extends ConsumerStatefulWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
-  @override
-  ConsumerState<HomeView> createState() => _HomeViewState();
-}
 
-class _HomeViewState extends ConsumerState<HomeView> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     final headerContent = ref.watch(headerContentProvider);
@@ -152,9 +148,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 return SelectionCard(
                                   icon: Icons.location_on_outlined,
                                   title: "Şehir",
-                                  value: selectedCity.isEmpty
-                                      ? "Şehir Seçin"
-                                      : selectedCity,
+                                  value: selectedCity ?? "Şehir Seçin",
                                   onTap: () {
                                     showModalBottomSheet(
                                       context: context,
@@ -200,112 +194,103 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       ),
 
                     SizedBox(height: 20),
-                    Consumer(
-                      builder: (context, ref, child) {
-                        final city = ref.watch(selectedCityProvider);
-                        final branch = ref.watch(selectedBranchProvider);
+                    GestureDetector(
+                      onTap: () {
+                        final city = ref.read(selectedCityProvider);
+                        final branch = ref.read(selectedBranchProvider);
                         String? errorMessage;
 
-                        return GestureDetector(
-                          onTap: () {
-                            if (headerContent.showCitySelection &&
-                                city.isEmpty &&
-                                branch == null) {
-                              errorMessage =
-                                  "Şehir ve branş seçmeniz gerekiyor";
-                            } else if (headerContent.showCitySelection &&
-                                city.isEmpty) {
-                              errorMessage = "Şehir seçmeniz gerekiyor";
-                            } else if (headerContent.showBranchSelection &&
-                                branch == null) {
-                              errorMessage = "Branş seçmeniz gerekiyor";
-                            }
+                        if (headerContent.showCitySelection &&
+                            city == null &&
+                            branch == null) {
+                          errorMessage = "Şehir ve branş seçmeniz gerekiyor";
+                        } else if (headerContent.showCitySelection &&
+                            city == null) {
+                          errorMessage = "Şehir seçmeniz gerekiyor";
+                        } else if (headerContent.showBranchSelection &&
+                            branch == null) {
+                          errorMessage = "Branş seçmeniz gerekiyor";
+                        }
 
-                            if (errorMessage != null) {
-                              final snackBar = SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                backgroundColor: Colors.transparent,
-                                elevation: 0,
-                                content: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 15,
+                        if (errorMessage != null) {
+                          final snackBar = SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            content: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 15,
+                              ),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: theme.colorScheme.error,
+                                  width: 1.3,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.error,
+                                    color: theme.colorScheme.error,
                                   ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: theme.colorScheme.error,
-                                      width: 1.3,
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      errorMessage,
+                                      style: theme.textTheme.labelMedium
+                                          ?.copyWith(color: Colors.black),
                                     ),
-                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.error,
-                                        color: theme.colorScheme.error,
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          errorMessage!,
-                                          style: theme.textTheme.labelMedium
-                                              ?.copyWith(color: Colors.black),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          ScaffoldMessenger.of(
-                                            context,
-                                          ).hideCurrentSnackBar();
-                                        },
-                                        child: Text(
-                                          "Kapat",
-                                          style: theme.textTheme.bodySmall
-                                              ?.copyWith(color: Colors.grey),
-                                        ),
-                                      ),
-                                    ],
+                                  InkWell(
+                                    onTap: () {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).hideCurrentSnackBar();
+                                    },
+                                    child: Text(
+                                      "Kapat",
+                                      style: theme.textTheme.bodySmall
+                                          ?.copyWith(color: Colors.grey),
+                                    ),
                                   ),
-                                ),
-                                duration: Duration(seconds: 10),
-                              );
-                              ScaffoldMessenger.of(
-                                context,
-                              ).hideCurrentSnackBar();
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(snackBar);
-                              return;
-                            }
+                                ],
+                              ),
+                            ),
+                            duration: Duration(seconds: 10),
+                          );
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          return;
+                        }
 
-                            context.pushNamed(AppRoutes.reservationDetail.name);
-                          },
-                          child: Container(
-                            height: 40,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: theme.colorScheme.secondary,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.search,
-                                  color: theme.colorScheme.onPrimary,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Sahaları Ara",
-                                  style: theme.textTheme.labelLarge?.copyWith(
-                                    color: theme.colorScheme.onPrimary,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                        context.pushNamed(AppRoutes.reservationDetail.name);
                       },
+                      child: Container(
+                        height: 40,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: theme.colorScheme.secondary,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: theme.colorScheme.onPrimary,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              "Sahaları Ara",
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: theme.colorScheme.onPrimary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),

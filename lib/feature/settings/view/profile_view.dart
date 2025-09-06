@@ -122,7 +122,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
             Consumer(
               builder: (context, ref, child) {
                 final selectedCity = ref.watch(profileCityProvider);
-                cityController.text = selectedCity;
+                cityController.text = selectedCity ?? "Şehir";
                 return ProfileTextField(
                   enabled: true,
                   preffixIcon: Icons.location_city,

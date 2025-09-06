@@ -58,9 +58,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                       return SelectionCard(
                         icon: Icons.location_on_outlined,
                         title: "Şehir",
-                        value: selectedCity.isEmpty
-                            ? "Şehir Seçin"
-                            : selectedCity,
+                        value: selectedCity ?? "Şehir Seçin",
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
