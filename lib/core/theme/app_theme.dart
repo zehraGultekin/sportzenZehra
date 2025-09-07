@@ -9,7 +9,7 @@ class AppTheme {
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       surface: AppColors.surface,
-      error: AppColors.error,
+      error: const Color.fromARGB(255, 209, 24, 14),
       onPrimary: Colors.white,
       onSecondary: AppColors.textPrimary,
       onSurface: AppColors.textPrimary,
@@ -19,7 +19,7 @@ class AppTheme {
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
         color: Colors.black,
       ),
       titleMedium: TextStyle(

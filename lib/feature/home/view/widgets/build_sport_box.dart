@@ -7,7 +7,7 @@ Widget buildSportBox(IconData icon, String label) {
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       color: AppColors.backgroundGrey,
-      border: Border.all(color: AppColors.grey.withValues(alpha: 0.2)),
+      border: Border.all(color: AppColors.opacitygrey),
     ),
     child: Center(
       child: Row(

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sportzenzehra/feature/home/data/models/content_list.dart';
+import 'package:sportzenzehra/feature/home/data/models/category_data.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_content.dart';
 import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';

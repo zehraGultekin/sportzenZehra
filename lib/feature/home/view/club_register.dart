@@ -121,7 +121,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                         Text(
                           "Kulübünüz listede yok mu?",
                           style: theme.textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.black70,
                           ),
                         ),

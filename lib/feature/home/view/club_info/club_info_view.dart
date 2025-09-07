@@ -37,6 +37,7 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
+        spacing: 20,
         children: [
           Container(
             height: 4,
@@ -46,31 +47,33 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
               color: theme.colorScheme.secondary,
             ),
           ),
-          const SizedBox(height: 20),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             width: double.infinity,
-            height: 80,
+
             decoration: BoxDecoration(
               color: AppColors.backgroundGrey,
-              border: Border.all(color: AppColors.grey.withValues(alpha: 0.2)),
+              border: Border.all(color: AppColors.opacitygrey),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage("assets/images/newlogo.png"),
                 ),
-                const SizedBox(width: 30),
-                Text(
-                  "Applantis Tenis Kulübü",
-                  style: theme.textTheme.titleMedium,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Applantis Tenis Kulübü",
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(tabs.length, (index) {
@@ -86,7 +89,6 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
                             .selectedIndex(index);
                         _controller.jumpToPage(index);
                       },
-
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 5),
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -111,27 +113,13 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
               );
             }),
           ),
-          const SizedBox(height: 20),
           Expanded(
             child: PageView(
               controller: _controller,
               onPageChanged: (index) {
                 ref.read(tabIndexProvider.notifier).selectedIndex(index);
               },
-              children: [
-                ScrollConfiguration(
-                  behavior: ScrollBehavior().copyWith(scrollbars: false),
-                  child: AboutClubView(),
-                ),
-                ScrollConfiguration(
-                  behavior: ScrollBehavior().copyWith(scrollbars: false),
-                  child: CommunicationView(),
-                ),
-                ScrollConfiguration(
-                  behavior: ScrollBehavior().copyWith(scrollbars: false),
-                  child: RulesView(),
-                ),
-              ],
+              children: [AboutClubView(), CommunicationView(), RulesView()],
             ),
           ),
         ],

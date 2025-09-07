@@ -24,7 +24,7 @@ class TournametView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(
           children: [
             Container(

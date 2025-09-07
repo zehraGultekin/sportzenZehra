@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/models/banner_model.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/banner_widget.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/category_card.dart';
+import 'package:sportzenzehra/feature/home/view/widgets/category_card_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/header_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
 import 'package:sportzenzehra/core/widgets/branch_selection_modal.dart';
@@ -25,7 +26,6 @@ class HomeView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeaderWidget(),
-
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
@@ -110,7 +110,7 @@ class HomeView extends ConsumerWidget {
                       ],
                     ),
 
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Row(
                       children: [
                         Icon(
@@ -254,7 +254,7 @@ class HomeView extends ConsumerWidget {
                                     child: Text(
                                       "Kapat",
                                       style: theme.textTheme.bodySmall
-                                          ?.copyWith(color: Colors.grey),
+                                          ?.copyWith(color: AppColors.black70),
                                     ),
                                   ),
                                 ],

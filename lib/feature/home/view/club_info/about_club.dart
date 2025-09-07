@@ -10,14 +10,14 @@ class AboutClubView extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(),
       child: SingleChildScrollView(
         child: Column(
           spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.backgroundGrey,
@@ -35,13 +35,19 @@ class AboutClubView extends StatelessWidget {
               "Applantis Tenis Kulübü 2025 yılında Adana'da\nkurulmuştur. Uygun fiyatlı kortları ve konforlu\ntesisleriyle tenis severlere hizmet vermektedir.",
               style: theme.textTheme.bodySmall?.copyWith(
                 color: AppColors.black80,
+                fontWeight: FontWeight.w500,
               ),
             ),
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Branşlar", style: theme.textTheme.titleLarge),
+                  Text(
+                    "Branşlar",
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   SizedBox(height: 10),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -54,7 +60,12 @@ class AboutClubView extends StatelessWidget {
                 ],
               ),
             ),
-            Text("Özellikler", style: theme.textTheme.titleLarge),
+            Text(
+              "Özellikler",
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(

@@ -83,8 +83,8 @@ ARALARINDA ANLAŞARAK MAÇI ERTELEYEMEZLER, İPTAL EDEMEZLER.
           ''',
         style: theme.textTheme.bodySmall?.copyWith(
           fontSize: 13,
-          fontWeight: FontWeight.w600,
-          color: AppColors.black70,
+          fontWeight: FontWeight.w500,
+          color: AppColors.black90,
         ),
       ),
     );

@@ -114,20 +114,11 @@ EN BÜYÜK SORUN GÖZLERİMDE''',
                 fit: BoxFit.fill,
               ),
               Text(
-                '''Tüm bunların dışında toparlanma sürecim gayet iyi gidiyor. 
-Haftada 4-5 gün fitness’a giriyorum. Sabah genelde kuvvet antrenmanları, 
-akşamları da 6-7 km yürüyüş yapıyorum. Bu süreçte vücudumu fazla zorladığım 
-için yorulmamdan dolayı bazı günler ara veriyor ve fitness da yapamıyorum.
+                '''Tüm bunların dışında toparlanma sürecim gayet iyi gidiyor.Haftada 4-5 gün fitness’a giriyorum.Sabah genelde kuvvet antrenmanları,akşamları da 6-7 km yürüyüş yapıyorum.Bu süreçte vücudumu fazla zorladığımiçin yorulmamdan dolayı bazı günler ara veriyor ve fitness da yapamıyorum.
 
-Açıkçası bu aralar zamanımı dolduracağım bir meşguliyet arıyorum. ENKA’ya 
-bu konuda yardımcı oluyorum. Hastalığım sürecinde özel uçak masrafları, 
-hastane masrafları gibi kalemleri, kulübüm olan ENKA Spor Kulübü karşıladı. 
-Onlara buradan çok teşekkür ediyorum. Ben de onlara elimden geldiğince 
-yardım etmeye çalışıyorum.
+Açıkçası bu aralar zamanımı dolduracağım bir meşguliyet arıyorum. ENKA’ya bu konuda yardımcı oluyorum. Hastalığım sürecinde özel uçak masrafları, hastane masrafları gibi kalemleri, kulübüm olan ENKA Spor Kulübü karşıladı.Onlara buradan çok teşekkür ediyorum. Ben de onlara elimden geldiğince yardım etmeye çalışıyorum.
 
-Ülke tenisi iyi gidiyor sayılır. Daha iyi olabiliriz ama Zeynep Sönmez’in 
-başarıları bizi çok gururlandırıyor. Ben de bu süreci atlatırsam tekrar 
-çok özlediğim tenise geri dönüp, ülkemize faydalı işler sağlamak istiyorum.''',
+Ülke tenisi iyi gidiyor sayılır. Daha iyi olabiliriz ama Zeynep Sönmez’in başarıları bizi çok gururlandırıyor. Ben de bu süreci atlatırsam tekrar çok özlediğim tenise geri dönüp, ülkemize faydalı işler sağlamak istiyorum.''',
                 textAlign: TextAlign.start,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 14,

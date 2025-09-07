@@ -16,7 +16,7 @@ class HeaderWidget extends ConsumerWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
@@ -45,9 +45,7 @@ class HeaderWidget extends ConsumerWidget {
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
                       selectedHeader.name,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: theme.textTheme.titleLarge,
                     ),
                   ),
                 ],
@@ -74,25 +72,22 @@ class HeaderWidget extends ConsumerWidget {
                   },
                   child: Icon(Icons.info, color: theme.colorScheme.primary),
                 ),
-              SizedBox(width: 5),
+              SizedBox(width: 10),
               GestureDetector(
                 onTap: () {
                   ref.read(headerExpandedProvider.notifier).expanded();
                 },
                 child: AnimatedRotation(
+                  //arrowcircledown ikonunu sadece olacak şekilde kullanabilirim
                   turns: isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
-                  child: Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: theme.colorScheme.primary,
-                    ),
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     child: const Icon(
-                      size: 20,
                       Icons.keyboard_arrow_down,
                       color: Colors.white,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -102,11 +97,11 @@ class HeaderWidget extends ConsumerWidget {
           ClipRect(
             child: Align(
               alignment: Alignment.topCenter,
-              heightFactor: isExpanded ? 1.1 : 0,
+              heightFactor: isExpanded ? 1.3 : 0,
               child: Column(
                 spacing: 10,
                 children: [
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 6),
                   SizedBox(
                     height: 50,
                     child: TextField(
@@ -120,15 +115,11 @@ class HeaderWidget extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: AppColors.grey.withValues(alpha: 0.2),
-                          ),
+                          borderSide: BorderSide(color: AppColors.opacitygrey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: AppColors.grey.withValues(alpha: 0.3),
-                          ),
+                          borderSide: BorderSide(color: AppColors.opacitygrey),
                         ),
                       ),
                     ),

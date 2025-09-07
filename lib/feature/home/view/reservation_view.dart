@@ -133,7 +133,7 @@ class ReservationDetailView extends ConsumerWidget {
                             "Adana Tenis Dağ Ve Su Sporları\nKulübü",
                             style: theme.textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                              fontSize: 16,
                             ),
                           ),
 
@@ -145,6 +145,7 @@ class ReservationDetailView extends ConsumerWidget {
                                 "Branşlar: Tenis , Futbol",
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w400,
+                                  color: AppColors.black70,
                                 ),
                               ),
                             ],
@@ -157,7 +158,10 @@ class ReservationDetailView extends ConsumerWidget {
                                 color: Colors.black54,
                                 size: 15,
                               ),
-                              Text("Sahalar 1"),
+                              Text(
+                                "Sahalar 1",
+                                style: TextStyle(color: AppColors.black70),
+                              ),
                             ],
                           ),
                           Text(
