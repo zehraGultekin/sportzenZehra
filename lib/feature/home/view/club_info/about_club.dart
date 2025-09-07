@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/build_sport_box.dart';
+import 'package:sportzenzehra/feature/home/view/club_info/widgets/build_sport_box.dart';
 
 class AboutClubView extends StatelessWidget {
   const AboutClubView({super.key});

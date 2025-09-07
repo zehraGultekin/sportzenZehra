@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/home/data/models/reservation_detail_model.dart';
+import 'package:sportzenzehra/feature/home/data/mock/reservation_mock.dart';
 import 'package:sportzenzehra/feature/home/provider/rezervation_detail_provider.dart';
 
 class ReservationDetailView extends ConsumerWidget {

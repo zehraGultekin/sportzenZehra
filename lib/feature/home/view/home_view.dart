@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/data/models/banner_model.dart';
+import 'package:sportzenzehra/feature/home/data/mock/banner_mock.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/banner_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/category_card_widget.dart';

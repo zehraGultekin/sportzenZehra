@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/home/data/models/news_model.dart';
+import 'package:sportzenzehra/feature/home/data/mock/news_mock.dart';
 
 class NewsView extends StatefulWidget {
   const NewsView({super.key});

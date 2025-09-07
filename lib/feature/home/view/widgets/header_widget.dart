@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
+import 'package:sportzenzehra/feature/home/data/mock/header_mock.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/club_info_view.dart';
 
