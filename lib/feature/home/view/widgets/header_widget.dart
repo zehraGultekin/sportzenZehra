@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/view/club_info/club_info_view.dart';
 
 class HeaderWidget extends ConsumerWidget {
   const HeaderWidget({super.key});
@@ -52,6 +53,28 @@ class HeaderWidget extends ConsumerWidget {
                 ],
               ),
               const Spacer(),
+              if (selectedHeader.name != "Sporzen Public")
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      builder: (context) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.80,
+                          child: ClubInfoView(),
+                        );
+                      },
+                    );
+                  },
+                  child: Icon(Icons.info, color: theme.colorScheme.primary),
+                ),
+              SizedBox(width: 5),
               GestureDetector(
                 onTap: () {
                   ref.read(headerExpandedProvider.notifier).expanded();
@@ -60,14 +83,14 @@ class HeaderWidget extends ConsumerWidget {
                   turns: isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
                   child: Container(
-                    height: 22,
-                    width: 22,
+                    height: 20,
+                    width: 20,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(20),
                       color: theme.colorScheme.primary,
                     ),
                     child: const Icon(
-                      size: 22,
+                      size: 20,
                       Icons.keyboard_arrow_down,
                       color: Colors.white,
                     ),

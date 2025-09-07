@@ -2,9 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
+import 'package:sportzenzehra/core/widgets/city_selection_modal.dart';
 import 'package:sportzenzehra/feature/settings/provider/settings_provider.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/profile_textfied_widget.dart';
 
@@ -18,16 +17,6 @@ class ProfileView extends ConsumerStatefulWidget {
 class _ProfileViewState extends ConsumerState<ProfileView> {
   TextEditingController cityController = TextEditingController();
   TextEditingController adresController = TextEditingController();
-
-  final ImagePicker _picker = ImagePicker();
-
-  Future<void> getImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      ref.read(imagePickerProvider.notifier).state = image;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +62,9 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                   bottom: 40,
                   left: 110,
                   child: GestureDetector(
-                    onTap: getImage,
+                    onTap: ref
+                        .read(imagePickerProvider.notifier)
+                        .pickFromGallery,
                     child: Container(
                       height: 40,
                       width: 40,
@@ -131,7 +122,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return ShowModalCity(profileCityProvider);
+                        return SelectionCityModal(profileCityProvider);
                       },
                     );
                   },

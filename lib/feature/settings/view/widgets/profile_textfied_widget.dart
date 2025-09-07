@@ -52,6 +52,7 @@ class ProfileTextField extends StatelessWidget {
         filled: true,
         fillColor: AppColors.backgroundGrey,
         labelText: label,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         labelStyle: theme.textTheme.labelMedium?.copyWith(
           color: Colors.grey,
           fontWeight: FontWeight.w500,

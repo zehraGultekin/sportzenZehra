@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 
 class NewAtpDetail extends StatelessWidget {
@@ -47,23 +48,13 @@ class NewAtpDetail extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             Text(
-              "2025 Wimbledon Tenis Şampiyonası'nın ardından, dünya çapında tenisçiler sert kort sezonuna geçiş yaptı. Bu geçiş, özellikle Kuzey Amerika'da düzenlenen turnuvalarla hız kazandı ve oyuncuların adaptasyon süreçleri dikkatle izlendi.",
-              textAlign: TextAlign.start,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Text(
-              "Carlos Alcaraz, Cincinnati'deki finalde kaybetmesine rağmen, sert kortlardaki oyununu geliştirmeye devam ediyor. Amerika Açık öncesi hazırlıklarını sürdüren Alcaraz, özellikle servis ve forehand performansıyla dikkat çekiyor.",
-              textAlign: TextAlign.start,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Text(
-              "Kadınlar tenisinde, Aryna Sabalenka, Cincinnati'de kazandığı şampiyonlukla sert kort sezonuna güçlü bir başlangıç yaptı",
+              '''2025 Wimbledon Tenis Şampiyonası'nın ardından, dünya çapında tenisçiler sert kort sezonuna geçiş yaptı. 
+Bu geçiş, özellikle Kuzey Amerika'da düzenlenen turnuvalarla hız kazandı ve oyuncuların adaptasyon süreçleri dikkatle izlendi.
+
+Carlos Alcaraz, Cincinnati'deki finalde kaybetmesine rağmen, sert kortlardaki oyununu geliştirmeye devam ediyor. 
+Amerika Açık öncesi hazırlıklarını sürdüren Alcaraz, özellikle servis ve forehand performansıyla dikkat çekiyor.
+
+Kadınlar tenisinde, Aryna Sabalenka, Cincinnati'de kazandığı şampiyonlukla sert kort sezonuna güçlü bir başlangıç yaptı.''',
               textAlign: TextAlign.start,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontSize: 14,
@@ -85,7 +76,7 @@ class NewAtpDetail extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
                       fontSize: 14,
-                      decorationColor: Colors.blue,
+                      decorationColor: AppColors.blue,
                     ),
                   ),
                   TextSpan(text: " first appeared on "),
@@ -95,7 +86,7 @@ class NewAtpDetail extends StatelessWidget {
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      decorationColor: Colors.blue,
+                      decorationColor: AppColors.blue,
                     ),
                   ),
                   TextSpan(text: "."),

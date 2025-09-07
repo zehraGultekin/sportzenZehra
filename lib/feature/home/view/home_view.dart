@@ -8,8 +8,8 @@ import 'package:sportzenzehra/feature/home/view/widgets/banner_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/category_card.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/header_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/show_modal_branch.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
+import 'package:sportzenzehra/core/widgets/branch_selection_modal.dart';
+import 'package:sportzenzehra/core/widgets/city_selection_modal.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -87,7 +87,9 @@ class HomeView extends ConsumerWidget {
                                   "Kulüp Kayıt") {
                                 context.pushNamed(AppRoutes.clubRegister.name);
                               } else if (headerContent.cards[0].title ==
-                                  "Turnuvalar") {}
+                                  "Turnuvalar") {
+                                context.pushNamed(AppRoutes.tournamend.name);
+                              }
                             },
                             child: CategoryWidget(
                               model: headerContent.cards[0],
@@ -153,7 +155,7 @@ class HomeView extends ConsumerWidget {
                                     showModalBottomSheet(
                                       context: context,
                                       builder: (context) {
-                                        return ShowModalCity(
+                                        return SelectionCityModal(
                                           selectedCityProvider,
                                         );
                                       },
@@ -182,7 +184,7 @@ class HomeView extends ConsumerWidget {
                                 showModalBottomSheet(
                                   context: context,
                                   builder: (context) {
-                                    return ShowModalBranch(
+                                    return BranchSelectionModal(
                                       selectedBranchProvider,
                                     );
                                   },

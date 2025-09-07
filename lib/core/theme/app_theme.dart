@@ -3,6 +3,7 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 
 class AppTheme {
   static ThemeData theme = ThemeData(
+    focusColor: Colors.transparent,
     scaffoldBackgroundColor: AppColors.background,
     colorScheme: ColorScheme(
       primary: AppColors.primary,
@@ -22,7 +23,7 @@ class AppTheme {
         color: Colors.black,
       ),
       titleMedium: TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),

@@ -5,10 +5,10 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 
-class ShowModalCity extends ConsumerWidget {
+class SelectionCityModal extends ConsumerWidget {
   final StateNotifierProvider<SelectedCityNotifier, String?> cityProvider;
 
-  const ShowModalCity(this.cityProvider, {super.key});
+  const SelectionCityModal(this.cityProvider, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

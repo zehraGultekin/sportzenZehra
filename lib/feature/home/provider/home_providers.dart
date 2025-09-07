@@ -4,11 +4,6 @@ import 'package:sportzenzehra/feature/home/data/models/header_club.dart';
 import 'package:sportzenzehra/feature/home/data/models/header_content.dart';
 import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
 
-// final selectedCityProvider = StateProvider<String?>((ref) => null);
-// final selectedBranchProvider = StateProvider<BranchModel?>((ref) => null);
-// final headerExpandedProvider = StateProvider<bool>((ref) => false);
-//final currentPageProvider = StateProvider<int>((ref) => 0);
-
 class HeaderExpandedNotifier extends StateNotifier<bool> {
   HeaderExpandedNotifier() : super(false);
 
@@ -51,6 +46,17 @@ class CurrentPageNotifier extends StateNotifier<int> {
     state = value;
   }
 }
+
+class TabIndexNotifier extends StateNotifier<int> {
+  TabIndexNotifier() : super(0);
+  void selectedIndex(int index) {
+    state = index;
+  }
+}
+
+final tabIndexProvider = StateNotifierProvider<TabIndexNotifier, int>(
+  (ref) => TabIndexNotifier(),
+);
 
 final headerContentProvider = Provider<HeaderContent>((ref) {
   final selectedHeader = ref.watch(selectedHeaderProvider);

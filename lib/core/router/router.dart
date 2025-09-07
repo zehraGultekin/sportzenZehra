@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/feature/home/view/club_register.dart';
 import 'package:sportzenzehra/feature/home/view/home_view.dart';
-import 'package:sportzenzehra/feature/home/view/news_atp_view.dart';
-import 'package:sportzenzehra/feature/home/view/news_tenis_view.dart';
-import 'package:sportzenzehra/feature/home/view/news_view.dart';
+import 'package:sportzenzehra/feature/home/view/news_view/news_atp_view.dart';
+import 'package:sportzenzehra/feature/home/view/news_view/news_tenis_view.dart';
+import 'package:sportzenzehra/feature/home/view/news_view/news_view.dart';
 import 'package:sportzenzehra/feature/home/view/reservation_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournamet_view.dart';
 import 'package:sportzenzehra/feature/login/view/login_view.dart';
 import 'package:sportzenzehra/feature/login/view/register_view.dart';
 import 'package:sportzenzehra/feature/messages/view/message_view.dart';
@@ -38,6 +39,7 @@ enum AppRoutes {
   helpCenter,
   newsAtp,
   newsTenis,
+  tournamend,
   clubRegister;
 
   String get path => "/$name";
@@ -98,6 +100,11 @@ final router = GoRouter(
                   path: AppRoutes.reservationDetail.path,
                   name: AppRoutes.reservationDetail.name,
                   builder: (context, state) => ReservationDetailView(),
+                ),
+                GoRoute(
+                  path: AppRoutes.tournamend.path,
+                  name: AppRoutes.tournamend.name,
+                  builder: (context, state) => TournametView(),
                 ),
               ],
             ),

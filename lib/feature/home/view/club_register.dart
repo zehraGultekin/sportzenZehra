@@ -6,8 +6,8 @@ import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/club_register_provider.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/show_modal_branch.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/show_modal_city.dart';
+import 'package:sportzenzehra/core/widgets/branch_selection_modal.dart';
+import 'package:sportzenzehra/core/widgets/city_selection_modal.dart';
 
 class ClubRegisterView extends ConsumerStatefulWidget {
   const ClubRegisterView({super.key});
@@ -63,7 +63,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                           showModalBottomSheet(
                             context: context,
                             builder: (context) {
-                              return ShowModalCity(clubCityProvider);
+                              return SelectionCityModal(clubCityProvider);
                             },
                           );
                         },
@@ -86,7 +86,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                     showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return ShowModalBranch(clubBranchProvider);
+                        return BranchSelectionModal(clubBranchProvider);
                       },
                     );
                   },
