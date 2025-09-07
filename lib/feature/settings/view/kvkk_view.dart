@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/login/data/tab_content_model.dart';
+import 'package:sportzenzehra/feature/login/data/mock/tab_section_mock.dart';
 import 'package:sportzenzehra/feature/login/view/widgets/tab_content_card.dart';
 
 class KvkkView extends StatefulWidget {
@@ -48,7 +48,7 @@ class _KvkkViewState extends State<KvkkView> {
         body: TabBarView(
           children: [
             Column(
-              children: kvkkSections
+              children: TabSectionMock.kvkkSections
                   .map(
                     (e) => Padding(
                       padding: const EdgeInsets.symmetric(
@@ -61,7 +61,7 @@ class _KvkkViewState extends State<KvkkView> {
                   .toList(),
             ),
             Column(
-              children: serviceSections
+              children: TabSectionMock.serviceSections
                   .map(
                     (e) => Padding(
                       padding: const EdgeInsets.symmetric(
@@ -74,7 +74,7 @@ class _KvkkViewState extends State<KvkkView> {
                   .toList(),
             ),
             Column(
-              children: securitySections
+              children: TabSectionMock.securitySections
                   .map(
                     (e) => Padding(
                       padding: const EdgeInsets.symmetric(

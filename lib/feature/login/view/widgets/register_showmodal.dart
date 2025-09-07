@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/login/data/tab_content_model.dart';
+import 'package:sportzenzehra/feature/login/data/mock/tab_section_mock.dart';
+
 import 'package:sportzenzehra/feature/login/view/widgets/tab_content_card.dart';
 
 class RegisterShowmodal extends StatefulWidget {
@@ -57,7 +58,7 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
                             vertical: 10,
                           ),
                           child: Column(
-                            children: kvkkSections
+                            children: TabSectionMock.kvkkSections
                                 .map(
                                   (e) => Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -74,7 +75,7 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
                           ),
                         ),
                         Column(
-                          children: serviceSections
+                          children: TabSectionMock.serviceSections
                               .map(
                                 (e) => Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -90,7 +91,7 @@ class _RegisterShowmodalState extends State<RegisterShowmodal> {
                               .toList(),
                         ),
                         Column(
-                          children: securitySections
+                          children: TabSectionMock.securitySections
                               .map(
                                 (e) => Padding(
                                   padding: const EdgeInsets.symmetric(
