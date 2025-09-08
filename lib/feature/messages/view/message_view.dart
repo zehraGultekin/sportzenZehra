@@ -58,7 +58,12 @@ class _MessageViewState extends State<MessageView> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     SizedBox(width: 10),
-                    Text("Ana Sayfaya Dön", style: theme.textTheme.labelLarge),
+                    Text(
+                      "Ana Sayfaya Dön",
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
                   ],
                 ),
               ),

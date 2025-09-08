@@ -106,7 +106,12 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(width: 5),
-                    Text("Şifreyi Değiştir", style: theme.textTheme.labelLarge),
+                    Text(
+                      "Şifreyi Değiştir",
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
                   ],
                 ),
               ),

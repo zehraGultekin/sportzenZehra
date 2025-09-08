@@ -150,7 +150,12 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Center(
-                  child: Text("Kaydet", style: theme.textTheme.labelLarge),
+                  child: Text(
+                    "Kaydet",
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
                 ),
               ),
             ),

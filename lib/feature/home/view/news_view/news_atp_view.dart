@@ -23,6 +23,7 @@ class NewAtpDetail extends StatelessWidget {
           },
         ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(

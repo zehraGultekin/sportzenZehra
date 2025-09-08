@@ -5,6 +5,7 @@ import 'package:sportzenzehra/feature/home/view/home_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_atp_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_tenis_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_view.dart';
+import 'package:sportzenzehra/feature/home/view/reservation_detail2.dart';
 import 'package:sportzenzehra/feature/home/view/reservation_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournamet_view.dart';
 import 'package:sportzenzehra/feature/login/view/login_view.dart';
@@ -40,6 +41,7 @@ enum AppRoutes {
   newsAtp,
   newsTenis,
   tournamend,
+  reservation2,
   clubRegister;
 
   String get path => "/$name";
@@ -49,7 +51,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: AppRoutes.login.path,
+  initialLocation: AppRoutes.home.path,
   routes: [
     GoRoute(
       path: AppRoutes.login.path,
@@ -100,6 +102,11 @@ final router = GoRouter(
                   path: AppRoutes.reservationDetail.path,
                   name: AppRoutes.reservationDetail.name,
                   builder: (context, state) => ReservationDetailView(),
+                ),
+                GoRoute(
+                  path: AppRoutes.reservation2.path,
+                  name: AppRoutes.reservation2.name,
+                  builder: (context, state) => ReservationDetail2(),
                 ),
                 GoRoute(
                   path: AppRoutes.tournamend.path,

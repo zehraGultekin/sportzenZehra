@@ -95,7 +95,12 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Center(
-                  child: Text("Gönder", style: theme.textTheme.labelLarge),
+                  child: Text(
+                    "Gönder",
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
                 ),
               ),
             ),

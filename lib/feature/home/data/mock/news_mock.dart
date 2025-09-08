@@ -1,4 +1,4 @@
-import '../models/news_model.dart';
+import 'package:sportzenzehra/feature/home/data/models/news_model.dart';
 
 final List<NewsItem> newsList = [
   NewsItem(
@@ -22,5 +22,4 @@ final List<NewsItem> newsList = [
     category: "KORT DERGİSİ",
     image: "assets/images/kortlogo.png",
   ),
-  // ... diğer örnek haberler
 ];

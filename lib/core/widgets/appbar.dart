@@ -21,6 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AppBar(
+      scrolledUnderElevation: 0,
       backgroundColor: theme.scaffoldBackgroundColor,
       automaticallyImplyLeading: false,
       centerTitle: true,

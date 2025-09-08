@@ -20,4 +20,7 @@ class AppColors {
   static const black80 = Color(0xCC000000);
   static const black90 = Color(0xE6000000);
   static const blue = Color(0xff2196f3);
+  static const soil = Color(0xffa98b56);
+
+  static const gradviewColor = Color.fromARGB(255, 13, 155, 60);
 }

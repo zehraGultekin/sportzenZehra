@@ -18,8 +18,8 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-
     final headerContent = ref.watch(headerContentProvider);
+    final selectedHeader = ref.watch(selectedHeaderProvider);
 
     return Scaffold(
       body: Column(
@@ -266,8 +266,11 @@ class HomeView extends ConsumerWidget {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           return;
                         }
-
-                        context.pushNamed(AppRoutes.reservationDetail.name);
+                        if (selectedHeader.name == 'Sporzen Public') {
+                          context.pushNamed(AppRoutes.reservationDetail.name);
+                        } else {
+                          context.pushNamed(AppRoutes.reservation2.name);
+                        }
                       },
                       child: Container(
                         height: 40,

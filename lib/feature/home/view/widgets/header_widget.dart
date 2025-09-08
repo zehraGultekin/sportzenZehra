@@ -136,7 +136,7 @@ class HeaderWidget extends ConsumerWidget {
                         },
                         child: Container(
                           height: 50,
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 12,
                           ),
@@ -144,7 +144,7 @@ class HeaderWidget extends ConsumerWidget {
                             color: AppColors.backgroundGrey,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: AppColors.grey.withValues(alpha: 0.2),
+                              color: AppColors.opacitygrey,
                               width: 1,
                             ),
                           ),
