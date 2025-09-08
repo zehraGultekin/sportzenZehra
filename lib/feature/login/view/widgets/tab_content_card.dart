@@ -24,8 +24,8 @@ class TabContent extends StatelessWidget {
         children: [
           Text(
             title,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontSize: 17,
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
           ),

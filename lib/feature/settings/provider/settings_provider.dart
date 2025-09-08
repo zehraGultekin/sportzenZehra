@@ -24,3 +24,16 @@ class ImagePickerNotifier extends StateNotifier<XFile?> {
     }
   }
 }
+
+class ClubSelectionNotifier extends StateNotifier<String?> {
+  ClubSelectionNotifier() : super(null);
+
+  void selectionClub(String? club) {
+    state = club;
+  }
+}
+
+final clubSelectionProvider =
+    StateNotifierProvider<ClubSelectionNotifier, String?>(
+      (ref) => ClubSelectionNotifier(),
+    );
