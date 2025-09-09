@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
@@ -16,10 +17,11 @@ class HeaderWidget extends ConsumerWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.06),
@@ -37,15 +39,15 @@ class HeaderWidget extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
-                    radius: 20,
+                    backgroundColor: theme.scaffoldBackgroundColor,
+                    radius: 22,
                     backgroundImage: AssetImage(selectedHeader.logoPath),
                   ),
-                  const SizedBox(width: 10),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8),
+                    padding: const EdgeInsets.only(top: 8, left: 8),
                     child: Text(
                       selectedHeader.name,
-                      style: theme.textTheme.titleLarge,
+                      style: theme.textTheme.titleLarge?.copyWith(fontSize: 19),
                     ),
                   ),
                 ],
@@ -70,7 +72,10 @@ class HeaderWidget extends ConsumerWidget {
                       },
                     );
                   },
-                  child: Icon(Icons.info, color: theme.colorScheme.primary),
+                  child: Icon(
+                    CupertinoIcons.info_circle_fill,
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
               SizedBox(width: 10),
               GestureDetector(
@@ -83,7 +88,7 @@ class HeaderWidget extends ConsumerWidget {
                   duration: const Duration(milliseconds: 300),
                   child: CircleAvatar(
                     radius: 10,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor: theme.colorScheme.primary,
                     child: const Icon(
                       Icons.keyboard_arrow_down,
                       color: Colors.white,
@@ -151,7 +156,8 @@ class HeaderWidget extends ConsumerWidget {
                           child: Row(
                             children: [
                               CircleAvatar(
-                                radius: 15,
+                                backgroundColor: theme.scaffoldBackgroundColor,
+                                radius: 12,
                                 backgroundImage: AssetImage(club.logoPath),
                               ),
                               const SizedBox(width: 10),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
+import 'package:sportzenzehra/feature/settings/view/widgets/custom_snack_bar.dart';
+import 'package:sportzenzehra/feature/settings/view/widgets/password_field.dart';
 
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({super.key});
@@ -11,6 +12,7 @@ class ChangePasswordView extends StatefulWidget {
 }
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -30,93 +32,78 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Yeni Şifre", style: theme.textTheme.bodyMedium),
-            SizedBox(height: 5),
-            SizedBox(
-              height: 50,
-              child: TextField(
-                decoration: InputDecoration(
-                  fillColor: AppColors.backgroundGrey,
-                  filled: true,
-                  hintText: "Yeni Şifrenizi Girin",
-                  hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontSize: 14,
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
-                  ),
-
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.grey.withValues(alpha: 0.2),
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.grey.withValues(alpha: 0.2),
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            spacing: 5,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PasswordField(
+                label: "Yeni Şifre",
+                hint: "Yeni Şifrenizi Girin",
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Yeni şifrenizi girin';
+                  }
+                  return null;
+                },
               ),
-            ),
-            SizedBox(height: 10),
-            Text("Yeni Şifre (Tekrar)", style: theme.textTheme.bodyMedium),
-            SizedBox(height: 5),
-            SizedBox(
-              height: 50,
-              child: TextField(
-                decoration: InputDecoration(
-                  fillColor: AppColors.backgroundGrey,
-                  filled: true,
-                  hintText: "Yeni Şifrenizi tekrar girin",
-                  hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontSize: 14,
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
-                  ),
 
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.grey.withValues(alpha: 0.2),
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.grey.withValues(alpha: 0.2),
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+              PasswordField(
+                label: "Yeni Şifre (Tekrar)",
+                hint: "Yeni Şifrenizi tekrar girin",
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Yeni şifrenizi tekrar girin';
+                  }
+                  return null;
+                },
               ),
-            ),
-            SizedBox(height: 30),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 5),
-                    Text(
-                      "Şifreyi Değiştir",
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.colorScheme.onPrimary,
+
+              GestureDetector(
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    String message = "Şifreniz başarıyla değiştirildi";
+                    context.pop();
+
+                    final snackBar = SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+
+                      content: CustomSnackBar(theme: theme, message: message),
+                      duration: Duration(seconds: 5),
+                    );
+
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    return;
+                  }
+                },
+                child: Container(
+                  height: 40,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 5),
+                      Text(
+                        "Şifreyi Değiştir",
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: theme.colorScheme.onPrimary,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

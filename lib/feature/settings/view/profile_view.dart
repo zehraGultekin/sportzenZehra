@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/core/widgets/city_selection_modal.dart';
 import 'package:sportzenzehra/feature/settings/provider/settings_provider.dart';
+import 'package:sportzenzehra/feature/settings/view/widgets/custom_snack_bar.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/profile_textfied_widget.dart';
 
 class ProfileView extends ConsumerStatefulWidget {
@@ -30,7 +31,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: theme.colorScheme.secondary,
-            size: 20,
+            size: 22,
           ),
           onPressed: () {
             context.pop();
@@ -86,7 +87,10 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                   left: 40,
                   child: Text(
                     "Zehra Gültekin",
-                    style: theme.textTheme.bodyMedium?.copyWith(fontSize: 18),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
@@ -141,7 +145,24 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
               preffixIcon: Icons.location_city,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                String message = "Profil başarıyla güncellendi";
+
+                final snackBar = SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+
+                  content: CustomSnackBar(theme: theme, message: message),
+                  duration: Duration(seconds: 5),
+                );
+
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                return;
+              },
+
               child: Container(
                 height: 40,
                 width: double.infinity,

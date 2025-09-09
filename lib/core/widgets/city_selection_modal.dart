@@ -20,16 +20,19 @@ class SelectionCityModal extends ConsumerWidget {
         children: [
           Container(
             height: 4,
-            width: 45,
+            width: 38,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: AppColors.grey.withValues(alpha: 0.4),
+              color: AppColors.grey.withValues(alpha: 0.3),
             ),
           ),
           SizedBox(height: 20),
           Text(
             "Şehir Seç",
-            style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           SizedBox(height: 20),
           Container(
@@ -56,7 +59,7 @@ class SelectionCityModal extends ConsumerWidget {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 15),
           Expanded(
             child: ListView.builder(
               itemCount: SelectionInputModel.cities.length,
@@ -65,7 +68,7 @@ class SelectionCityModal extends ConsumerWidget {
                 return Container(
                   height: 45,
                   margin: const EdgeInsets.symmetric(
-                    vertical: 5,
+                    vertical: 4,
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(

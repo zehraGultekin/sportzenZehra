@@ -3,7 +3,7 @@ import '../models/tab_section_model.dart';
 class TabSectionMock {
   static final List<TabSection> kvkkSections = [
     TabSection(
-      title: "1. Kişisel Verilerin Korunması(KVKK) Nedir ?",
+      title: "1. Kişisel Verilerin Korunması Kanunu\n(KVKK) Nedir ?",
       subtitle:
           "KVKK, kişisel verilerin işlenmesinde başta özel hayatın gizliliği olmak üzere kişilerin temel hak ve özgürlüklerini korumak ve kişisel verileri işleyen gerçek ve tüzel kişilerin yükümlülükleri ile uyacakları usul ve esasları düzenleyen kanundur.",
     ),

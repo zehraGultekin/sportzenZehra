@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/notification/view/widgets/notification_card.dart';
 
@@ -24,7 +25,7 @@ class _NotificationViewState extends State<NotificationView> {
               theme: theme,
               title: 'Kulüp Üyeliği Onaylandı',
               subtitle:
-                  '"Sayın Zehra Gültekin , Applantis Tenis Kulübü kulübüne yapmış olduğunuz üyelik onaylanmıştır",',
+                  'Sayın Zehra Gültekin , Applantis Tenis Kulübü kulübüne yapmış olduğunuz üyelik onaylanmıştır",',
               clock: '12:32',
               date: '02.09.2025',
             ),
@@ -46,6 +47,8 @@ class _NotificationViewState extends State<NotificationView> {
               "Tüm bildirimler görüntülenmiştir",
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w400,
+                fontSize: 14,
+                color: AppColors.black60,
               ),
             ),
           ],

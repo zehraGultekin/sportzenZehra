@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
+import 'package:sportzenzehra/feature/settings/view/widgets/custom_snack_bar.dart';
 
 class HelpCenterView extends StatefulWidget {
   const HelpCenterView({super.key});
@@ -11,6 +12,7 @@ class HelpCenterView extends StatefulWidget {
 }
 
 class _HelpCenterViewState extends State<HelpCenterView> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -30,12 +32,11 @@ class _HelpCenterViewState extends State<HelpCenterView> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Column(
           children: [
             Center(
               child: Container(
-                height: 80,
                 decoration: BoxDecoration(
                   color: AppColors.backgroundGrey,
                   borderRadius: BorderRadius.circular(10),
@@ -46,47 +47,85 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
-                    vertical: 20,
+                    vertical: 15,
                   ),
                   child: Text(
                     "Kullanıcı Deneyimizin bizim için çok önemli Lütfen görüş, öneri ve problemlerinizi bize anlatın",
                     textAlign: TextAlign.center,
                     style: theme.textTheme.labelMedium?.copyWith(
+                      fontSize: 13,
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            TextField(
-              maxLines: 3,
-              decoration: InputDecoration(
-                fillColor: AppColors.backgroundGrey,
-                filled: true,
-                hintText: "Sorun ve görüşlerinizi yazınız",
-                hintStyle: theme.textTheme.labelMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
-                  fontSize: 16,
-                ),
-
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.grey.withValues(alpha: 0.2),
+            SizedBox(height: 15),
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'En az 20 karakter giriniz';
+                  } else if (value.length < 20) {
+                    return 'En az 20 karakter giriniz';
+                  }
+                  return null;
+                },
+                maxLines: 3,
+                decoration: InputDecoration(
+                  fillColor: AppColors.backgroundGrey,
+                  filled: true,
+                  hintText: "Sorun ve görüşlerinizi yazınız",
+                  hintStyle: theme.textTheme.labelMedium?.copyWith(
+                    color: AppColors.black70,
+                    fontSize: 15,
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.grey.withValues(alpha: 0.2),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: theme.colorScheme.error),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  borderRadius: BorderRadius.circular(10),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: theme.colorScheme.error),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.grey.withValues(alpha: 0.2),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.grey.withValues(alpha: 0.2),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                if (_formKey.currentState!.validate()) {
+                  String message = "Geri Bildirimiz için teşekkürler!";
+                  context.pop();
+
+                  final snackBar = SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+
+                    content: CustomSnackBar(theme: theme, message: message),
+                    duration: Duration(seconds: 5),
+                  );
+
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  return;
+                }
+              },
               child: Container(
                 height: 40,
                 width: double.infinity,
@@ -94,13 +133,17 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                   borderRadius: BorderRadius.circular(10),
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-                child: Center(
-                  child: Text(
-                    "Gönder",
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.colorScheme.onPrimary,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 5),
+                    Text(
+                      "Gönder",
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

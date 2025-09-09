@@ -9,7 +9,7 @@ class FinanceErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 45),
+      insetPadding: EdgeInsets.symmetric(horizontal: 45, vertical: 15),
 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: theme.colorScheme.surface,
@@ -22,7 +22,7 @@ class FinanceErrorDialog extends StatelessWidget {
             color: theme.colorScheme.error,
             size: 45,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Text(
             "Hata",
             style: theme.textTheme.titleLarge?.copyWith(
@@ -39,7 +39,7 @@ class FinanceErrorDialog extends StatelessWidget {
             child: Text(
               "Kulübünüzün online ödeme modülü devre dışı.Lütfen kulübünüzün yöneticisiyle iletişime geçiniz.",
               style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
               textAlign: TextAlign.center,
@@ -57,10 +57,10 @@ class FinanceErrorDialog extends StatelessWidget {
                     context.pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: 3,
-                    backgroundColor: const Color.fromARGB(213, 238, 234, 234),
+                    elevation: 2,
+                    backgroundColor: Color.fromARGB(228, 233, 232, 232),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                   child: Text(

@@ -20,7 +20,7 @@ class SettingsMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
             Icon(icon, color: Colors.grey),
@@ -29,6 +29,7 @@ class SettingsMenuItem extends StatelessWidget {
               title,
               style: theme.labelSmall?.copyWith(
                 color: colors,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
             ),

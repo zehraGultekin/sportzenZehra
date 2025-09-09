@@ -31,7 +31,7 @@ class SelectionCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: Colors.black.withValues(alpha: 0.9), size: 20),
+            Icon(icon, color: Colors.black.withValues(alpha: 0.7), size: 24),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

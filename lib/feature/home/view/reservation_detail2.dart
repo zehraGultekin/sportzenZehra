@@ -48,7 +48,7 @@ class ReservationDetail2 extends ConsumerWidget {
             ),
             SizedBox(height: 10),
             SizedBox(
-              height: 70,
+              height: 78,
               child: ListView.builder(
                 itemCount: reserveList.length,
                 scrollDirection: Axis.horizontal,
@@ -61,7 +61,7 @@ class ReservationDetail2 extends ConsumerWidget {
                       ref.read(reservationProvider.notifier).selectDate(index);
                     },
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 3),
+                      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 3),
                       child: Container(
                         height: 4,
                         width: 60,
@@ -69,7 +69,7 @@ class ReservationDetail2 extends ConsumerWidget {
                           color: isSelected
                               ? Colors.green
                               : theme.colorScheme.surface,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color: isSelected
                                 ? Colors.green
@@ -90,6 +90,7 @@ class ReservationDetail2 extends ConsumerWidget {
                               style: theme.textTheme.bodyLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: isSelected ? Colors.white : null,
+                                fontSize: 16,
                               ),
                             ),
                             Text(
@@ -113,8 +114,8 @@ class ReservationDetail2 extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 90,
-                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 7),
+                      width: 80,
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 6),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: AppColors.opacitygrey),

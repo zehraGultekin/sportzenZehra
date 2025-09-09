@@ -21,7 +21,7 @@ class HomeBannerWidget extends ConsumerWidget {
         itemBuilder: (context, index) {
           final banner = bannerItems[index];
           return Container(
-            margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            margin: const EdgeInsets.symmetric(vertical: 6),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40),
               boxShadow: [
@@ -44,7 +44,7 @@ class HomeBannerWidget extends ConsumerWidget {
                   Image.asset(
                     banner.imagePath,
                     width: double.infinity,
-                    height: 200,
+                    height: 220,
                     fit: BoxFit.cover,
                   ),
                   Positioned(
@@ -66,8 +66,8 @@ class HomeBannerWidget extends ConsumerWidget {
                     left: 14,
                     bottom: 11,
                     child: Container(
-                      height: 17,
-                      width: 55,
+                      height: 18,
+                      width: 54,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: theme.colorScheme.secondary,

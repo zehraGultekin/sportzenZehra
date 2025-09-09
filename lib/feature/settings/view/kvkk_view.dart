@@ -47,18 +47,21 @@ class _KvkkViewState extends State<KvkkView> {
         ),
         body: TabBarView(
           children: [
-            Column(
-              children: TabSectionMock.kvkkSections
-                  .map(
-                    (e) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
+            Padding(
+              padding: EdgeInsets.only(top: 6),
+              child: Column(
+                children: TabSectionMock.kvkkSections
+                    .map(
+                      (e) => Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 8,
+                        ),
+                        child: TabContent(title: e.title, subtitle: e.subtitle),
                       ),
-                      child: TabContent(title: e.title, subtitle: e.subtitle),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
             ),
             Column(
               children: TabSectionMock.serviceSections

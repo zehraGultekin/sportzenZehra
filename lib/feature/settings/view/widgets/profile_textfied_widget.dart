@@ -34,20 +34,20 @@ class ProfileTextField extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: AppColors.opacitygrey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
-          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: AppColors.opacitygrey),
+          borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
-          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: AppColors.opacitygrey),
+          borderRadius: BorderRadius.circular(15),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.grey.withValues(alpha: 0.2)),
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: AppColors.opacitygrey),
         ),
         filled: true,
         fillColor: AppColors.backgroundGrey,

@@ -41,7 +41,8 @@ class NotificationCard extends StatelessWidget {
                 ),
                 Spacer(),
                 CircleAvatar(
-                  radius: 12,
+                  backgroundColor: theme.scaffoldBackgroundColor,
+                  radius: 15,
                   backgroundImage: AssetImage("assets/images/logo.png"),
                 ),
               ],
@@ -51,15 +52,16 @@ class NotificationCard extends StatelessWidget {
               subtitle,
               style: theme.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w500,
+                color: AppColors.black80,
               ),
 
               textAlign: TextAlign.start,
             ),
             SizedBox(height: 5),
             Row(
-              spacing: 5,
+              spacing: 3,
               children: [
-                Icon(Icons.schedule, color: Colors.grey, size: 15),
+                Icon(Icons.schedule, color: Colors.grey, size: 13),
                 Text(
                   clock,
                   style: theme.textTheme.labelMedium?.copyWith(
@@ -68,13 +70,13 @@ class NotificationCard extends StatelessWidget {
                     fontSize: 13,
                   ),
                 ),
-                Icon(Icons.calendar_month, color: Colors.grey, size: 15),
+                Icon(Icons.calendar_today, color: Colors.grey, size: 15),
                 Text(
                   date,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: Colors.grey,
                     fontWeight: FontWeight.w500,
-                    fontSize: 13,
+                    fontSize: 12,
                   ),
                 ),
               ],

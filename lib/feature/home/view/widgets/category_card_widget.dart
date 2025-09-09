@@ -29,7 +29,7 @@ class CategoryWidget extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 45,
+                    height: 50,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(model.cardImage, fit: BoxFit.cover),

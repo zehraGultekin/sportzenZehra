@@ -26,7 +26,7 @@ class AccountSettingsView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           children: [
             Container(
@@ -41,14 +41,14 @@ class AccountSettingsView extends StatelessWidget {
                 children: [
                   SettingsMenuItem(
                     colors: theme.colorScheme.onSurface,
-                    icon: Icons.person_2_outlined,
+                    icon: Icons.lock_outline,
                     title: 'Şifre değiştir',
                     onTap: () {
                       context.pushNamed(AppRoutes.changePassword.name);
                     },
                   ),
                   SettingsMenuItem(
-                    icon: Icons.wallet_outlined,
+                    icon: Icons.delete_outline,
                     title: 'Hesabı Sil',
                     colors: Colors.red,
                     onTap: () {
@@ -56,6 +56,9 @@ class AccountSettingsView extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
+                            actionsPadding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -75,6 +78,7 @@ class AccountSettingsView extends StatelessWidget {
                                   "Hesabı Sil",
                                   style: theme.textTheme.titleLarge?.copyWith(
                                     fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                                 ),
                               ],
@@ -85,7 +89,9 @@ class AccountSettingsView extends StatelessWidget {
                                 Center(
                                   child: Text(
                                     "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
-                                    style: theme.textTheme.bodyMedium,
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      color: AppColors.black70,
+                                    ),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -103,9 +109,12 @@ class AccountSettingsView extends StatelessWidget {
                                             onPressed: () {
                                               context.pop();
                                             },
+
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.black
-                                                  .withValues(alpha: 0.1),
+                                              elevation: 5,
+                                              backgroundColor: Color(
+                                                0xFFF0F0F0,
+                                              ),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
@@ -130,6 +139,7 @@ class AccountSettingsView extends StatelessWidget {
                                           child: ElevatedButton(
                                             onPressed: () {},
                                             style: ElevatedButton.styleFrom(
+                                              elevation: 4,
                                               backgroundColor: Theme.of(
                                                 context,
                                               ).colorScheme.error,

@@ -15,7 +15,7 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(title: "Ayarlar"),
       body: Padding(
@@ -42,7 +42,7 @@ class _SettingsViewState extends State<SettingsView> {
                   ),
                   SettingsMenuItem(
                     colors: Colors.black,
-                    icon: Icons.wallet_outlined,
+                    icon: Icons.credit_card,
                     title: 'Finans İşlemleri',
                     onTap: () {
                       context.pushNamed(AppRoutes.finance.name);
@@ -50,7 +50,7 @@ class _SettingsViewState extends State<SettingsView> {
                   ),
                   SettingsMenuItem(
                     colors: Colors.black,
-                    icon: Icons.settings,
+                    icon: Icons.manage_accounts_rounded,
                     title: 'Hesap İşlemleri',
                     onTap: () {
                       context.pushNamed(AppRoutes.account.name);
@@ -82,12 +82,14 @@ class _SettingsViewState extends State<SettingsView> {
                     colors: Colors.black,
                     icon: Icons.info_outline,
                     title: 'Uygulama hakkında',
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(AppRoutes.about.name);
+                    },
                   ),
                   SettingsMenuItem(
                     colors: Colors.black,
                     icon: Icons.policy_outlined,
-                    title: 'KVKK, Hizmet Şartları ve Gizlilik Politikası',
+                    title: 'KVKK, Hizmet Şartları ve Gizlilik\nPolitikası',
                     onTap: () {
                       context.pushNamed(AppRoutes.kvkk.name);
                     },
@@ -122,13 +124,14 @@ class _SettingsViewState extends State<SettingsView> {
             Row(
               children: [
                 CircleAvatar(
+                  backgroundColor: theme.scaffoldBackgroundColor,
                   backgroundImage: AssetImage("assets/images/logo.png"),
                   radius: 15,
                 ),
                 SizedBox(width: 10),
                 Text(
                   "Sürüm: 1.2.0",
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: theme.textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: Colors.grey,
                   ),
@@ -140,9 +143,9 @@ class _SettingsViewState extends State<SettingsView> {
                     SizedBox(width: 10),
                     Text(
                       "Değerlendir",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.amber,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],

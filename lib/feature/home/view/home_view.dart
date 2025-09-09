@@ -41,17 +41,19 @@ class HomeView extends ConsumerWidget {
                           child: Image.asset(
                             "assets/images/userlogo.png",
                             width: 40,
-                            height: 50,
+                            height: 40,
                           ),
                         ),
                         SizedBox(width: 8),
                         Text(
                           "Zehra Gültekin",
-                          style: theme.textTheme.titleMedium,
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontSize: 19,
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     HomeBannerWidget(),
 
                     SizedBox(height: 10),
@@ -110,7 +112,7 @@ class HomeView extends ConsumerWidget {
                       ],
                     ),
 
-                    SizedBox(height: 10),
+                    SizedBox(height: 25),
                     Row(
                       children: [
                         Icon(
@@ -122,13 +124,13 @@ class HomeView extends ConsumerWidget {
                         Text(
                           "Rezervasyon",
                           style: theme.textTheme.titleMedium?.copyWith(
+                            fontSize: 22,
                             color: theme.colorScheme.secondary,
                           ),
                         ),
                       ],
                     ),
-
-                    SizedBox(height: 20),
+                    SizedBox(height: 5),
                     if (headerContent.showCitySelection)
                       Row(
                         children: [
@@ -140,7 +142,7 @@ class HomeView extends ConsumerWidget {
                               onTap: null,
                             ),
                           ),
-                          SizedBox(width: 10),
+                          SizedBox(width: 15),
                           Expanded(
                             child: Consumer(
                               builder: (context, ref, child) {
@@ -195,7 +197,7 @@ class HomeView extends ConsumerWidget {
                         ),
                       ),
 
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     GestureDetector(
                       onTap: () {
                         final city = ref.read(selectedCityProvider);
@@ -273,7 +275,7 @@ class HomeView extends ConsumerWidget {
                         }
                       },
                       child: Container(
-                        height: 40,
+                        padding: EdgeInsets.symmetric(vertical: 7),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

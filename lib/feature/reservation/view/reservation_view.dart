@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 
 class ReservationView extends StatefulWidget {
@@ -11,6 +12,7 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -19,8 +21,8 @@ class _ReservationViewState extends State<ReservationView> {
           children: [
             TabBar(
               dividerColor: Colors.transparent,
-              labelColor: Theme.of(context).colorScheme.onSurface,
-              unselectedLabelColor: Colors.grey.shade400,
+              labelColor: theme.colorScheme.onSurface,
+              unselectedLabelColor: AppColors.black40,
 
               indicatorColor: Theme.of(context).colorScheme.primary,
               indicatorWeight: 1,
@@ -36,13 +38,17 @@ class _ReservationViewState extends State<ReservationView> {
                   Center(
                     child: Text(
                       "Sisteme kayıtlı aktif rezervasyon bulunmamaktadır.",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: AppColors.black80),
                     ),
                   ),
                   Center(
                     child: Text(
-                      "Sisteme kayıtlı pasif rezervasyon bulunmamaktadır.",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      "Sistemde kayıtlı pasif rezervasyon bulunmamaktadır.",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: AppColors.black80),
                     ),
                   ),
                 ],

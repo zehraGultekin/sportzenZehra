@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/settings/view/widgets/finance_error_dialog.dart';
 
@@ -168,8 +169,8 @@ class FinancePaymentDialog extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          Navigator.pop(context);
-                          Future.delayed(Duration.zero, () {
+                          context.pop();
+                          Future.delayed(Duration(milliseconds: 100), () {
                             showDialog(
                               context: context,
                               builder: (_) => FinanceErrorDialog(theme: theme),

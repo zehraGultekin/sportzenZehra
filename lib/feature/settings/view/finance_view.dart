@@ -38,15 +38,15 @@ class _FinanceViewState extends ConsumerState<FinanceView> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Kulüp Seçin",
               style: theme.textTheme.titleLarge?.copyWith(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 10),
@@ -101,8 +101,8 @@ class _FinanceViewState extends ConsumerState<FinanceView> {
                   Text(
                     "Hesap Bakiyeniz",
                     style: theme.textTheme.titleLarge?.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Container(
@@ -134,11 +134,12 @@ class _FinanceViewState extends ConsumerState<FinanceView> {
                     ),
                     child: Center(
                       child: Text(
-                        "Ödemelerinizde bir problem olduğunu düşünüyorsanız lütfen kulübünüzle iletişime geçiniz",
+                        "Ödemelerinizde bir problem olduğunu düşünüyorsanız lütfen kulübünüzle iletişime geçiniz.",
                         textAlign: TextAlign.center,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: AppColors.black60,
+                          color: AppColors.black50,
                           fontWeight: FontWeight.w500,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -146,12 +147,12 @@ class _FinanceViewState extends ConsumerState<FinanceView> {
                   Text(
                     "İşlemler",
                     style: theme.textTheme.titleLarge?.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Container(
-                    height: 250,
+                    height: 270,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.backgroundGrey,
@@ -161,9 +162,9 @@ class _FinanceViewState extends ConsumerState<FinanceView> {
                       child: Text(
                         "Sistemde kayıtlı işlem bulunmamaktadır",
                         textAlign: TextAlign.center,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: AppColors.black80,
-                          fontWeight: FontWeight.w500,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),

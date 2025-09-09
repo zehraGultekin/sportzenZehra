@@ -12,7 +12,7 @@ class TabContent extends StatelessWidget {
     return Container(
       width: double.infinity,
 
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.backgroundGrey,
@@ -25,15 +25,16 @@ class TabContent extends StatelessWidget {
           Text(
             title,
             style: theme.textTheme.titleLarge?.copyWith(
-              fontSize: 16,
+              fontSize: 17,
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 5),
           Text(
             subtitle,
             style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+              color: AppColors.black90,
+              fontSize: 13,
             ),
           ),
         ],

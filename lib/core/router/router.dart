@@ -14,6 +14,7 @@ import 'package:sportzenzehra/feature/messages/view/message_view.dart';
 import 'package:sportzenzehra/feature/navigator/views/navigator_view.dart';
 import 'package:sportzenzehra/feature/notification/view/notification_view.dart';
 import 'package:sportzenzehra/feature/reservation/view/reservation_view.dart';
+import 'package:sportzenzehra/feature/settings/view/about_view.dart';
 import 'package:sportzenzehra/feature/settings/view/account_settings_view.dart';
 import 'package:sportzenzehra/feature/settings/view/change_password.dart';
 import 'package:sportzenzehra/feature/settings/view/finance_view.dart';
@@ -33,6 +34,7 @@ enum AppRoutes {
   register,
   news,
   profile,
+  about,
   kvkk,
   finance,
   account,
@@ -183,6 +185,11 @@ final router = GoRouter(
                   path: AppRoutes.helpCenter.path,
                   name: AppRoutes.helpCenter.name,
                   builder: (context, state) => HelpCenterView(),
+                ),
+                GoRoute(
+                  path: AppRoutes.about.path,
+                  name: AppRoutes.about.name,
+                  builder: (context, state) => AboutView(),
                 ),
               ],
             ),

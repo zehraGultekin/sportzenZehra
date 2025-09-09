@@ -49,7 +49,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                     onTap: null,
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 15),
                 Expanded(
                   child: Consumer(
                     builder: (context, ref, child) {
@@ -113,7 +113,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                         context,
                       ).scaffoldBackgroundColor,
                       backgroundImage: AssetImage("assets/images/logo.png"),
-                      radius: 20,
+                      radius: 30,
                     ),
                     Spacer(),
                     Column(
@@ -143,7 +143,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             Text(
               "Kulüpler",
               style: theme.textTheme.titleMedium?.copyWith(
-                color: Colors.black.withValues(alpha: 0.8),
+                color: AppColors.black60,
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
               ),
@@ -151,9 +151,9 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
             SizedBox(height: 5),
             Center(
               child: Text(
-                "Aramaya başlamak için şehir veya branş seçmeniz gerekmektedir",
+                "Aramaya başlamak için şehir veya branş seçmeniz\ngerekmektedir",
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,

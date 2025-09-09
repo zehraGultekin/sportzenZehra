@@ -39,8 +39,8 @@ class BottomNavigator extends StatelessWidget {
               label: "Rezervasyon",
               isSelected: navigationShell.currentIndex == 1,
               onTap: () => onTabItem(1),
-              unselectedIcon: Icons.calendar_month_outlined,
-              selectedIcon: Icons.calendar_month_rounded,
+              unselectedIcon: Icons.calendar_today_outlined,
+              selectedIcon: Icons.calendar_today_rounded,
             ),
             NavItem(
               label: "Bildirimler",
