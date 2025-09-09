@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/feature/navigator/views/widget/navigator_widget.dart';
 
@@ -18,50 +19,92 @@ class BottomNavigator extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: Container(
-        height: 50,
-        margin: const EdgeInsets.all(10),
+        height: 60,
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           color: Theme.of(context).colorScheme.surface,
         ),
         child: Row(
-          spacing: 9,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // eşit dağıt
           children: [
             NavItem(
               label: "Ana Sayfa",
               isSelected: navigationShell.currentIndex == 0,
               onTap: () => onTabItem(0),
-              unselectedIcon: Icons.home_outlined,
-              selectedIcon: Icons.home_rounded,
+              unselectedIcon: Icon(
+                Icons.home_outlined,
+                size: 26,
+                color: Colors.grey.shade700,
+              ),
+              selectedIcon: Icon(
+                Icons.home_rounded,
+                size: 26,
+                color: Colors.white,
+              ),
             ),
             NavItem(
               label: "Rezervasyon",
               isSelected: navigationShell.currentIndex == 1,
               onTap: () => onTabItem(1),
-              unselectedIcon: Icons.calendar_today_outlined,
-              selectedIcon: Icons.calendar_today_rounded,
+              unselectedIcon: SvgPicture.asset(
+                "assets/icons/calendar.svg",
+                width: 22,
+                height: 22,
+                color: Colors.grey.shade700,
+              ),
+              selectedIcon: SvgPicture.asset(
+                "assets/icons/calendar_outlined.svg",
+                width: 26,
+                height: 26,
+                color: Colors.white,
+              ),
             ),
             NavItem(
               label: "Bildirimler",
               isSelected: navigationShell.currentIndex == 2,
               onTap: () => onTabItem(2),
-              unselectedIcon: Icons.notification_add_outlined,
-              selectedIcon: Icons.notifications_active_rounded,
+              unselectedIcon: Icon(
+                Icons.notifications_none_outlined,
+                size: 26,
+                color: Colors.grey.shade700,
+              ),
+              selectedIcon: Icon(
+                Icons.notifications_sharp,
+                size: 26,
+                color: Colors.white,
+              ),
             ),
             NavItem(
               label: "Mesajlar",
               isSelected: navigationShell.currentIndex == 3,
               onTap: () => onTabItem(3),
-              unselectedIcon: Icons.sms_outlined,
-              selectedIcon: Icons.sms_rounded,
+              unselectedIcon: Icon(
+                Icons.sms_outlined,
+                color: Colors.grey.shade700,
+                size: 26,
+              ),
+              selectedIcon: Icon(
+                Icons.sms_rounded,
+                color: Colors.white,
+                size: 26,
+              ),
             ),
             NavItem(
               label: "Seçenekler",
               isSelected: navigationShell.currentIndex == 4,
               onTap: () => onTabItem(4),
-              unselectedIcon: Icons.settings_outlined,
-              selectedIcon: Icons.settings_rounded,
+              unselectedIcon: Icon(
+                Icons.settings_outlined,
+                color: Colors.grey.shade700,
+                size: 26,
+              ),
+              selectedIcon: Icon(
+                Icons.settings_rounded,
+                color: Colors.white,
+                size: 26,
+              ),
             ),
           ],
         ),

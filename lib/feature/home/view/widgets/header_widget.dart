@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/mock/header_mock.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
@@ -59,7 +59,7 @@ class HeaderWidget extends ConsumerWidget {
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(20),
                         ),
@@ -67,32 +67,38 @@ class HeaderWidget extends ConsumerWidget {
                       builder: (context) {
                         return SizedBox(
                           height: MediaQuery.of(context).size.height * 0.80,
-                          child: ClubInfoView(),
+                          child: const ClubInfoView(),
                         );
                       },
                     );
                   },
-                  child: Icon(
-                    CupertinoIcons.info_circle_fill,
-                    color: theme.colorScheme.primary,
+                  child: SvgPicture.asset(
+                    'assets/icons/info.svg',
+                    width: 26,
+                    height: 26,
+                    colorFilter: ColorFilter.mode(
+                      theme.colorScheme.primary,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
-              SizedBox(width: 10),
+
+              const SizedBox(width: 10),
+
               GestureDetector(
                 onTap: () {
                   ref.read(headerExpandedProvider.notifier).expanded();
                 },
                 child: AnimatedRotation(
-                  //arrowcircledown ikonunu sadece olacak şekilde kullanabilirim
                   turns: isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
                   child: CircleAvatar(
-                    radius: 10,
+                    radius: 11,
                     backgroundColor: theme.colorScheme.primary,
-                    child: const Icon(
-                      Icons.keyboard_arrow_down,
+                    child: Icon(
+                      Icons.expand_more,
                       color: Colors.white,
-                      size: 20,
+                      size: 23,
                     ),
                   ),
                 ),
@@ -143,7 +149,7 @@ class HeaderWidget extends ConsumerWidget {
                           height: 50,
                           padding: EdgeInsets.symmetric(
                             horizontal: 16,
-                            vertical: 12,
+                            vertical: 2,
                           ),
                           decoration: BoxDecoration(
                             color: AppColors.backgroundGrey,
@@ -155,11 +161,15 @@ class HeaderWidget extends ConsumerWidget {
                           ),
                           child: Row(
                             children: [
-                              CircleAvatar(
-                                backgroundColor: theme.scaffoldBackgroundColor,
-                                radius: 12,
-                                backgroundImage: AssetImage(club.logoPath),
+                              ClipOval(
+                                child: Image.asset(
+                                  club.logoPath,
+                                  fit: BoxFit.contain,
+                                  width: 40,
+                                  height: 40,
+                                ),
                               ),
+
                               const SizedBox(width: 10),
                               Text(
                                 club.name,

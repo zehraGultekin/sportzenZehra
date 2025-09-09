@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class ReservationModel {
-  final Icon icon;
+  final Widget icon;
   final String degree;
   final String clock;
   final String state;

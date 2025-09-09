@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
@@ -37,11 +38,10 @@ class HomeView extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        ClipOval(
-                          child: Image.asset(
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage(
                             "assets/images/userlogo.png",
-                            width: 40,
-                            height: 40,
                           ),
                         ),
                         SizedBox(width: 8),
@@ -115,28 +115,31 @@ class HomeView extends ConsumerWidget {
                     SizedBox(height: 25),
                     Row(
                       children: [
-                        Icon(
-                          Icons.calendar_month,
-                          size: 30,
-                          color: theme.colorScheme.secondary,
+                        SvgPicture.asset(
+                          'assets/icons/reservation.svg',
+                          width: 30,
+                          height: 30,
                         ),
                         SizedBox(width: 5),
                         Text(
                           "Rezervasyon",
                           style: theme.textTheme.titleMedium?.copyWith(
-                            fontSize: 22,
+                            fontSize: 20,
                             color: theme.colorScheme.secondary,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 5),
+
                     if (headerContent.showCitySelection)
                       Row(
                         children: [
                           Expanded(
                             child: SelectionCard(
-                              icon: Icons.location_on_outlined,
+                              icon: Icon(
+                                Icons.location_on_outlined,
+                                color: AppColors.black70,
+                              ),
                               title: "Ülke",
                               value: "Türkiye",
                               onTap: null,
@@ -150,7 +153,10 @@ class HomeView extends ConsumerWidget {
                                   selectedCityProvider,
                                 );
                                 return SelectionCard(
-                                  icon: Icons.location_on_outlined,
+                                  icon: Icon(
+                                    Icons.location_on_outlined,
+                                    color: AppColors.black70,
+                                  ),
                                   title: "Şehir",
                                   value: selectedCity ?? "Şehir Seçin",
                                   onTap: () {
@@ -179,7 +185,13 @@ class HomeView extends ConsumerWidget {
                               selectedBranchProvider,
                             );
                             return SelectionCard(
-                              icon: Icons.sports_baseball_outlined,
+                              icon: SvgPicture.asset(
+                                'assets/icons/branch.svg',
+                                colorFilter: ColorFilter.mode(
+                                  AppColors.black70,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
                               title: "Branş",
                               value: selectedBranch?.name ?? "Seçiniz",
                               onTap: () {
@@ -221,45 +233,62 @@ class HomeView extends ConsumerWidget {
                             behavior: SnackBarBehavior.floating,
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            content: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 15,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: theme.colorScheme.error,
-                                  width: 1.3,
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 0,
+                              vertical: 10,
+                            ),
+                            content: Material(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.white,
+                              elevation: 5,
+                              child: Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 20,
                                 ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.error,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
                                     color: theme.colorScheme.error,
+                                    width: 1,
                                   ),
-                                  SizedBox(width: 10),
-                                  Expanded(
-                                    child: Text(
-                                      errorMessage,
-                                      style: theme.textTheme.labelMedium
-                                          ?.copyWith(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      color: theme.colorScheme.error,
                                     ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).hideCurrentSnackBar();
-                                    },
-                                    child: Text(
-                                      "Kapat",
-                                      style: theme.textTheme.bodySmall
-                                          ?.copyWith(color: AppColors.black70),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        errorMessage,
+                                        style: theme.textTheme.labelSmall
+                                            ?.copyWith(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                            ),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    InkWell(
+                                      onTap: () {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).hideCurrentSnackBar();
+                                      },
+                                      child: Text(
+                                        "Kapat",
+                                        style: theme.textTheme.bodySmall
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColors.black70,
+                                              fontSize: 14,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             duration: Duration(seconds: 10),

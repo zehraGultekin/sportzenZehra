@@ -5,6 +5,7 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/data/mock/reservation_mock.dart';
 import 'package:sportzenzehra/feature/home/data/mock/reservation_mock_data.dart';
+import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/provider/rezervation_detail_provider.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/reservation_card_widget.dart';
 
@@ -15,6 +16,8 @@ class ReservationDetail2 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final selectedIndex = ref.watch(reservationProvider);
+    final selectedBranch = ref.watch(selectedBranchProvider);
+
     return Scaffold(
       appBar: CustomAppBar(
         title: "Rezervasyon",
@@ -30,7 +33,7 @@ class ReservationDetail2 extends ConsumerWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,7 +51,7 @@ class ReservationDetail2 extends ConsumerWidget {
             ),
             SizedBox(height: 10),
             SizedBox(
-              height: 78,
+              height: 75,
               child: ListView.builder(
                 itemCount: reserveList.length,
                 scrollDirection: Axis.horizontal,
@@ -83,6 +86,7 @@ class ReservationDetail2 extends ConsumerWidget {
                               reserve.subtitle.substring(0, 3),
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: isSelected ? Colors.white : null,
+                                height: 1,
                               ),
                             ),
                             Text(
@@ -91,12 +95,14 @@ class ReservationDetail2 extends ConsumerWidget {
                                 fontWeight: FontWeight.bold,
                                 color: isSelected ? Colors.white : null,
                                 fontSize: 16,
+                                height: 1,
                               ),
                             ),
                             Text(
                               reserve.day.substring(0, 3),
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: isSelected ? Colors.white : null,
+                                height: 1,
                               ),
                             ),
                           ],
@@ -115,7 +121,7 @@ class ReservationDetail2 extends ConsumerWidget {
                   children: [
                     Container(
                       width: 80,
-                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 6),
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: AppColors.opacitygrey),
@@ -135,7 +141,8 @@ class ReservationDetail2 extends ConsumerWidget {
                     ),
 
                     SizedBox(height: 20),
-                    if (selectedIndex != null)
+                    if (selectedIndex != null &&
+                        selectedBranch?.name == "Tenis")
                       Column(
                         spacing: 10,
                         crossAxisAlignment: CrossAxisAlignment.start,

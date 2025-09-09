@@ -10,84 +10,77 @@ class HomeBannerWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    return SizedBox(
-      width: double.infinity,
-      height: 200,
-      child: PageView.builder(
-        itemCount: bannerItems.length,
-        onPageChanged: (value) {
-          ref.read(currentPageProvider.notifier).changePage(value);
-        },
-        itemBuilder: (context, index) {
-          final banner = bannerItems[index];
-          return Container(
-            margin: const EdgeInsets.symmetric(vertical: 6),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 10,
-                  color: Colors.grey.withValues(alpha: 0.06),
-                  offset: const Offset(2, -2),
+    return Container(
+      height: 180,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.12),
+            blurRadius: 18,
+            spreadRadius: 1,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(20),
+        child: PageView.builder(
+          itemCount: bannerItems.length,
+          onPageChanged: (value) {
+            ref.read(currentPageProvider.notifier).changePage(value);
+          },
+          itemBuilder: (context, index) {
+            final banner = bannerItems[index];
+            return Stack(
+              children: [
+                Image.asset(
+                  banner.imagePath,
+                  width: double.infinity,
+                  height: 220,
+                  fit: BoxFit.cover,
                 ),
-                BoxShadow(
-                  blurRadius: 10,
-                  color: Colors.black.withValues(alpha: 0.06),
-                  offset: const Offset(-2, 2),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Colors.black45],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 14,
+                  bottom: 11,
+                  child: Container(
+                    height: 18,
+                    width: 54,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: theme.colorScheme.secondary,
+                    ),
+                    child: Center(
+                      child: Text(
+                        banner.title,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Stack(
-                children: [
-                  Image.asset(
-                    banner.imagePath,
-                    width: double.infinity,
-                    height: 220,
-                    fit: BoxFit.cover,
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Colors.black45],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 14,
-                    bottom: 11,
-                    child: Container(
-                      height: 18,
-                      width: 54,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: theme.colorScheme.secondary,
-                      ),
-                      child: Center(
-                        child: Text(
-                          banner.title,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

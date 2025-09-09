@@ -115,25 +115,29 @@ class ReservationCard extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
-                            spacing: 5,
+                            spacing: 10,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               reservation.icon,
                               Text(
                                 reservation.degree,
                                 style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                 ),
                               ),
                             ],
                           ),
                           Text(
                             reservation.clock,
-                            style: theme.textTheme.labelSmall,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              fontSize: 13,
+                            ),
                           ),
                           Text(
                             reservation.state,
-                            style: theme.textTheme.labelSmall,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              fontSize: 13,
+                            ),
                           ),
                         ],
                       ),

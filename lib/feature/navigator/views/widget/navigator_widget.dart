@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/theme/text_style.dart';
 
 class NavItem extends StatelessWidget {
-  final IconData selectedIcon;
-  final IconData unselectedIcon;
+  final Widget selectedIcon;
+  final Widget unselectedIcon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
@@ -36,10 +35,7 @@ class NavItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isSelected ? selectedIcon : unselectedIcon,
-              color: isSelected ? Colors.white : AppColors.grey,
-            ),
+            isSelected ? selectedIcon : unselectedIcon,
             AnimatedSize(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,

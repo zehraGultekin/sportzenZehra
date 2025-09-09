@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 
 class SelectionInputModel {
   static const String country = "Türkiye";
@@ -88,16 +90,48 @@ class SelectionInputModel {
   ];
 
   static List<BranchModel> branches = [
-    BranchModel(name: "Tenis", icon: Icons.sports_tennis),
-    BranchModel(name: "Futbol", icon: Icons.sports_soccer),
-    BranchModel(name: "Basketbol", icon: Icons.sports_basketball),
-    BranchModel(name: "Voleybol", icon: Icons.sports_volleyball),
+    BranchModel(
+      name: "Tenis",
+      icon: SvgPicture.asset(
+        'assets/icons/tenis.svg',
+        height: 24,
+        width: 24,
+        colorFilter: ColorFilter.mode(AppColors.black80, BlendMode.srcIn),
+      ),
+    ),
+    BranchModel(
+      name: "Futbol",
+      icon: SvgPicture.asset(
+        'assets/icons/futbol.svg',
+        height: 24,
+        width: 24,
+        colorFilter: ColorFilter.mode(AppColors.black80, BlendMode.srcIn),
+      ),
+    ),
+    BranchModel(
+      name: "Basketbol",
+      icon: SvgPicture.asset(
+        'assets/icons/basketbol.svg',
+        height: 24,
+        width: 24,
+        colorFilter: ColorFilter.mode(AppColors.black80, BlendMode.srcIn),
+      ),
+    ),
+    BranchModel(
+      name: "Voleybol",
+      icon: SvgPicture.asset(
+        'assets/icons/voleybol.svg',
+        height: 24,
+        width: 24,
+        colorFilter: ColorFilter.mode(AppColors.black80, BlendMode.srcIn),
+      ),
+    ),
   ];
 }
 
 class BranchModel {
   final String name;
-  final IconData icon;
+  final Widget icon;
 
   BranchModel({required this.name, required this.icon});
 }

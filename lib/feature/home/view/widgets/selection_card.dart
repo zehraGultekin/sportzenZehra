@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 
 class SelectionCard extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final String title;
   final String value;
   final VoidCallback? onTap;
@@ -31,8 +31,8 @@ class SelectionCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: Colors.black.withValues(alpha: 0.7), size: 24),
-            const SizedBox(width: 10),
+            icon,
+            SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

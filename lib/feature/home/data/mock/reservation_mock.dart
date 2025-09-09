@@ -6,7 +6,7 @@ final List<ReservationItem> reserveList = [
     subtitle: "Eylül",
     date: "11 Eylül 2025",
     day: "Perşembe",
-    fee: "0.00₺",
+    fee: "0.00₺ ₺",
   ),
   ReservationItem(
     title: "12",

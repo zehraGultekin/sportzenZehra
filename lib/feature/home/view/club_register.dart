@@ -43,7 +43,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               children: [
                 Expanded(
                   child: SelectionCard(
-                    icon: Icons.location_on_outlined,
+                    icon: Icon(Icons.location_on_outlined),
                     title: "Ülke",
                     value: "Türkiye",
                     onTap: null,
@@ -56,7 +56,8 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                       final selectedCity = ref.watch(clubCityProvider);
 
                       return SelectionCard(
-                        icon: Icons.location_on_outlined,
+                        icon: Icon(Icons.location_on_outlined),
+
                         title: "Şehir",
                         value: selectedCity ?? "Şehir Seçin",
                         onTap: () {
@@ -79,7 +80,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 final selectedBranch = ref.watch(selectedBranchProvider);
 
                 return SelectionCard(
-                  icon: Icons.sports_baseball_outlined,
+                  icon: Icon(Icons.sports_baseball_outlined),
                   title: "Branş",
                   value: selectedBranch?.name ?? "Seçiniz",
                   onTap: () {

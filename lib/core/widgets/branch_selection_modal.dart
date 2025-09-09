@@ -27,7 +27,7 @@ class BranchSelectionModal extends ConsumerWidget {
         children: [
           Container(
             height: 4,
-            width: 45,
+            width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.grey.withValues(alpha: 0.4),
@@ -68,10 +68,7 @@ class BranchSelectionModal extends ConsumerWidget {
                     child: Row(
                       children: [
                         SizedBox(width: 10),
-                        Icon(
-                          branch.icon,
-                          color: Colors.black.withValues(alpha: 0.8),
-                        ),
+                        branch.icon,
                         SizedBox(width: 10),
                         Text(branch.name, style: AppTextStyles.selectionvalue),
                       ],
