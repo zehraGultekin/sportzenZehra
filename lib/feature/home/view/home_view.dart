@@ -137,8 +137,8 @@ class HomeView extends ConsumerWidget {
 
                                     Positioned(
                                       top: 50,
-                                      left: 8,
-                                      right: 8,
+                                      left: 0,
+                                      right: 0,
                                       child: Text(
                                         headerContent.cards[0].title,
                                         style: theme.textTheme.labelMedium
@@ -154,8 +154,8 @@ class HomeView extends ConsumerWidget {
 
                                     Positioned(
                                       top: 70,
-                                      left: 8,
-                                      right: 8,
+                                      left: 0,
+                                      right: 0,
                                       child: Text(
                                         headerContent.cards[0].subtitle,
                                         style: theme.textTheme.labelMedium
@@ -200,17 +200,17 @@ class HomeView extends ConsumerWidget {
                                     Positioned(
                                       left: 0,
                                       right: 0,
-                                      top: -7,
+                                      bottom: 30,
                                       child: SizedBox(
                                         width: 50,
-                                        height: 65,
+                                        height: 70,
                                         child: headerContent.cards[1].cardImage,
                                       ),
                                     ),
                                     Positioned(
                                       top: 48,
-                                      left: 8,
-                                      right: 8,
+                                      left: 0,
+                                      right: 0,
                                       child: Text(
                                         headerContent.cards[1].title,
                                         style: theme.textTheme.labelMedium
@@ -225,8 +225,8 @@ class HomeView extends ConsumerWidget {
                                     ),
                                     Positioned(
                                       top: 70,
-                                      left: 8,
-                                      right: 8,
+                                      left: 0,
+                                      right: 0,
                                       child: Text(
                                         headerContent.cards[1].subtitle,
                                         style: theme.textTheme.labelMedium
@@ -297,9 +297,12 @@ class HomeView extends ConsumerWidget {
                                   value: selectedCity ?? "Şehir Seçin",
                                   onTap: () {
                                     showModalBottomSheet(
+                                      isScrollControlled: true,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadiusGeometry.circular(20),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                        ),
                                       ),
                                       context: context,
                                       builder: (context) {
@@ -337,8 +340,9 @@ class HomeView extends ConsumerWidget {
                               onTap: () {
                                 showModalBottomSheet(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadiusGeometry.circular(
-                                      20,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20),
                                     ),
                                   ),
                                   context: context,

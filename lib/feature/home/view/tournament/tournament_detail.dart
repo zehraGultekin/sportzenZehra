@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/detail_view.dart';
-import 'package:sportzenzehra/feature/home/view/tournament/piramit_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/pyramid_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/empyt_view.dart';
 
 class TournamentDetailView extends ConsumerStatefulWidget {

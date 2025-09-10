@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/widgets/show_offer_modal.dart';
 
 class PyramidView extends StatelessWidget {
   const PyramidView({super.key});
@@ -89,12 +90,11 @@ class PyramidView extends StatelessWidget {
               ),
             ),
           ),
-
           Positioned(
             bottom: 20,
             right: 20,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -119,7 +119,7 @@ class PyramidView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(
                         'Siz',
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -201,73 +201,157 @@ class _PlayerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bool isAvailable = status == 'available';
     final bool isUnavailable = status == 'unavailable';
+    final bool isYou = status == 'isYou';
 
-    return SizedBox(
-      height: 60,
-      width: 150,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(8),
-              border: isUnavailable
-                  ? Border.all(color: Colors.grey.shade300)
-                  : null,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
+    return GestureDetector(
+      onTap: isAvailable
+          ? () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.80,
+                    decoration: BoxDecoration(
+                      color: theme.scaffoldBackgroundColor,
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    child: MatchPlannerContent(playerName: name),
+                  );
+                },
+              );
+            }
+          : () {
+              const String errorMessage = 'Bu oyuncuya maç teklifi yapılmaz';
+              final snackBar = SnackBar(
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                content: Material(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                  elevation: 5,
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: theme.colorScheme.error,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.info, color: theme.colorScheme.error),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            errorMessage,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: Colors.black,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
+                          child: Text(
+                            "Kapat",
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.black60,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                name,
-                style: TextStyle(
-                  color: isUnavailable ? Colors.black : Colors.white70,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
+                duration: const Duration(seconds: 10),
+              );
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
 
-          Positioned(
-            top: 0,
-            child: Container(
-              width: 26,
-              height: 26,
+      child: SizedBox(
+        height: 60,
+        width: 150,
+        child: Stack(
+          children: [
+            Container(
               decoration: BoxDecoration(
+                color: isYou ? AppColors.blue : cardColor,
+                borderRadius: BorderRadius.circular(8),
+                border: isUnavailable
+                    ? Border.all(color: Colors.grey.shade300)
+                    : null,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    offset: const Offset(0, 2),
-                    blurRadius: 5,
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
                 ],
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(12),
-                ),
               ),
               child: Center(
                 child: Text(
-                  rank.toString(),
+                  name,
                   style: TextStyle(
+                    color: isUnavailable ? Colors.grey[600] : Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 11,
-                    color: rankColor ?? Colors.black,
+                    fontSize: 12,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 0,
+              child: Container(
+                width: 26,
+                height: 26,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      offset: const Offset(0, 2),
+                      blurRadius: 5,
+                    ),
+                  ],
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(12),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    rank.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                      color: rankColor ?? Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
