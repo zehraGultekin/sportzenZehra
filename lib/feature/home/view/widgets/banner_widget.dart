@@ -11,10 +11,10 @@ class HomeBannerWidget extends ConsumerWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: 180,
+      height: 200,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(13),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.12),
@@ -25,7 +25,7 @@ class HomeBannerWidget extends ConsumerWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadiusGeometry.circular(20),
+        borderRadius: BorderRadiusGeometry.circular(13),
         child: PageView.builder(
           itemCount: bannerItems.length,
           onPageChanged: (value) {

@@ -67,10 +67,10 @@ class ReservationDetailView extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 5,
-                        horizontal: 10,
+                        horizontal: 4,
                       ),
                       child: Container(
-                        width: 60,
+                        width: 55,
                         decoration: BoxDecoration(
                           color: isSelected
                               ? Colors.green

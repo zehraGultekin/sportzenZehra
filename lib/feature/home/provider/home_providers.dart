@@ -58,6 +58,10 @@ final tabIndexProvider = StateNotifierProvider<TabIndexNotifier, int>(
   (ref) => TabIndexNotifier(),
 );
 
+final tournamentTabProvider = StateNotifierProvider<TabIndexNotifier, int>(
+  (ref) => TabIndexNotifier(),
+);
+
 final headerContentProvider = Provider<HeaderContent>((ref) {
   final selectedHeader = ref.watch(selectedHeaderProvider);
 

@@ -5,9 +5,11 @@ import 'package:sportzenzehra/feature/home/view/home_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_atp_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_tenis_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/rules_view.dart';
 import 'package:sportzenzehra/feature/home/view/reservation_detail2.dart';
 import 'package:sportzenzehra/feature/home/view/reservation_view.dart';
-import 'package:sportzenzehra/feature/home/view/tournamet_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/tournament_detail.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/tournamet_view.dart';
 import 'package:sportzenzehra/feature/login/view/login_view.dart';
 import 'package:sportzenzehra/feature/login/view/register_view.dart';
 import 'package:sportzenzehra/feature/messages/view/message_view.dart';
@@ -35,10 +37,12 @@ enum AppRoutes {
   news,
   profile,
   about,
+  rules,
   kvkk,
   finance,
   account,
   changePassword,
+  tournamentDetail,
   helpCenter,
   newsAtp,
   newsTenis,
@@ -114,6 +118,20 @@ final router = GoRouter(
                   path: AppRoutes.tournamend.path,
                   name: AppRoutes.tournamend.name,
                   builder: (context, state) => TournametView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.tournamentDetail.path,
+                      name: AppRoutes.tournamentDetail.name,
+                      builder: (context, state) => TournamentDetailView(),
+                      routes: [
+                        GoRoute(
+                          path: AppRoutes.rules.path,
+                          name: AppRoutes.rules.name,
+                          builder: (context, state) => RulesView(),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

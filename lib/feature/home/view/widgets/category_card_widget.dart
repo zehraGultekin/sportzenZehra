@@ -32,7 +32,7 @@ class CategoryWidget extends StatelessWidget {
                     height: 50,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(model.cardImage, fit: BoxFit.cover),
+                      child: model.cardImage,
                     ),
                   ),
 

@@ -64,10 +64,10 @@ class ReservationDetail2 extends ConsumerWidget {
                       ref.read(reservationProvider.notifier).selectDate(index);
                     },
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
                       child: Container(
                         height: 4,
-                        width: 60,
+                        width: 57,
                         decoration: BoxDecoration(
                           color: isSelected
                               ? Colors.green

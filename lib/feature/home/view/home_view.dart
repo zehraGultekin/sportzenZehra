@@ -7,7 +7,6 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/mock/banner_mock.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/banner_widget.dart';
-import 'package:sportzenzehra/feature/home/view/widgets/category_card_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/header_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
 import 'package:sportzenzehra/core/widgets/branch_selection_modal.dart';
@@ -53,9 +52,8 @@ class HomeView extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: 8),
                     HomeBannerWidget(),
-
                     SizedBox(height: 10),
                     Consumer(
                       builder: (context, ref, child) {
@@ -80,39 +78,177 @@ class HomeView extends ConsumerWidget {
                     ),
 
                     SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              if (headerContent.cards[0].title ==
-                                  "Kulüp Kayıt") {
-                                context.pushNamed(AppRoutes.clubRegister.name);
-                              } else if (headerContent.cards[0].title ==
-                                  "Turnuvalar") {
-                                context.pushNamed(AppRoutes.tournamend.name);
-                              }
-                            },
-                            child: CategoryWidget(
-                              model: headerContent.cards[0],
+                    SizedBox(
+                      height: 90,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                if (headerContent.cards[0].title ==
+                                    "Kulüp Kayıt") {
+                                  context.pushNamed(
+                                    AppRoutes.clubRegister.name,
+                                  );
+                                } else if (headerContent.cards[0].title ==
+                                    "Turnuvalar") {
+                                  context.pushNamed(AppRoutes.tournamend.name);
+                                }
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Stack(
+                                  children: [
+                                    Positioned.fill(
+                                      child: Image.asset(
+                                        headerContent.cards[0].backgroundImage,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Positioned.fill(
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.7),
+                                      ),
+                                    ),
+
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom:
+                                          headerContent.cards[0].title ==
+                                              'Turnuvalar'
+                                          ? 12
+                                          : null,
+                                      child: SizedBox(
+                                        width:
+                                            headerContent.cards[0].title ==
+                                                'Turnuvalar'
+                                            ? 90
+                                            : 50,
+                                        height:
+                                            headerContent.cards[0].title ==
+                                                'Turnuvalar'
+                                            ? 90
+                                            : 50,
+                                        child: headerContent.cards[0].cardImage,
+                                      ),
+                                    ),
+
+                                    Positioned(
+                                      top: 50,
+                                      left: 8,
+                                      right: 8,
+                                      child: Text(
+                                        headerContent.cards[0].title,
+                                        style: theme.textTheme.labelMedium
+                                            ?.copyWith(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
+                                              color:
+                                                  theme.colorScheme.onPrimary,
+                                            ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+
+                                    Positioned(
+                                      top: 70,
+                                      left: 8,
+                                      right: 8,
+                                      child: Text(
+                                        headerContent.cards[0].subtitle,
+                                        style: theme.textTheme.labelMedium
+                                            ?.copyWith(
+                                              fontSize: 12,
+                                              color: Colors.white.withOpacity(
+                                                0.8,
+                                              ),
+                                            ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 15),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              context.pushNamed(AppRoutes.news.name);
-                            },
-                            child: CategoryWidget(
-                              model: headerContent.cards[1],
+
+                          const SizedBox(width: 15),
+
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                context.pushNamed(AppRoutes.news.name);
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Stack(
+                                  children: [
+                                    Positioned.fill(
+                                      child: Image.asset(
+                                        headerContent.cards[1].backgroundImage,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Positioned.fill(
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.7),
+                                      ),
+                                    ),
+
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      top: -7,
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 65,
+                                        child: headerContent.cards[1].cardImage,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 48,
+                                      left: 8,
+                                      right: 8,
+                                      child: Text(
+                                        headerContent.cards[1].title,
+                                        style: theme.textTheme.labelMedium
+                                            ?.copyWith(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
+                                              color:
+                                                  theme.colorScheme.onPrimary,
+                                            ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 70,
+                                      left: 8,
+                                      right: 8,
+                                      child: Text(
+                                        headerContent.cards[1].subtitle,
+                                        style: theme.textTheme.labelMedium
+                                            ?.copyWith(
+                                              fontSize: 12,
+                                              color: Colors.white.withOpacity(
+                                                0.8,
+                                              ),
+                                            ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
 
-                    SizedBox(height: 25),
+                    SizedBox(height: 15),
                     Row(
                       children: [
                         SvgPicture.asset(
@@ -161,6 +297,10 @@ class HomeView extends ConsumerWidget {
                                   value: selectedCity ?? "Şehir Seçin",
                                   onTap: () {
                                     showModalBottomSheet(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusGeometry.circular(20),
+                                      ),
                                       context: context,
                                       builder: (context) {
                                         return SelectionCityModal(
@@ -196,7 +336,13 @@ class HomeView extends ConsumerWidget {
                               value: selectedBranch?.name ?? "Seçiniz",
                               onTap: () {
                                 showModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadiusGeometry.circular(
+                                      20,
+                                    ),
+                                  ),
                                   context: context,
+
                                   builder: (context) {
                                     return BranchSelectionModal(
                                       selectedBranchProvider,
@@ -235,7 +381,7 @@ class HomeView extends ConsumerWidget {
                             elevation: 0,
                             margin: EdgeInsets.symmetric(
                               horizontal: 0,
-                              vertical: 10,
+                              vertical: 5,
                             ),
                             content: Material(
                               borderRadius: BorderRadius.circular(15),
@@ -282,7 +428,7 @@ class HomeView extends ConsumerWidget {
                                         style: theme.textTheme.bodySmall
                                             ?.copyWith(
                                               fontWeight: FontWeight.w600,
-                                              color: AppColors.black70,
+                                              color: AppColors.black60,
                                               fontSize: 14,
                                             ),
                                       ),

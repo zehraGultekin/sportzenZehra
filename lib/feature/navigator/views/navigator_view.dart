@@ -16,6 +16,7 @@ class BottomNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: Container(
@@ -24,7 +25,7 @@ class BottomNavigator extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Theme.of(context).colorScheme.surface,
+          color: theme.scaffoldBackgroundColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly, // eşit dağıt

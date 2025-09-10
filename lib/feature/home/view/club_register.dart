@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
@@ -35,7 +36,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,7 +44,10 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               children: [
                 Expanded(
                   child: SelectionCard(
-                    icon: Icon(Icons.location_on_outlined),
+                    icon: Icon(
+                      Icons.location_on_outlined,
+                      color: AppColors.black70,
+                    ),
                     title: "Ülke",
                     value: "Türkiye",
                     onTap: null,
@@ -56,7 +60,10 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                       final selectedCity = ref.watch(clubCityProvider);
 
                       return SelectionCard(
-                        icon: Icon(Icons.location_on_outlined),
+                        icon: Icon(
+                          Icons.location_on_outlined,
+                          color: AppColors.black70,
+                        ),
 
                         title: "Şehir",
                         value: selectedCity ?? "Şehir Seçin",
@@ -80,7 +87,13 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 final selectedBranch = ref.watch(selectedBranchProvider);
 
                 return SelectionCard(
-                  icon: Icon(Icons.sports_baseball_outlined),
+                  icon: SvgPicture.asset(
+                    'assets/icons/branch.svg',
+                    colorFilter: ColorFilter.mode(
+                      AppColors.black70,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                   title: "Branş",
                   value: selectedBranch?.name ?? "Seçiniz",
                   onTap: () {

@@ -27,16 +27,19 @@ class BranchSelectionModal extends ConsumerWidget {
         children: [
           Container(
             height: 4,
-            width: 40,
+            width: 35,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               color: AppColors.grey.withValues(alpha: 0.4),
             ),
           ),
           SizedBox(height: 20),
           Text(
             "Branş Seç",
-            style: theme.textTheme.titleLarge?.copyWith(fontSize: 22),
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           SizedBox(height: 10),
           Expanded(

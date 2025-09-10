@@ -74,8 +74,8 @@ class HeaderWidget extends ConsumerWidget {
                   },
                   child: SvgPicture.asset(
                     'assets/icons/info.svg',
-                    width: 26,
-                    height: 26,
+                    width: 25,
+                    height: 25,
                     colorFilter: ColorFilter.mode(
                       theme.colorScheme.primary,
                       BlendMode.srcIn,
@@ -93,12 +93,12 @@ class HeaderWidget extends ConsumerWidget {
                   turns: isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
                   child: CircleAvatar(
-                    radius: 11,
+                    radius: 10,
                     backgroundColor: theme.colorScheme.primary,
                     child: Icon(
                       Icons.expand_more,
                       color: Colors.white,
-                      size: 23,
+                      size: 20,
                     ),
                   ),
                 ),

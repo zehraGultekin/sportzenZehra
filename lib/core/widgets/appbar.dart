@@ -6,6 +6,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final PreferredSizeWidget? bottom;
   final double? toolbarHeight;
+  final bool showBottomBorder;
 
   const CustomAppBar({
     super.key,
@@ -13,6 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.bottom,
     this.toolbarHeight,
+    this.showBottomBorder = true,
   });
 
   @override
@@ -34,12 +36,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       leading: leading,
       elevation: 0,
-      shape: Border(
-        bottom: BorderSide(
-          color: AppColors.grey.withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
+      shape: showBottomBorder
+          ? Border(
+              bottom: BorderSide(
+                color: AppColors.grey.withValues(alpha: 0.3),
+                width: 1,
+              ),
+            )
+          : null,
     );
   }
 }
