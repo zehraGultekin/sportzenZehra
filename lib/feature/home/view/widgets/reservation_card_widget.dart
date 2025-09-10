@@ -94,14 +94,18 @@ class ReservationCard extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap:
+                      true, //Sonsuz uzunlukta olma, sadece içindeki elemanların kapladığı yükseklik kadar yer kapla.
+                  physics:
+                      const BouncingScrollPhysics(), //iosdaki kaydırma davtanışı
                   itemCount: reservations.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 1.2,
+                    //ekrana sabit sayıda sütun veya satır sığdırmak için kullanıyoruz
+                    crossAxisCount:
+                        3, //Sütun sayısını belirlemek için kullandık
+                    crossAxisSpacing: 10, //Sütünlar arası yatay boşluk.
+                    mainAxisSpacing: 10, //Satırlar arası dikey boşluk
+                    childAspectRatio: 1.2, // en boy oranı
                   ),
                   itemBuilder: (context, index) {
                     final reservation = reservations[index];

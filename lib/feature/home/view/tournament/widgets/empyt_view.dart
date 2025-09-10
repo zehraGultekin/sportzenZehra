@@ -31,7 +31,7 @@ class EmptyStateWidget extends StatelessWidget {
               width: 40,
               height: 40,
               colorFilter: ColorFilter.mode(
-                theme.textTheme.bodyMedium!.color!,
+                theme.colorScheme.onSecondary,
                 BlendMode.srcIn,
               ),
             ),

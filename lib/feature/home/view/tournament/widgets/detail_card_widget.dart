@@ -50,3 +50,14 @@ class DetailCardWidget extends StatelessWidget {
     );
   }
 }
+
+/*flutter svg formatını desteklemiyor biz de bu yüzden bunu paketle kullanılabilir kılıyoruz
+
+- Sonsuz ölceklenebilir ne kadar büyütürsek büyütelim kalite kaybı olmaz
+- şekillderin ve renklerin matematiksel tanımını içerir.
+- Kod üzerinden rengi , boyutunu ve hatta bazı kısımları dinamik olarak değiştirebiliyoruz.
+- SVG dosyası her ekranda mükemmel gözükür.
+
+
+
+*/
