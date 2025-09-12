@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 
 class CustomSnackBar extends StatelessWidget {
-  const CustomSnackBar({super.key, required this.theme, required this.message});
-
-  final ThemeData theme;
   final String message;
+  final Color iconColor;
+  final Color borderColor;
+
+  const CustomSnackBar({
+    super.key,
+    required this.message,
+    required this.iconColor,
+    required this.borderColor,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Material(
       borderRadius: BorderRadius.circular(10),
       color: Colors.white,
@@ -17,12 +24,12 @@ class CustomSnackBar extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         decoration: BoxDecoration(
-          border: Border.all(color: theme.colorScheme.secondary, width: 1),
+          border: Border.all(color: borderColor, width: 1),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           children: [
-            Icon(Icons.info, color: theme.colorScheme.secondary),
+            Icon(Icons.info, color: iconColor),
             SizedBox(width: 10),
             Expanded(
               child: Text(

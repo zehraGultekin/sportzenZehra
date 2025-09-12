@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/select_branch_provider.dart';
 import 'package:sportzenzehra/feature/home/provider/select_city_provider.dart';
+import 'package:sportzenzehra/feature/home/view/widgets/club_info_card.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
 import 'package:sportzenzehra/core/widgets/branch_selection_modal.dart';
 import 'package:sportzenzehra/core/widgets/city_selection_modal.dart';
@@ -20,6 +22,8 @@ class ClubRegisterView extends ConsumerStatefulWidget {
 class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
   @override
   Widget build(BuildContext context) {
+    final selectedCity = ref.watch(clubCityProvider);
+    final selectedBranch = ref.watch(selectedBranchProvider);
     final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
@@ -55,25 +59,18 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 ),
                 SizedBox(width: 15),
                 Expanded(
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      final selectedCity = ref.watch(clubCityProvider);
-
-                      return SelectionCard(
-                        icon: Icon(
-                          Icons.location_on_outlined,
-                          color: AppColors.black70,
-                        ),
-
-                        title: "Şehir",
-                        value: selectedCity ?? "Şehir Seçin",
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return SelectionCityModal(clubCityProvider);
-                            },
-                          );
+                  child: SelectionCard(
+                    icon: const Icon(
+                      Icons.location_on_outlined,
+                      color: AppColors.black70,
+                    ),
+                    title: "Şehir",
+                    value: selectedCity ?? "Şehir Seçin",
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return SelectionCityModal(clubCityProvider);
                         },
                       );
                     },
@@ -82,27 +79,21 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               ],
             ),
             SizedBox(height: 10),
-            Consumer(
-              builder: (context, ref, child) {
-                final selectedBranch = ref.watch(selectedBranchProvider);
-
-                return SelectionCard(
-                  icon: SvgPicture.asset(
-                    'assets/icons/branch.svg',
-                    colorFilter: ColorFilter.mode(
-                      AppColors.black70,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  title: "Branş",
-                  value: selectedBranch?.name ?? "Seçiniz",
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return BranchSelectionModal(clubBranchProvider);
-                      },
-                    );
+            SelectionCard(
+              icon: SvgPicture.asset(
+                'assets/icons/branch.svg',
+                colorFilter: const ColorFilter.mode(
+                  AppColors.black70,
+                  BlendMode.srcIn,
+                ),
+              ),
+              title: "Branş",
+              value: selectedBranch?.name ?? "Seçiniz",
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return BranchSelectionModal(clubBranchProvider);
                   },
                 );
               },
@@ -162,15 +153,60 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                 fontSize: 18,
               ),
             ),
-            SizedBox(height: 5),
-            Center(
-              child: Text(
-                "Aramaya başlamak için şehir veya branş seçmeniz\ngerekmektedir",
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
+            SizedBox(height: 10),
+            Expanded(
+              child: Center(
+                child: Builder(
+                  builder: (context) {
+                    if (selectedCity == null) {
+                      return Text(
+                        "Aramaya başlamak için şehir veya branş seçmeniz\ngerekmektedir",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black80,
+                        ),
+                        textAlign: TextAlign.center,
+                      );
+                    }
+                    if (selectedCity == 'Adana') {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.pushNamed(AppRoutes.clubDetail.name);
+                            },
+                            child: ClubInfoCard(
+                              clubLogo: 'assets/images/newlogo.png',
+                              title: 'Adana Tenis Dağ ve Su Sporları Kulübü',
+                              subtitle: 'Kulüp bilgileri için dokunun',
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          GestureDetector(
+                            onTap: () {
+                              context.pushNamed(AppRoutes.clubDetail2.name);
+                            },
+                            child: ClubInfoCard(
+                              clubLogo: 'assets/images/applantis.jpg',
+                              title: 'Adana Tenis Kulübü',
+                              subtitle: 'Kulüp bilgileri için dokunun',
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    return Text(
+                      "Sonuç Bulunamadı",
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black70,
+                      ),
+                      textAlign: TextAlign.center,
+                    );
+                  },
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           ],

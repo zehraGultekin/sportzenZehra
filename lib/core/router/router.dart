@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sportzenzehra/feature/home/view/club_register.dart';
+import 'package:sportzenzehra/feature/home/view/club_register/applantis_tenis.dart';
+import 'package:sportzenzehra/feature/home/view/club_register/club_detail_view.dart';
+import 'package:sportzenzehra/feature/home/view/club_register/club_register.dart';
 import 'package:sportzenzehra/feature/home/view/home_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_atp_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_tenis_view.dart';
@@ -39,6 +41,8 @@ enum AppRoutes {
   about,
   rules,
   kvkk,
+  clubDetail,
+  clubDetail2,
   finance,
   account,
   changePassword,
@@ -86,6 +90,18 @@ final router = GoRouter(
                   path: AppRoutes.clubRegister.path,
                   name: AppRoutes.clubRegister.name,
                   builder: (context, state) => ClubRegisterView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.clubDetail.path,
+                      name: AppRoutes.clubDetail.name,
+                      builder: (context, state) => ClubDetailView(),
+                    ),
+                    GoRoute(
+                      path: AppRoutes.clubDetail2.path,
+                      name: AppRoutes.clubDetail2.name,
+                      builder: (context, state) => ApplantisInfoView(),
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: AppRoutes.news.path,

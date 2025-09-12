@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sportzenzehra/core/theme/app_colors.dart';
+import 'package:sportzenzehra/core/widgets/custom_snack_bar.dart';
 import 'package:sportzenzehra/feature/home/view/enums/planner_mode.dart';
 import 'package:sportzenzehra/feature/home/view/enums/player_status.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/create_match_modal.dart';
@@ -46,60 +46,19 @@ class PlayerCard extends StatelessWidget {
               );
             }
           : () {
-              const String errorMessage = 'Bu oyuncuya maç teklifi yapılmaz';
+              const String errorMessage = 'Bu oyuncuya maç teklifi yapıılmaz';
               final snackBar = SnackBar(
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                content: Material(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                  elevation: 5,
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: theme.colorScheme.error,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.info, color: theme.colorScheme.error),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            errorMessage,
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: Colors.black,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          },
-                          child: Text(
-                            "Kapat",
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black60,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+
+                content: CustomSnackBar(
+                  message: errorMessage,
+                  iconColor: theme.colorScheme.error,
+                  borderColor: theme.colorScheme.error,
                 ),
-                duration: const Duration(seconds: 10),
+                duration: Duration(seconds: 5),
               );
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(snackBar);

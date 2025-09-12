@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
-import 'package:sportzenzehra/feature/settings/view/widgets/custom_snack_bar.dart';
+import 'package:sportzenzehra/core/widgets/custom_snack_bar.dart';
 
 class HelpCenterView extends StatefulWidget {
   const HelpCenterView({super.key});
@@ -117,7 +117,11 @@ class _HelpCenterViewState extends State<HelpCenterView> {
                     elevation: 0,
                     margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
 
-                    content: CustomSnackBar(theme: theme, message: message),
+                    content: CustomSnackBar(
+                      message: message,
+                      iconColor: theme.colorScheme.secondary,
+                      borderColor: theme.colorScheme.secondary,
+                    ),
                     duration: Duration(seconds: 5),
                   );
 

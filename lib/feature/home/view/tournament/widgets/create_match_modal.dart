@@ -105,7 +105,7 @@ class _CreateMatchModalState extends State<CreateMatchModal> {
                                     text,
                                     style: theme.textTheme.labelMedium
                                         ?.copyWith(
-                                          color: AppColors.black80,
+                                          color: AppColors.black70,
                                           fontSize: 16,
                                         ),
                                   ),
