@@ -54,6 +54,14 @@ class TabIndexNotifier extends StateNotifier<int> {
   }
 }
 
+class MatchOfferNotifier extends StateNotifier<String?> {
+  MatchOfferNotifier() : super(null);
+
+  void selectChoose(String chose) {
+    state = chose;
+  }
+}
+
 final tabIndexProvider = StateNotifierProvider<TabIndexNotifier, int>(
   (ref) => TabIndexNotifier(),
 );
@@ -102,4 +110,9 @@ final currentPageProvider = StateNotifierProvider<CurrentPageNotifier, int>(
 final selectedHeaderProvider =
     StateNotifierProvider<SelectedHeaderNotifier, HeaderModel>(
       (ref) => SelectedHeaderNotifier(),
+    );
+
+final matchOfferNotifierProvider =
+    StateNotifierProvider<MatchOfferNotifier, String?>(
+      (ref) => MatchOfferNotifier(),
     );

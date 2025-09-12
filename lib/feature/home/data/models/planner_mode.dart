@@ -1,0 +1,1 @@
+enum PlannerMode { edit, create }

@@ -4,7 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/data/mock/tournament_tabs.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/detail_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/match_offer_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/ranking_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/pyramid_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/empyt_view.dart';
 
@@ -18,14 +21,7 @@ class TournamentDetailView extends ConsumerStatefulWidget {
 
 class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
   late PageController _controller;
-  final tabs = ["Detaylar", "Maçlar", "Teklifler", "Sıralama", "Piramit"];
-  final tabIcons = [
-    'assets/icons/detail.svg',
-    'assets/icons/ball.svg',
-    'assets/icons/handshake.svg',
-    'assets/icons/bar.svg',
-    'assets/icons/bracket.svg',
-  ];
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +50,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.06),
-                  blurRadius: 10,
+                  blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
               ],
@@ -150,7 +146,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
             height: 40,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: tabs.length,
+              itemCount: tournamentTabs.length,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               itemBuilder: (context, index) {
                 final selectedIndex = ref.watch(tournamentTabProvider);
@@ -166,6 +162,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                     ref
                         .read(tournamentTabProvider.notifier)
                         .selectedIndex(index);
+
                     _controller.jumpToPage(index);
                   },
                   child: Container(
@@ -190,7 +187,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          tabIcons[index],
+                          tournamentTabIcons[index],
                           width: 20,
                           height: 20,
                           colorFilter: ColorFilter.mode(
@@ -200,7 +197,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          tabs[index],
+                          tournamentTabs[index],
                           style: TextStyle(
                             color: itemColor,
                             fontWeight: FontWeight.w600,
@@ -223,13 +220,12 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
               },
               children: [
                 DetailView(),
-
                 const EmptyStateWidget(
                   iconPath: 'assets/icons/ball.svg',
                   message: 'Henüz maç bulunmuyor',
                 ),
-                Container(),
-                Container(),
+                MatchOfferView(),
+                RankingPage(),
                 PyramidView(),
               ],
             ),

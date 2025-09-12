@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/view/tournament/widgets/show_offer_modal.dart';
+import 'package:sportzenzehra/feature/home/data/models/planner_mode.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/widgets/create_match_modal.dart';
 
 class PyramidView extends StatelessWidget {
   const PyramidView({super.key});
@@ -9,14 +10,15 @@ class PyramidView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Scaffold(
       body: Stack(
         children: [
           InteractiveViewer(
-            boundaryMargin: const EdgeInsets.all(100),
+            boundaryMargin: const EdgeInsets.all(
+              100,
+            ), //Kullanıcının, içeriğin en kenardaki kısımlarını bile rahatça ekranın ortasına getirip inceleyebilmesini sağlamak için. Bu, kullanılabilirlik (usability) açısından çok önemlidir.
             minScale: 0.2,
-            maxScale: 3,
+            maxScale: 3, //Zoom için minimum ve maximum ölçek.
             child: Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
@@ -100,7 +102,7 @@ class PyramidView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withOpacity(0.08),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -222,7 +224,10 @@ class _PlayerCard extends StatelessWidget {
                         top: Radius.circular(20),
                       ),
                     ),
-                    child: MatchPlannerContent(playerName: name),
+                    child: CreateMatchModal(
+                      mode: PlannerMode.create,
+                      playerName: name,
+                    ),
                   );
                 },
               );
@@ -301,7 +306,7 @@ class _PlayerCard extends StatelessWidget {
                     : null,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withOpacity(0.08),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -327,7 +332,7 @@ class _PlayerCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
+                      color: Colors.black.withOpacity(0.1),
                       offset: const Offset(0, 2),
                       blurRadius: 5,
                     ),
