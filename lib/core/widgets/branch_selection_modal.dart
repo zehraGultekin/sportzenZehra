@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/theme/text_style.dart';
 import 'package:sportzenzehra/feature/home/data/models/selection_input.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/header_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/select_branch_provider.dart'
+    show SelectedBranchNotifier, selectedBranchProvider;
 
 class BranchSelectionModal extends ConsumerWidget {
   final StateNotifierProvider<SelectedBranchNotifier, BranchModel?>

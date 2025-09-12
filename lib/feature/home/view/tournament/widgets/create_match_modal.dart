@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/mock/create_match_modal.dart';
-import 'package:sportzenzehra/feature/home/data/models/planner_mode.dart';
+import 'package:sportzenzehra/feature/home/view/enums/planner_mode.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/select_court_widget.dart';
 
 class CreateMatchModal extends StatefulWidget {
@@ -168,7 +168,7 @@ class _CreateMatchModalState extends State<CreateMatchModal> {
                     context.pop();
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/data/models/planner_mode.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/match_offer_provider.dart';
+import 'package:sportzenzehra/feature/home/view/enums/match_offer_enum.dart';
+import 'package:sportzenzehra/feature/home/view/enums/planner_mode.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/match_offer_widget.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/widgets/create_match_modal.dart';
 
@@ -13,8 +14,7 @@ class MatchOfferView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final String? seciliFiltre = ref.watch(matchOfferNotifierProvider);
-
+    final MatchOffer seciliFiltre = ref.watch(matchOfferNotifierProvider);
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
@@ -23,42 +23,35 @@ class MatchOfferView extends ConsumerWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: PopupMenuButton(
-                position: PopupMenuPosition
-                    .under, //açtığımız popup ı widgetını altına koy demek için koyduk bunu.
+              child: PopupMenuButton<MatchOffer>(
+                position: PopupMenuPosition.under,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                icon: Icon(Icons.filter_list),
-                onSelected: (String secilenDeger) {
+                icon: const Icon(Icons.filter_list),
+                onSelected: (MatchOffer secilenDeger) {
                   ref
                       .read(matchOfferNotifierProvider.notifier)
                       .selectChoose(secilenDeger);
                 },
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 'a',
+                itemBuilder: (context) => MatchOffer.values.map((filter) {
+                  final isSelected = seciliFiltre == filter;
+                  final color = isSelected
+                      ? theme.colorScheme.secondary
+                      : Colors.black;
+
+                  return PopupMenuItem<MatchOffer>(
+                    value: filter,
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.calendar_month_rounded,
-                          color: seciliFiltre == 'a'
-                              ? theme.colorScheme.secondary
-                              : Colors.black,
-                          size: 18,
-                        ),
+                        Icon(filter.icon, color: color, size: 18),
                         const SizedBox(width: 12),
                         Text(
-                          'Tüm Maç Teklifleri',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: seciliFiltre == 'a'
-                                ? theme.colorScheme.secondary
-                                : Colors.black,
-                          ),
+                          filter.title,
+                          style: TextStyle(fontSize: 14, color: color),
                         ),
-                        Spacer(),
-                        if (seciliFiltre == 'a')
+                        const Spacer(),
+                        if (isSelected)
                           Icon(
                             Icons.check,
                             color: theme.colorScheme.secondary,
@@ -66,45 +59,14 @@ class MatchOfferView extends ConsumerWidget {
                           ),
                       ],
                     ),
-                  ),
-                  PopupMenuItem(
-                    value: 'b',
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.person,
-                          color: seciliFiltre == 'b'
-                              ? theme.colorScheme.secondary
-                              : Colors.black,
-                          size: 18,
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          'Benim Maç Tekliflerim',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: seciliFiltre == 'b'
-                                ? theme.colorScheme.secondary
-                                : Colors.black,
-                          ),
-                        ),
-                        const Spacer(),
-                        if (seciliFiltre == 'b')
-                          Icon(
-                            Icons.check,
-                            color: AppColors.secondary,
-                            size: 16,
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
+                  );
+                }).toList(),
               ),
             ),
             const SizedBox(height: 20),
             Container(
               width: double.infinity,
-              clipBehavior: Clip.antiAlias, //kırpmak için kullandım.
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 color: theme.colorScheme.surface,
                 boxShadow: [

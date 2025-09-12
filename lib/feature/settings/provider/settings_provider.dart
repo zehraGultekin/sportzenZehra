@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/select_city_provider.dart';
 
 final imagePickerProvider = StateNotifierProvider<ImagePickerNotifier, XFile?>(
   (ref) => ImagePickerNotifier(),

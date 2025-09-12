@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
-import 'package:sportzenzehra/feature/home/data/mock/tournament_tabs.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
+import 'package:sportzenzehra/feature/home/view/enums/tournament_tabs.dart';
+import 'package:sportzenzehra/feature/home/provider/page_controller_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/tab_provider.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/detail_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/match_offer_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/ranking_view.dart';
@@ -20,22 +22,10 @@ class TournamentDetailView extends ConsumerStatefulWidget {
 }
 
 class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
-  late PageController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = PageController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final pageController = ref.watch(tournamePageProvider);
+    final tabs = TournamentTab.values;
     final theme = Theme.of(context);
     return Scaffold(
       body: Column(
@@ -130,6 +120,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                                 color: theme.colorScheme.primary,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -146,13 +137,14 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
             height: 40,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: tournamentTabs.length,
+              itemCount: tabs.length,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               itemBuilder: (context, index) {
+                final tab = tabs[index];
                 final selectedIndex = ref.watch(tournamentTabProvider);
                 bool isSelected = selectedIndex == index;
-                final Color activeColor = const Color(0xff2196f3);
-                final Color inactiveColor = Colors.grey.shade600;
+                final Color activeColor = AppColors.blue;
+                final Color inactiveColor = AppColors.black40;
                 final Color itemColor = isSelected
                     ? activeColor
                     : inactiveColor;
@@ -162,8 +154,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                     ref
                         .read(tournamentTabProvider.notifier)
                         .selectedIndex(index);
-
-                    _controller.jumpToPage(index);
+                    pageController.jumpToPage(index);
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(
@@ -187,7 +178,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          tournamentTabIcons[index],
+                          tab.iconPath,
                           width: 20,
                           height: 20,
                           colorFilter: ColorFilter.mode(
@@ -197,7 +188,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          tournamentTabs[index],
+                          tab.title,
                           style: TextStyle(
                             color: itemColor,
                             fontWeight: FontWeight.w600,
@@ -214,7 +205,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
           SizedBox(height: 20),
           Expanded(
             child: PageView(
-              controller: _controller,
+              controller: pageController,
               onPageChanged: (index) {
                 ref.read(tournamentTabProvider.notifier).selectedIndex(index);
               },

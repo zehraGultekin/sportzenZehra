@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/feature/home/data/mock/banner_mock.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/current_page_provider.dart';
 
 class HomeBannerWidget extends ConsumerWidget {
   const HomeBannerWidget({super.key});

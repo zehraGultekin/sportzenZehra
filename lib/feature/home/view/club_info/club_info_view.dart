@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/page_controller_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/tab_provider.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/about_club.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/communication_view.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/rules_view.dart';
+import 'package:sportzenzehra/feature/home/view/enums/tabs_enum.dart';
 
 class ClubInfoView extends ConsumerStatefulWidget {
   const ClubInfoView({super.key});
@@ -14,24 +16,11 @@ class ClubInfoView extends ConsumerStatefulWidget {
 }
 
 class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
-  late PageController _controller;
-
-  final tabs = ["Hakkında", "İletişim", "Kurallar"];
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = PageController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final pageController = ref.watch(clubProvider);
+    final tabs = ClubInfo.values;
+
     final theme = Theme.of(context);
 
     return Padding(
@@ -81,13 +70,14 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
                 builder: (context, ref, child) {
                   final selectedIndex = ref.watch(tabIndexProvider);
                   bool isSelected = selectedIndex == index;
+
                   return Expanded(
                     child: GestureDetector(
                       onTap: () {
                         ref
                             .read(tabIndexProvider.notifier)
                             .selectedIndex(index);
-                        _controller.jumpToPage(index);
+                        pageController.jumpToPage(index);
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -100,7 +90,7 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          tabs[index],
+                          tabs[index].title,
                           style: TextStyle(
                             color: isSelected ? Colors.white : Colors.white70,
                             fontWeight: FontWeight.w500,
@@ -115,7 +105,7 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
           ),
           Expanded(
             child: PageView(
-              controller: _controller,
+              controller: pageController,
               onPageChanged: (index) {
                 ref.read(tabIndexProvider.notifier).selectedIndex(index);
               },

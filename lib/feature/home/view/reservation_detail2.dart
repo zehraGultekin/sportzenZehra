@@ -5,8 +5,8 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/data/mock/reservation_mock.dart';
 import 'package:sportzenzehra/feature/home/data/mock/reservation_mock_data.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
-import 'package:sportzenzehra/feature/home/provider/rezervation_detail_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/reservation_detail_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/select_branch_provider.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/reservation_card_widget.dart';
 
 class ReservationDetail2 extends ConsumerWidget {

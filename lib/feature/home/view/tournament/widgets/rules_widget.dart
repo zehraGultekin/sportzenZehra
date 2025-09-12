@@ -24,7 +24,7 @@ class RulesWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
-            blurRadius: 15,
+            blurRadius: 10,
             offset: const Offset(0, 4),
           ),
         ],
@@ -39,7 +39,7 @@ class RulesWidget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: const Color(0xff2196f3).withOpacity(0.1),
+                  color: AppColors.blue.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: SvgPicture.asset(
@@ -47,7 +47,7 @@ class RulesWidget extends StatelessWidget {
                   width: 20,
                   height: 20,
                   colorFilter: const ColorFilter.mode(
-                    Color(0xff2196f3),
+                    AppColors.blue,
                     BlendMode.srcIn,
                   ),
                 ),

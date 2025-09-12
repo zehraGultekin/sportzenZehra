@@ -8,8 +8,8 @@ class EmptyStateWidget extends StatelessWidget {
 
   const EmptyStateWidget({
     super.key,
-    this.iconPath = 'assets/icons/ball.svg',
-    this.message = 'Henüz maç bulunmuyor',
+    required this.iconPath,
+    required this.message,
   });
 
   @override

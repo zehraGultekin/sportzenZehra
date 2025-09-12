@@ -5,7 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/mock/banner_mock.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/header_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/current_page_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/select_branch_provider.dart';
+import 'package:sportzenzehra/feature/home/provider/select_city_provider.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/banner_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/header_widget.dart';
 import 'package:sportzenzehra/feature/home/view/widgets/selection_card.dart';
@@ -255,7 +258,12 @@ class HomeView extends ConsumerWidget {
                           'assets/icons/reservation.svg',
                           width: 30,
                           height: 30,
+                          colorFilter: ColorFilter.mode(
+                            theme.colorScheme.secondary,
+                            BlendMode.srcIn,
+                          ),
                         ),
+
                         SizedBox(width: 5),
                         Text(
                           "Rezervasyon",

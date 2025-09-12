@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/mock/header_mock.dart';
-import 'package:sportzenzehra/feature/home/provider/home_providers.dart';
+import 'package:sportzenzehra/feature/home/provider/header_provider.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/club_info_view.dart';
 
 class HeaderWidget extends ConsumerWidget {

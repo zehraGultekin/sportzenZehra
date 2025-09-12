@@ -30,7 +30,7 @@ class _RulesViewState extends State<RulesView> {
         showBottomBorder: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
         child: Column(
           spacing: 20,
           children: [

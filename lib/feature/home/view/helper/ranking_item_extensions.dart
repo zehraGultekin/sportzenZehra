@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/data/models/ranking_model.dart';
 
 extension RankingItemUI on RankingItem {
@@ -11,7 +12,7 @@ extension RankingItemUI on RankingItem {
         return Colors.yellow.shade100;
 
       default:
-        return Colors.black12;
+        return AppColors.black10;
     }
   }
 
@@ -25,7 +26,7 @@ extension RankingItemUI on RankingItem {
       case 2:
         return Colors.grey.shade700;
       default:
-        return Colors.black54;
+        return AppColors.black50;
     }
   }
 }
