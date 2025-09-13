@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/feature/home/view/club_register/applantis_tenis.dart';
-import 'package:sportzenzehra/feature/home/view/club_register/club_detail_view.dart';
+import 'package:sportzenzehra/feature/home/view/club_register/atdsk_pageview.dart';
 import 'package:sportzenzehra/feature/home/view/club_register/club_register.dart';
 import 'package:sportzenzehra/feature/home/view/home_view.dart';
 import 'package:sportzenzehra/feature/home/view/news_view/news_atp_view.dart';
@@ -94,7 +94,7 @@ final router = GoRouter(
                     GoRoute(
                       path: AppRoutes.clubDetail.path,
                       name: AppRoutes.clubDetail.name,
-                      builder: (context, state) => ClubDetailView(),
+                      builder: (context, state) => AtdskClubInfo(),
                     ),
                     GoRoute(
                       path: AppRoutes.clubDetail2.path,

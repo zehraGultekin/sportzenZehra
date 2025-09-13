@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 
-Widget buildSportBox(IconData icon, String label) {
+Widget buildSportBox(String svgPath, String label) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
     decoration: BoxDecoration(
@@ -12,7 +13,11 @@ Widget buildSportBox(IconData icon, String label) {
     child: Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon, size: 18), SizedBox(width: 5), Text(label)],
+        children: [
+          SvgPicture.asset(svgPath, width: 20, height: 20),
+          SizedBox(width: 5),
+          Text(label),
+        ],
       ),
     ),
   );

@@ -150,53 +150,47 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
               style: theme.textTheme.titleMedium?.copyWith(
                 color: AppColors.black60,
                 fontWeight: FontWeight.w600,
-                fontSize: 18,
+                fontSize: 19,
               ),
             ),
             SizedBox(height: 10),
-            Expanded(
-              child: Center(
-                child: Builder(
-                  builder: (context) {
-                    if (selectedCity == null) {
-                      return Text(
-                        "Aramaya başlamak için şehir veya branş seçmeniz\ngerekmektedir",
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.black80,
+            Center(
+              child: selectedCity == null
+                  ? Text(
+                      "Aramaya başlamak için şehir veya branş seçmeniz\n gerekmektedir",
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  : selectedCity == 'Adana'
+                  ? Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            context.pushNamed(AppRoutes.clubDetail.name);
+                          },
+                          child: ClubInfoCard(
+                            clubLogo: 'assets/images/newlogo.png',
+                            title: 'Adana Tenis Dağ ve Su Sporları Kulübü',
+                            subtitle: 'Kulüp bilgileri için dokunun',
+                          ),
                         ),
-                        textAlign: TextAlign.center,
-                      );
-                    }
-                    if (selectedCity == 'Adana') {
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              context.pushNamed(AppRoutes.clubDetail.name);
-                            },
-                            child: ClubInfoCard(
-                              clubLogo: 'assets/images/newlogo.png',
-                              title: 'Adana Tenis Dağ ve Su Sporları Kulübü',
-                              subtitle: 'Kulüp bilgileri için dokunun',
-                            ),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            context.pushNamed(AppRoutes.clubDetail2.name);
+                          },
+                          child: ClubInfoCard(
+                            clubLogo: 'assets/images/applantis.jpg',
+                            title: 'Adana Tenis Kulübü',
+                            subtitle: 'Kulüp bilgileri için dokunun',
                           ),
-                          SizedBox(height: 10),
-                          GestureDetector(
-                            onTap: () {
-                              context.pushNamed(AppRoutes.clubDetail2.name);
-                            },
-                            child: ClubInfoCard(
-                              clubLogo: 'assets/images/applantis.jpg',
-                              title: 'Adana Tenis Kulübü',
-                              subtitle: 'Kulüp bilgileri için dokunun',
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                    return Text(
+                        ),
+                      ],
+                    )
+                  : Text(
                       "Sonuç Bulunamadı",
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 14,
@@ -204,10 +198,7 @@ class _ClubRegisterViewState extends ConsumerState<ClubRegisterView> {
                         color: AppColors.black70,
                       ),
                       textAlign: TextAlign.center,
-                    );
-                  },
-                ),
-              ),
+                    ),
             ),
           ],
         ),

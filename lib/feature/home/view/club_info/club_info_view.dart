@@ -109,7 +109,7 @@ class _ClubInfoViewState extends ConsumerState<ClubInfoView> {
               onPageChanged: (index) {
                 ref.read(tabIndexProvider.notifier).selectedIndex(index);
               },
-              children: [AboutClubView(), CommunicationView(), RulesView()],
+              children: [ApplantisClubView(), CommunicationView(), RulesView()],
             ),
           ),
         ],

@@ -9,9 +9,9 @@ import 'package:sportzenzehra/feature/home/provider/page_controller_provider.dar
 import 'package:sportzenzehra/feature/home/provider/tab_provider.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/detail_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/match_offer_view.dart';
+import 'package:sportzenzehra/feature/home/view/tournament/matches_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/ranking_view.dart';
 import 'package:sportzenzehra/feature/home/view/tournament/pyramid_view.dart';
-import 'package:sportzenzehra/feature/home/view/tournament/widgets/empyt_view.dart';
 
 class TournamentDetailView extends ConsumerStatefulWidget {
   const TournamentDetailView({super.key});
@@ -211,10 +211,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
               },
               children: [
                 DetailView(),
-                const EmptyStateWidget(
-                  iconPath: 'assets/icons/ball.svg',
-                  message: 'Henüz maç bulunmuyor',
-                ),
+                MatchCardWidget(),
                 MatchOfferView(),
                 RankingPage(),
                 PyramidView(),

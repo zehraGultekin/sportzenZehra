@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/widgets/build_sport_box.dart';
 
-class AboutClubView extends StatelessWidget {
-  const AboutClubView({super.key});
+class ApplantisClubView extends StatelessWidget {
+  const ApplantisClubView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,9 @@ class AboutClubView extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      buildSportBox(Icons.sports_tennis, "Tenis"),
+                      buildSportBox("assets/icons/tenis.svg", "Tenis"),
                       const SizedBox(width: 10),
-                      buildSportBox(Icons.sports_football_rounded, "Futbol"),
+                      buildSportBox('assets/icons/futbol.svg', "Futbol"),
                     ],
                   ),
                 ],

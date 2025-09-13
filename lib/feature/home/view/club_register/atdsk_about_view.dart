@@ -66,9 +66,9 @@ Abdullah PAKSOY, Atilla BİNÖZ, Behçet BÖLGEN, Fahrünisa HANCIOĞLU, Haluk K
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      buildSportBox(Icons.sports_tennis, "Tenis"),
+                      buildSportBox("assets/icons/tenis.svg", "Tenis"),
                       const SizedBox(width: 10),
-                      buildSportBox(Icons.sports_football_rounded, "Futbol"),
+                      buildSportBox('assets/icons/futbol.svg', "Futbol"),
                     ],
                   ),
                 ],

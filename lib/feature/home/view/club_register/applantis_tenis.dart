@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
+import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/page_controller_provider.dart';
 import 'package:sportzenzehra/feature/home/provider/tab_provider.dart';
 import 'package:sportzenzehra/feature/home/view/club_info/about_club.dart';
@@ -24,6 +26,19 @@ class _ClubInfoViewState extends ConsumerState<ApplantisInfoView> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: CustomAppBar(
+        title: "Kulüp Seç",
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: theme.colorScheme.secondary,
+            size: 20,
+          ),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(
@@ -102,7 +117,11 @@ class _ClubInfoViewState extends ConsumerState<ApplantisInfoView> {
                 onPageChanged: (index) {
                   ref.read(tabIndexProvider.notifier).selectedIndex(index);
                 },
-                children: [AboutClubView(), CommunicationView(), RulesView()],
+                children: [
+                  ApplantisClubView(),
+                  CommunicationView(),
+                  RulesView(),
+                ],
               ),
             ),
           ],

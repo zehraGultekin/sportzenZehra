@@ -5,19 +5,19 @@ import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/core/widgets/appbar.dart';
 import 'package:sportzenzehra/feature/home/provider/page_controller_provider.dart';
 import 'package:sportzenzehra/feature/home/provider/tab_provider.dart';
-import 'package:sportzenzehra/feature/home/view/club_info/about_club.dart';
+import 'package:sportzenzehra/feature/home/view/club_register/atdsk_about_view.dart';
 import 'package:sportzenzehra/feature/home/view/club_register/atdsk_comminication.dart';
 import 'package:sportzenzehra/feature/home/view/club_register/atdsk_rules.dart';
 import 'package:sportzenzehra/feature/home/view/enums/tabs_enum.dart';
 
-class ClubDetailView extends ConsumerStatefulWidget {
-  const ClubDetailView({super.key});
+class AtdskClubInfo extends ConsumerStatefulWidget {
+  const AtdskClubInfo({super.key});
 
   @override
-  ConsumerState<ClubDetailView> createState() => _ClubDetailViewState();
+  ConsumerState<AtdskClubInfo> createState() => _ClubDetailViewState();
 }
 
-class _ClubDetailViewState extends ConsumerState<ClubDetailView> {
+class _ClubDetailViewState extends ConsumerState<AtdskClubInfo> {
   final tabs = ClubInfo.values;
 
   @override
@@ -120,7 +120,7 @@ class _ClubDetailViewState extends ConsumerState<ClubDetailView> {
                   ref.read(tabIndexProvider.notifier).selectedIndex(index);
                 },
                 children: [
-                  AboutClubView(),
+                  AtdskInfoView(),
                   AtdskCommunicationView(),
                   AtdskRules(),
                 ],
