@@ -1,26 +1,22 @@
-// Dosya Adı: match_enum.dart
-
 import 'package:flutter/material.dart';
 
-// 1. Enum tanımımız
-enum Match { all, mine }
+enum MatchList { all, mine }
 
-// 2. Enum'a .title ve .icon özelliklerini ekleyen extension
-extension MatchExtension on Match {
+extension MatchExtension on MatchList {
   String get title {
     switch (this) {
-      case Match.all:
+      case MatchList.all:
         return 'Tüm Maçlar';
-      case Match.mine:
+      case MatchList.mine:
         return 'Benim Maçlarım';
     }
   }
 
   IconData get icon {
     switch (this) {
-      case Match.all:
+      case MatchList.all:
         return Icons.calendar_month_rounded;
-      case Match.mine:
+      case MatchList.mine:
         return Icons.person;
     }
   }

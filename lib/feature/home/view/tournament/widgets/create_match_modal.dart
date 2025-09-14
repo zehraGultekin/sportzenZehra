@@ -160,7 +160,7 @@ class _CreateMatchModalState extends State<CreateMatchModal> {
                   surfaceType: 'Sert Zemin',
                   surfaceColor: AppColors.blue.withValues(alpha: 0.1),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.12),
                 GestureDetector(
                   onTap: () {
                     if (widget.mode == PlannerMode.edit) {

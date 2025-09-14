@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
-import 'package:sportzenzehra/feature/home/provider/match_provider.dart';
-import 'package:sportzenzehra/feature/home/view/enums/match_enums.dart';
 
-class MatchCard extends ConsumerWidget {
-  const MatchCard({super.key});
+class MatchCardModal extends ConsumerWidget {
+  const MatchCardModal({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,54 +11,16 @@ class MatchCard extends ConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Align(
-          alignment: Alignment.topRight,
-          child: PopupMenuButton<MatchList>(
-            position: PopupMenuPosition.under,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            icon: const Icon(Icons.filter_list, color: AppColors.black70),
-            onSelected: (MatchList secilenDeger) {
-              ref
-                  .read(matchNotifierProvider.notifier)
-                  .selectChoose(secilenDeger);
-            },
-            itemBuilder: (context) {
-              final theme = Theme.of(context);
-              final seciliFiltre = ref.watch(matchNotifierProvider);
-              return MatchList.values.map((filter) {
-                final isSelected = seciliFiltre == filter;
-                final color = isSelected
-                    ? theme.colorScheme.secondary
-                    : Colors.black;
-
-                return PopupMenuItem<MatchList>(
-                  value: filter,
-                  child: Row(
-                    children: [
-                      Icon(filter.icon, color: color, size: 18),
-                      const SizedBox(width: 12),
-                      Text(
-                        filter.title,
-                        style: TextStyle(fontSize: 14, color: color),
-                      ),
-                      const Spacer(),
-                      if (isSelected)
-                        Icon(
-                          Icons.check,
-                          color: theme.colorScheme.secondary,
-                          size: 16,
-                        ),
-                    ],
-                  ),
-                );
-              }).toList();
-            },
+        SizedBox(height: 20),
+        Container(
+          height: 4,
+          width: 35,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.grey.withValues(alpha: 0.4),
           ),
         ),
         const SizedBox(height: 20),
-
         Container(
           margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(

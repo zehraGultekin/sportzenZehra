@@ -22,11 +22,11 @@ class MatchOfferView extends ConsumerWidget {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.topRight,
               child: PopupMenuButton<MatchOffer>(
                 position: PopupMenuPosition.under,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 icon: const Icon(Icons.filter_list),
                 onSelected: (MatchOffer secilenDeger) {

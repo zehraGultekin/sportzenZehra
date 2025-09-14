@@ -202,7 +202,6 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
               },
             ),
           ),
-          SizedBox(height: 20),
           Expanded(
             child: PageView(
               controller: pageController,
@@ -211,7 +210,7 @@ class _TournamentDetailViewState extends ConsumerState<TournamentDetailView> {
               },
               children: [
                 DetailView(),
-                MatchCardWidget(),
+                MatchCard(),
                 MatchOfferView(),
                 RankingPage(),
                 PyramidView(),

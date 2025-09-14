@@ -17,7 +17,7 @@ class PyramidView extends StatelessWidget {
             boundaryMargin: const EdgeInsets.all(
               100,
             ), //Kullanıcının, içeriğin en kenardaki kısımlarını bile rahatça ekranın ortasına getirip inceleyebilmesini sağlamak için. Bu, kullanılabilirlik (usability) açısından çok önemlidir.
-            minScale: 0.2,
+            minScale: 0.01,
             maxScale: 3, //Zoom için minimum ve maximum ölçek.
             child: Center(
               child: SizedBox(

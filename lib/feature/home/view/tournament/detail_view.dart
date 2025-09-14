@@ -15,7 +15,7 @@ class DetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
               width: double.infinity,
               decoration: BoxDecoration(
