@@ -46,14 +46,14 @@ final List<ReservationItem> reserveList = [
   ReservationItem(
     title: "17",
     subtitle: "Eylül",
-    date: "10 Eylül 2025",
+    date: "17 Eylül 2025",
     day: "Çarşamba",
     fee: "0.00 ₺ - 50,00₺",
   ),
   ReservationItem(
     title: "18",
     subtitle: "Eylül",
-    date: "11 Eylül 2025",
+    date: "18 Eylül 2025",
     day: "Perşembe",
     fee: "0.00 ₺ - 50,00₺",
   ),

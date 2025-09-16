@@ -6,7 +6,7 @@ import 'package:sportzenzehra/core/router/router.dart';
 import 'package:sportzenzehra/core/theme/app_colors.dart';
 import 'package:sportzenzehra/feature/login/provider/register_provider.dart';
 import 'package:sportzenzehra/feature/login/view/widgets/custom_text_field.dart';
-import 'package:sportzenzehra/feature/login/view/widgets/register_showmodal.dart';
+import 'package:sportzenzehra/feature/settings/view/kvkk_view.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -216,7 +216,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                                                           context,
                                                         ).size.height *
                                                         0.80,
-                                                    child: RegisterShowmodal(),
+                                                    child: KvkkView(),
                                                   );
                                                 },
                                               );

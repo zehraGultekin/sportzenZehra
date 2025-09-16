@@ -23,9 +23,9 @@ class RankingPage extends StatelessWidget {
                     context: context,
                     isScrollControlled: true,
                     builder: (context) {
-                      return FractionallySizedBox(
-                        heightFactor: 0.7,
-                        child: const MatchCardModal(),
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.80,
+                        child: MatchCardModal(),
                       );
                     },
                   );

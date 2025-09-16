@@ -23,10 +23,10 @@ class DetailCardWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           decoration: BoxDecoration(
-            color: Color(0xff2196f3).withValues(alpha: 0.1),
+            color: AppColors.blue.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(5),
           ),
-          child: Icon(icon, color: Color(0xff2196f3), size: 24),
+          child: Icon(icon, color: AppColors.blue, size: 24),
         ),
         const SizedBox(width: 12),
         Column(
